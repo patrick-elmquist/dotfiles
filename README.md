@@ -1,6 +1,7 @@
 # dotfiles
 
 Based on this blog post: https://www.atlassian.com/git/tutorials/dotfiles
+
 Which in turn is based on this post: https://news.ycombinator.com/item?id=11071754
 
 ## Install dotfiles onto a new system
@@ -30,6 +31,7 @@ Aborting
 ```
 
 ...it means thare are already old versions of some of the files.
+
 Use the following to move the offending files to another folder:
 ```shell
 mkdir -p .config-backup && \
