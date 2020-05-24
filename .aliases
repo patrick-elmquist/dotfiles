@@ -1,0 +1,49 @@
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# Config
+alias zshrc='${=EDITOR} ~/.zshrc'
+alias aliases='${=EDITOR} ~/.aliases'
+alias reload='source ~/.zshrc'
+
+# List files
+alias ls='ls -G' # colorise the output
+alias ll='ls -lah'
+alias la='ls -A'
+
+alias -g ...='../..'
+alias -g ....='../../..'
+
+# Folders
+alias §='cd ~'
+
+# Utility
+alias h='history'
+alias hgrep='fc -El 0 | grep'
+
+# Gradle
+alias gr='./gradlew'
+
+# Git
+alias g='git'
+alias ac='git ac'
+alias acm='git acm'
+alias ga.='git add .'
+alias gcam='git cam'
+alias gll='git ll'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gls='git ls'
+alias gst='git st'
+alias st='gst'
+alias gstat='git diff origin/master --stat'
+alias next='git rebase --continue'
+alias fetch='git fetch --all --prune'
+alias squash='git rebase -i'
+alias push='git push origin'
+alias checkpoint='git commit -am "Checkpoint"'
+alias devbranch='fetch && git checkout origin/dev -b'
+alias fetchbase='fetch && git rebase origin/dev'
+
+# Homebrew
+alias brew-update='brew update -v; brew upgrade -v; brew cleanup; brew doctor; brew missing;'
+
