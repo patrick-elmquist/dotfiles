@@ -5,7 +5,7 @@ set ignorecase                  " Make searching case insensitive...
 set smartcase                   " ...for lower letters.
 set incsearch                   " Highlight as you search
 set hlsearch                    " Highlight search results
-set relativenumber              " Use relative numbers in the editor
+set number relativenumber       " Use relative numbers in the editor, except for current line
 
 set showmode                    " Show the current mode in the status line
 set showcmd                     " Show partial command in the status line
@@ -129,3 +129,4 @@ omap gl <Plug>(easymotion-bd-jk)
 
 inoremap jj <ESC>
 inoremap kk <ESC>
+
