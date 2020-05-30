@@ -2,7 +2,7 @@
 " Options
 " ---------------
 set ignorecase                  " Make searching case insensitive...
-set smartcase                   " ...for lower letters.
+" set smartcase                   " ...for lower letters.
 set incsearch                   " Highlight as you search
 set hlsearch                    " Highlight search results
 set number relativenumber       " Use relative numbers in the editor, except for current line
@@ -31,12 +31,13 @@ let mapleader = " "
 nmap <Space> <Leader>
 
 " Move lines
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+" Disabled in favor or the IDEA actions
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Move between editors
 nmap <C-h> <C-w>h
@@ -71,6 +72,18 @@ noremap <leader>b :action GotoDeclaration<CR>
 noremap <leader>B :action GotoImplementation<CR>
 noremap <leader>I :action ImplementMethods<CR>
 
+" Moving lines up/down, and elements left/right
+nnoremap <A-j> :action MoveStatementDown<CR>
+nnoremap <A-k> :action MoveStatementUp<CR>
+nnoremap <A-h> :action MoveElementLeft<CR>
+nnoremap <A-l> :action MoveElementRight<CR>
+inoremap <A-j> <Esc>:action MoveStatementDown<CR>gi
+inoremap <A-k> <Esc>:action MoveStatementUp<CR>gi
+inoremap <A-h> <Esc>:action MoveElementLeft<CR>gi
+inoremap <A-l> <Esc>:action MoveElementRight<CR>gi
+vnoremap <A-j> :action MoveStatementDown<CR>
+vnoremap <A-k> :action MoveStatementUp<CR>
+
 " Disable arrow keys in normal mode
 nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
@@ -78,8 +91,9 @@ nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 
 " Just to beginning and end of lines easier
-noremap H ^
-noremap L $
+" noremap H ^
+" noremap L $
+noremap 0 ^
 
 " Make Redo easier
 nnoremap U <C-r>
