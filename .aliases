@@ -10,8 +10,10 @@ alias ls='ls -G' # colorise the output
 alias ll='ls -lah'
 alias la='ls -A'
 
-alias -g ...='../..'
-alias -g ....='../../..'
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias -g ...='../..'
+    alias -g ....='../../..'
+fi
 
 # Folders
 alias §='cd ~'
