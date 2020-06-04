@@ -9,6 +9,7 @@ alias reload='source ~/.zshrc'
 alias ls='ls -G' # colorise the output
 alias ll='ls -lah'
 alias la='ls -A'
+alias grep='grep --color=auto'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias -g ...='../..'
