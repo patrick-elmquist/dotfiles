@@ -11,10 +11,16 @@ alias ll='ls -lah'
 alias la='ls -A'
 alias grep='grep --color=auto'
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+case "$OSTYPE" in
+  darwin*)
     alias -g ...='../..'
     alias -g ....='../../..'
-fi
+    ;;
+
+  linux*)
+    alias open='nautilus'
+    ;;
+esac
 
 # Folders
 alias §='cd ~'
