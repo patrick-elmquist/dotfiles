@@ -1,26 +1,27 @@
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Config
-alias zshrc='${=EDITOR} ~/.zshrc'
-alias aliases='${=EDITOR} ~/.aliases'
+alias zshrc='$EDITOR ~/.zshrc'
+alias aliases='$EDITOR ~/.aliases'
 alias reload='source ~/.zshrc'
-
-# List files
-alias ls='ls -G' # colorise the output
-alias ll='ls -lah'
-alias la='ls -A'
-alias grep='grep --color=auto'
 
 case "$OSTYPE" in
   darwin*)
     alias -g ...='../..'
     alias -g ....='../../..'
+    alias ls='ls -G' # colorise the output
     ;;
 
   linux*)
     alias open='nautilus'
+    alias ls='ls --color=auto' # colorise the output
     ;;
 esac
+
+# List files
+alias ll='ls -lah'
+alias la='ls -A'
+alias grep='grep --color=auto'
 
 # Folders
 alias §='cd ~'
