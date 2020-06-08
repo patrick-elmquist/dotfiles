@@ -1,65 +1,45 @@
 " Inherit the config from regular vim
 source ~/.vimrc
 
-" ---------------
-" Options
-" ---------------
-" set ignorecase                  " Make searching case insensitive...
-" set smartcase                   " ...for lower letters.
-" set incsearch                   " Highlight as you search
-" set hlsearch                    " Highlight search results
-" set number relativenumber       " Use relative numbers in the editor, except for current line
-
-" set showmode                    " Show the current mode in the status line
-" set showcmd                     " Show partial command in the status line
-
-" set backspace=indent,eol,start  " Make the backspace button work between lines?
-" set scrolloff=5                 " Try to show X lines of context above/below the cursor
-
-" set cindent
-" set autoindent
-" set smarttab
-" set expandtab
-
-" ---------------
+" ------------------
 " IdeaVim Options
-" ---------------
-set idearefactormode=keep      " Keep the mode when renaming
+" ------------------
+set idearefactormode=keep       " Keep the mode when renaming
 set ideajoin                    " Use IDE join for joining
 
-" ---------------
-" Mappings
-" ---------------
-" let mapleader = " "
-" nmap <Space> <Leader>
+" ------------------
+" Plugins
+" ------------------
+set commentary                  " Commands: gcc, gc + motion, v_gc
+set surround                    " Commands: ys, cs, ds, S
+set ReplaceWithRegister         " Commands: gr, gr
+set argtextobj                  " Commands: aa, ia
 
-" Move lines
-" Disabled in favor or the IDEA actions
-" nnoremap <A-j> :m .+1<CR>==
-" nnoremap <A-k> :m .-2<CR>==
-" inoremap <A-j> <Esc>:m .+1<CR>==gi
-" inoremap <A-k> <Esc>:m .-2<CR>==gi
-" vnoremap <A-j> :m '>+1<CR>gv=gv
-" vnoremap <A-k> :m '<-2<CR>gv=gv
+let g:EasyMotion_smartcase = 1
+set easymotion
 
-" Move between editors
-" NOTE: Revisit, should I try to move away from theses instead?
-" nmap <C-h> <C-w>h
-" nmap <C-j> <C-w>j
-" nmap <C-k> <C-w>k
-" nmap <C-l> <C-w>l
+" Timeout for plugin related commands
+" NOTE: Should probably revisit this value
+set timeoutlen=1000
 
-" If in insert mode, exit and change editor
-" NOTE: Same as above, add for the proper shortcut instead C-W + HJKL
-" imap <C-h> <Esc><C-w>h
-" imap <C-j> <Esc><C-w>j
-" imap <C-k> <Esc><C-w>k
-" imap <C-l> <Esc><C-w>l
+" ------------------
+" Plugin Mappings
+" ------------------
 
-" Clear the search highlights
-" nnoremap <leader>c :noh<CR>
+" move to character
+nmap ; <Plug>(easymotion-s2)gd
+nmap , <Plug>(easymotion-s2)
+xmap , <Plug>(easymotion-s2)
+omap , <Plug>(easymotion-s2)
 
-" IDEA Mappings
+" move to line
+nmap gl <Plug>(easymotion-bd-jk)
+xmap gl <Plug>(easymotion-bd-jk)
+omap gl <Plug>(easymotion-bd-jk)
+
+" ------------------
+" General Mappings
+" ------------------
 noremap <leader>n :action Inline<CR>
 noremap <leader>m :action ExtractFunction<CR>
 noremap <leader>v :action IntroduceVariable<CR>
@@ -88,64 +68,4 @@ inoremap <A-h> <Esc>:action MoveElementLeft<CR>gi
 inoremap <A-l> <Esc>:action MoveElementRight<CR>gi
 vnoremap <A-j> :action MoveStatementDown<CR>
 vnoremap <A-k> :action MoveStatementUp<CR>
-
-" Disable arrow keys in normal mode
-" nnoremap <Up> <Nop>
-" nnoremap <Down> <Nop>
-" nnoremap <Left> <Nop>
-" nnoremap <Right> <Nop>
-
-" Just to beginning and end of lines easier
-" noremap H ^
-" noremap L $
-" noremap 0 ^
-
-" Make Redo easier
-" nnoremap U <C-r>
-
-" Make Y behave like other capital commands
-" nnoremap Y y$
-
-" Swap implementations of ` and ' jump to markers
-" By default, ' jumps to the marked line, ` jumps to the marked line and column
-" Note: disabled in favor for the åÅ bindings
-" nnoremap ' `
-" nnoremap ` '
-
-" ---------------
-" Plugins
-" ---------------
-set commentary                  " Commands: gcc, gc + motion, v_gc
-set surround                    " Commands: ys, cs, ds, S
-set ReplaceWithRegister         " Commands: gr, gr
-set argtextobj                  " Commands: aa, ia
-
-let g:EasyMotion_smartcase = 1
-set easymotion
-
-" Should probably revisit this
-set timeoutlen=1000
-
-" Make the Swedish letters useful
-noremap ö [
-noremap ä ]
-noremap å ´
-
-noremap Ö {
-noremap Ä }
-noremap Å `
-
-" move to character
-nmap ; <Plug>(easymotion-s2)gd
-nmap , <Plug>(easymotion-s2)
-xmap , <Plug>(easymotion-s2)
-omap , <Plug>(easymotion-s2)
-
-" move to line
-nmap gl <Plug>(easymotion-bd-jk)
-xmap gl <Plug>(easymotion-bd-jk)
-omap gl <Plug>(easymotion-bd-jk)
-
-" inoremap jj <ESC>
-" inoremap kk <ESC>
 

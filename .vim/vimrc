@@ -1,43 +1,52 @@
-set number relativenumber
-set showcmd
-set showmode
-set cursorline
-set lazyredraw
-set showmatch
+" ------------------
+" Options
+" ------------------
+set nocompatible                " get rid of Vi compatibility mode. SET FIRST!
+set backspace=indent,eol,start  " make the backspace button work between lines
 
-set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
-filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]
-syntax enable             " enable syntax highlighting (previously syntax on).
+" ------------------
+" UI
+" ------------------
+set number relativenumber       " show realtive numbers, except for the current line
+set cursorline                  " highlight the current line
+set scrolloff=5                 " always try to keep 5 lines of context when scrolling
+set nowrap                      " don't wrap text
+set ruler                       " show row/column in the status bar
+set laststatus=2                " always show the statusline
+set showcmd                     " show the enterned command in the statusline
+set showmode                    " show which mode you are currently in
+set t_Co=256                    " enable 256-color mode.
+set lazyredraw                  " boost performance in some cases
+syntax enable                   " enable syntax highlighting (previously syntax on).
 
-filetype indent on        " activates indenting for files
+" ------------------
+" Searching
+" ------------------
+set hlsearch                    " highlight all matches after searching
+set incsearch                   " highlight while searching
+set ignorecase                  " make searches case-insensitive...
 
-set cindent
-set laststatus=2          " last window always has a statusline
-set t_Co=256              " enable 256-color mode.
-set ignorecase
-set hlsearch              " Don't continue to highlight searched phrases.
-set incsearch             " But do highlight as you type your search.
-set ignorecase            " Make searches case-insensitive.
-set smartcase
-set ruler                 " Always show info along bottom.
-set autoindent            " auto-indent
-set tabstop=4             " tab spacing
-set softtabstop=4         " unify
-set shiftwidth=4          " indent/outdent by 4 columns
-set shiftround            " always indent/outdent to the nearest tabstop
-set expandtab             " use spaces instead of tabs
-set smarttab              " use tabs at the start of a line, spaces elsewhere
-set nowrap                " don't wrap text
+" ------------------
+" Tabs/Spaces
+" ------------------
+filetype plugin indent on       " filetype detection[ON] plugin[ON] indent[ON]
+set tabstop=4                   " tab spacing
+set softtabstop=4               " unify
+set shiftwidth=4                " indent/outdent by 4 columns
+set shiftround                  " always indent/outdent to the nearest tabstop
+set expandtab                   " use spaces instead of tabs
+set smarttab                    " use tabs at the start of a line, spaces elsewhere
 
-set backspace=indent,eol,start  " Make the backspace button work between lines?
-set scrolloff=5
-
-
+" ------------------
+" Bindings
+" ------------------
 let mapleader = " "
 nmap <Space> <Leader>
 
 " Clear the search highlights
 nnoremap <leader>c :noh<CR>
+" Make a search for trailing whitespaces
+nnoremap <leader>w /\S\zs\s\+$<CR>
 
 " Disable arrow keys in normal mode
 nnoremap <Up> <Nop>
@@ -45,11 +54,23 @@ nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 
-" Go to start of content instead of start of line
+" Go to SOC instead of SOL
 noremap 0 ^
+noremap <C-h> ^
+noremap <C-l> $
 
 " Make Redo easier
 nnoremap U <C-r>
 
 " Make Y behave like other capital commands
 nnoremap Y y$
+
+" Make the Swedish letters useful
+noremap ö [
+noremap ä ]
+noremap å ´
+
+noremap Ö {
+noremap Ä }
+noremap Å `
+
