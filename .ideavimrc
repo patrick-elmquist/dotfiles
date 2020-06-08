@@ -1,22 +1,25 @@
+" Inherit the config from regular vim
+source ~/.vimrc
+
 " ---------------
 " Options
 " ---------------
-set ignorecase                  " Make searching case insensitive...
+" set ignorecase                  " Make searching case insensitive...
 " set smartcase                   " ...for lower letters.
-set incsearch                   " Highlight as you search
-set hlsearch                    " Highlight search results
-set number relativenumber       " Use relative numbers in the editor, except for current line
+" set incsearch                   " Highlight as you search
+" set hlsearch                    " Highlight search results
+" set number relativenumber       " Use relative numbers in the editor, except for current line
 
-set showmode                    " Show the current mode in the status line
-set showcmd                     " Show partial command in the status line
+" set showmode                    " Show the current mode in the status line
+" set showcmd                     " Show partial command in the status line
 
-set backspace=indent,eol,start  " Make the backspace button work between lines?
-set scrolloff=5                 " Try to show X lines of context above/below the cursor
+" set backspace=indent,eol,start  " Make the backspace button work between lines?
+" set scrolloff=5                 " Try to show X lines of context above/below the cursor
 
-set cindent
-set autoindent
-set smarttab
-set expandtab
+" set cindent
+" set autoindent
+" set smarttab
+" set expandtab
 
 " ---------------
 " IdeaVim Options
@@ -27,8 +30,8 @@ set ideajoin                    " Use IDE join for joining
 " ---------------
 " Mappings
 " ---------------
-let mapleader = " "
-nmap <Space> <Leader>
+" let mapleader = " "
+" nmap <Space> <Leader>
 
 " Move lines
 " Disabled in favor or the IDEA actions
@@ -40,19 +43,21 @@ nmap <Space> <Leader>
 " vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Move between editors
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
+" NOTE: Revisit, should I try to move away from theses instead?
+" nmap <C-h> <C-w>h
+" nmap <C-j> <C-w>j
+" nmap <C-k> <C-w>k
+" nmap <C-l> <C-w>l
 
 " If in insert mode, exit and change editor
-imap <C-h> <Esc><C-w>h
-imap <C-j> <Esc><C-w>j
-imap <C-k> <Esc><C-w>k
-imap <C-l> <Esc><C-w>l
+" NOTE: Same as above, add for the proper shortcut instead C-W + HJKL
+" imap <C-h> <Esc><C-w>h
+" imap <C-j> <Esc><C-w>j
+" imap <C-k> <Esc><C-w>k
+" imap <C-l> <Esc><C-w>l
 
 " Clear the search highlights
-nnoremap <leader>c :noh<CR>
+" nnoremap <leader>c :noh<CR>
 
 " IDEA Mappings
 noremap <leader>n :action Inline<CR>
@@ -85,21 +90,21 @@ vnoremap <A-j> :action MoveStatementDown<CR>
 vnoremap <A-k> :action MoveStatementUp<CR>
 
 " Disable arrow keys in normal mode
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
+" nnoremap <Up> <Nop>
+" nnoremap <Down> <Nop>
+" nnoremap <Left> <Nop>
+" nnoremap <Right> <Nop>
 
 " Just to beginning and end of lines easier
 " noremap H ^
 " noremap L $
-noremap 0 ^
+" noremap 0 ^
 
 " Make Redo easier
-nnoremap U <C-r>
+" nnoremap U <C-r>
 
 " Make Y behave like other capital commands
-nnoremap Y y$
+" nnoremap Y y$
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and column
@@ -141,6 +146,6 @@ nmap gl <Plug>(easymotion-bd-jk)
 xmap gl <Plug>(easymotion-bd-jk)
 omap gl <Plug>(easymotion-bd-jk)
 
-inoremap jj <ESC>
-inoremap kk <ESC>
+" inoremap jj <ESC>
+" inoremap kk <ESC>
 

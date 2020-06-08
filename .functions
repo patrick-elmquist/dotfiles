@@ -1,3 +1,20 @@
 function take() {
   mkdir -p $@ && cd ${@:$#}
 }
+
+cap() {
+    # Use default name if none was provided
+    filename="${1:-screenshot.png}"
+
+    # Add file extension if needed
+    case $filename in
+    *.png|.PNG)                     ;;
+    *)          filename="$1.png"   ;;
+    esac
+
+    pattern='s/^M$//'
+    #adb -d exec-out screencap -p > $filename;
+    adb exec-out screencap -p > $filename;
+
+    open "$filename"
+}
