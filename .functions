@@ -2,19 +2,46 @@ function take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
+# Take a screenshot of the connected device
+# TODO: Add a switch for preferring emulator or real device
 cap() {
     # Use default name if none was provided
     filename="${1:-screenshot.png}"
 
     # Add file extension if needed
     case $filename in
-    *.png|.PNG)                     ;;
-    *)          filename="$1.png"   ;;
+        *.png|.PNG)
+            ;;
+        *)
+            filename="$1.png"
+            ;;
     esac
 
-    pattern='s/^M$//'
-    #adb -d exec-out screencap -p > $filename;
+    # Take and store the screenshot
     adb exec-out screencap -p > $filename;
 
+    # Open the image
     open "$filename"
+}
+
+
+# Tile two or more images into one.
+# NOTE: Depends on 'montage' from the 'imagemagick' package
+tile() {
+    filename="tile.png"
+
+    case $# in
+        2) montage -tile 2x1 -geometry +100+100 -border 2 -bordercolor grey -background grey90 "$1" "$2" $filename; ;;
+        3) montage -tile 3x1 -geometry +100+100 -border 2 -bordercolor grey -background grey90 "$1" "$2" "$3" $filename; ;;
+        4) montage -tile 4x1 -geometry +100+100 -border 2 -bordercolor grey -background grey90 "$1" "$2" "$3" "$4" $filename; ;;
+        5) montage -tile 3x2 -geometry +100+100 -border 2 -bordercolor grey -background grey90 "$1" "$2" "$3" "$4" "$5" $filename; ;;
+        6) montage -tile 4x2 -geometry +100+100 -border 2 -bordercolor grey -background grey90 "$1" "$2" "$3" "$4" "$5" "$6" $filename; ;;
+        0|*)
+            echo "Unsupported number of arguments: $#"
+            exit 0
+        ;;
+
+    esac
+
+    open $filename;
 }

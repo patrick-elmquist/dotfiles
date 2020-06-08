@@ -46,7 +46,7 @@ nmap <Space> <Leader>
 " Clear the search highlights
 nnoremap <leader>c :noh<CR>
 " Make a search for trailing whitespaces
-nnoremap <leader>w /\S\zs\s\+$<CR>
+nnoremap <leader>w /\s\+$<CR>
 
 " Disable arrow keys in normal mode
 nnoremap <Up> <Nop>
