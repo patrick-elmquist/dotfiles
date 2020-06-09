@@ -1,6 +1,7 @@
+# Dotfiles config
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-# Config
+# Shell config
 alias zshrc='$EDITOR ~/.zshrc'
 alias aliases='$EDITOR ~/.aliases'
 alias reload='source ~/.zshrc'
@@ -10,6 +11,7 @@ case "$OSTYPE" in
     alias -g ...='../..'
     alias -g ....='../../..'
     alias ls='ls -G' # colorise the output
+    alias brew-update='brew update -v; brew upgrade -v; brew cleanup; brew doctor; brew missing;'
     ;;
 
   linux*)
@@ -53,7 +55,4 @@ alias push='git push origin'
 alias checkpoint='git commit -am "Checkpoint"'
 alias devbranch='fetch && git checkout origin/dev -b'
 alias fetchbase='fetch && git rebase origin/dev'
-
-# Homebrew
-alias brew-update='brew update -v; brew upgrade -v; brew cleanup; brew doctor; brew missing;'
 
