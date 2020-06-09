@@ -1,5 +1,5 @@
 " Inherit the config from regular vim
-source ~/.vimrc
+source ~/.vim/vimrc
 
 " ------------------
 " IdeaVim Options
