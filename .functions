@@ -1,47 +1,71 @@
-function take() {
-  mkdir -p $@ && cd ${@:$#}
-}
-
+# -------------------------------------------------
 # Take a screenshot of the connected device
-# TODO: Add a switch for preferring emulator or real device
+#
+# $1 - filename (optional, default=screenshot.png)
+#
+# Example: cap before.png
+# -------------------------------------------------
 cap() {
-    # Use default name if none was provided
     filename="${1:-screenshot.png}"
 
-    # Add file extension if needed
     case $filename in
-        *.png|.PNG)
-            ;;
-        *)
-            filename="$1.png"
-            ;;
+        *.png|.PNG) ;;
+        *) filename="$1.png" ;;
     esac
 
-    # Take and store the screenshot
+    # TODO: Make it possible to prefer emulator or real device
     adb exec-out screencap -p > $filename;
 
-    # Open the image
-    open "$filename"
+    open $filename
 }
 
-
+# -------------------------------------------------
 # Tile two or more images into one.
-# NOTE: Depends on 'montage' from the 'imagemagick' package
+#
+# $2-6 - images to tile
+#
+# Example: tile before.png after.png
+# -------------------------------------------------
 tile() {
     filename="tile.png"
-
     case $# in
-        2) montage -tile 2x1 -geometry +100+100 -border 2 -bordercolor grey -background grey90 "$1" "$2" $filename; ;;
-        3) montage -tile 3x1 -geometry +100+100 -border 2 -bordercolor grey -background grey90 "$1" "$2" "$3" $filename; ;;
-        4) montage -tile 4x1 -geometry +100+100 -border 2 -bordercolor grey -background grey90 "$1" "$2" "$3" "$4" $filename; ;;
-        5) montage -tile 3x2 -geometry +100+100 -border 2 -bordercolor grey -background grey90 "$1" "$2" "$3" "$4" "$5" $filename; ;;
-        6) montage -tile 4x2 -geometry +100+100 -border 2 -bordercolor grey -background grey90 "$1" "$2" "$3" "$4" "$5" "$6" $filename; ;;
-        0|*)
-            echo "Unsupported number of arguments: $#"
-            exit 0
-        ;;
-
+        2) pattern="2x1" ;;
+        3) pattern="3x1" ;;
+        4) pattern="4x1" ;;
+        5) pattern="3x2" ;;
+        6) pattern="3x2" ;;
+        *) echo "Unsupported number of images: $#" && return 0 ;;
     esac
+
+    montage -geometry +100+100 \
+        -border 2 \
+        -bordercolor grey \
+        -background grey90 \
+        -tile "$pattern" \
+        "$@" \
+        "$filename"
 
     open $filename;
 }
+
+# -------------------------------------------------
+# Echo the contents of a table in Sqlite 
+# on a connected device.
+#
+# $1 - packagename of the app
+# $2 - table to echo
+#
+# Example: echo-table com.demo.app db users
+# -------------------------------------------------
+echo-table() {
+    db="databases/$2"
+    query="SELECT * FROM $3;"
+    adb exec-out run-as "$1" sqlite3 -echo -header -column "$db" "$query"
+}
+
+#
+# Dependencies:
+#
+# adb (android-tools-adb)   - cap, echo-table
+# montage (imagemagick)     - tile
+#
