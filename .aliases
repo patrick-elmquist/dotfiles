@@ -20,6 +20,9 @@ case "$OSTYPE" in
     ;;
 esac
 
+# Typos
+alias cd..='cd ..'
+
 # List files
 alias ll='ls -lah'
 alias la='ls -A'
