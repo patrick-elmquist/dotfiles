@@ -1,40 +1,79 @@
 #!/bin/zsh
 
-export EDITOR='vim'
-# Make sure Gradle use the same Java version as Android Studio
-export JAVA_HOME='/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home'
+#-------------------------------------------------
+# DEPENDENCIES
+#
+# Install Pure Prompt
+# https://github.com/sindresorhus/pure#manually
+#
+# Install zsh-autosuggestions
+# https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#manual-git-clone
+#
+# Install zsh-syntax-highlighting
+# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#in-your-zshrc
+#-------------------------------------------------
 
-# Workaround for weird extra line when starting Hyper Terminal
 unsetopt PROMPT_SP
 
-# Add a newline after each command
-# precmd() { print "" }
+export EDITOR='vim'
 
-# Not quite sure but I think it's needed to make Homebrew take priority
-export PATH="/usr/local/sbin:$PATH:/Users/patrickelmquist/Scripts"
+case "$OSTYPE" in
+  darwin*)
+    # Let Homebrew installs take priority
+    export PATH="/usr/local/sbin:$PATH"
+    # Make sure Gradle use the same Java version as Android Studio
+    export JAVA_HOME='/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home'
+    ;;
+  linux*)
+    # TODO export JAVA_HOME=''
+    ;;
+esac
+
 
 # Pure Prompt
+fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 PURE_PROMPT_SYMBOL=$
-zstyle :prompt:pure:path color yellow 
+zstyle :prompt:pure:path color yellow
 prompt pure
+
 
 # Auto completion
 autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
-fi
+case "$OSTYPE" in
+  darwin*)
+    # TODO this solution only works for Mac, need an OS specific part
+    if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+      compinit
+    else
+      compinit -C
+    fi
+    ;;
+  linux*)
+    if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+      compinit;
+    else
+      compinit -C;
+    fi
+    ;;
+esac
+
 
 # Add case insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
+# Make sure the SSH agent is running
+eval "$(ssh-agent -s)" > /dev/null 2>&1
 
 # Plugins
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Custom
+
+# Source dotfiles
 source ~/.aliases
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local
+
 source ~/.functions
+[[ -f ~/.functions.local ]] && source ~/.functions.local
 

@@ -51,11 +51,12 @@ tile() {
 
 
 # -------------------------------------------------
-# Echo the contents of a table in Sqlite 
-# on a connected device.
+# Echo the contents of a table in Sqlite on a
+# connected device.
 #
-# $1 - packagename of the app
-# $2 - table to echo
+# $1 - app package name
+# $2 - name of the database
+# $3 - name of the table
 #
 # Example: echo-table com.demo.app db users
 # -------------------------------------------------
@@ -65,6 +66,35 @@ echo-table() {
     adb exec-out run-as "$1" sqlite3 -echo -header -column "$db" "$query"
 }
 
+# -------------------------------------------------
+# Watch the contents of a table in Sqlite on a
+# connected device. Updates every 5s.
+#
+# $1 - app package name
+# $2 - name of the database
+# $3 - name of the table
+#
+# Example: watch-table com.demo.app db users
+# -------------------------------------------------
+watch-table() {
+    while true; do clear; echo-table "$@"; sleep 5; done
+}
+
+
+# -------------------------------------------------
+# Fetch the database from a connected device.
+#
+# $1 - app package name
+# $2 - name of the database
+#
+# Example: fetch-db com.demo.app db
+# -------------------------------------------------
+fetch-db() {
+    adb exec-out run-as "$1" cat databases/"$2" > ~/Temp/app.db;
+    adb exec-out run-as "$1" cat databases/"$2"-wal > ~/Temp/app.db-wal;
+    adb exec-out run-as "$1" cat databases/"$2"-shm > ~/Temp/app.db-shm;
+    sqlite3 ~/Temp/app.db
+}
 
 # -------------------------------------------------
 # Extract the given archive

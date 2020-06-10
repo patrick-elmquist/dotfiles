@@ -17,8 +17,6 @@
     st = status
 
 [core]
-    # autocrlf = true
-    # safecrlf = false
     pager = less -+$LESS -R
     untrackedCache = true
 
