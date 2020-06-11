@@ -33,7 +33,9 @@ esac
 # Pure Prompt
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
-PURE_PROMPT_SYMBOL=$
+PURE_PROMPT_SYMBOL='»'
+PURE_GIT_DOWN_ARROW='↓'
+PURE_GIT_UP_ARROW='↑'
 zstyle :prompt:pure:path color yellow
 prompt pure
 
@@ -62,8 +64,6 @@ esac
 # Add case insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
-# Make sure the SSH agent is running
-eval "$(ssh-agent -s)" > /dev/null 2>&1
 
 # Plugins
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

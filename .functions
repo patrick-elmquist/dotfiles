@@ -32,7 +32,7 @@ tile() {
     case $# in
         2) pattern="2x1" ;;
         3) pattern="3x1" ;;
-        4) pattern="4x1" ;;
+        4) pattern="2x2" ;;
         5) pattern="3x2" ;;
         6) pattern="3x2" ;;
         *) echo "Unsupported number of images: $#" && return 0 ;;
