@@ -3,8 +3,9 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Shell config
 alias zshrc='$EDITOR ~/.zshrc'
-alias aliases='$EDITOR ~/.aliases'
-alias vimrc='$EDITOR ~/.vim/vimrc'
+alias e-aliases='$EDITOR ~/.aliases'
+alias e-functions='$EDITOR ~/.functions'
+alias e-vimrc='$EDITOR ~/.vim/vimrc'
 alias reload='source ~/.zshrc'
 
 case "$OSTYPE" in

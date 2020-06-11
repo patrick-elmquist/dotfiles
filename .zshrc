@@ -4,13 +4,13 @@
 # DEPENDENCIES
 #
 # Install Pure Prompt
-# https://github.com/sindresorhus/pure#manually
+# git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 #
 # Install zsh-autosuggestions
-# https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#manual-git-clone
+# git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"
 #
 # Install zsh-syntax-highlighting
-# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#in-your-zshrc
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"
 #-------------------------------------------------
 
 unsetopt PROMPT_SP
@@ -29,6 +29,10 @@ case "$OSTYPE" in
     ;;
 esac
 
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=12000
+SAVEHIST=10000
+setopt append_history extended_history hist_no_store hist_ignore_all_dups hist_ignore_space
 
 # Pure Prompt
 fpath+=$HOME/.zsh/pure
