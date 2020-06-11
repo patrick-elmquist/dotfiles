@@ -70,7 +70,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-# Source dotfiles
+# Source dot and local files
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
 source ~/.aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
 
