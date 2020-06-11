@@ -72,9 +72,9 @@ nnoremap Y y$
 " Make the Swedish letters useful
 noremap ö [
 noremap ä ]
-noremap å ´
+noremap å `
 
 noremap Ö {
 noremap Ä }
-noremap Å `
+noremap Å '
 
