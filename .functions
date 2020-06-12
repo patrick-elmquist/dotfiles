@@ -96,6 +96,7 @@ fetch-db() {
     sqlite3 ~/Temp/app.db
 }
 
+
 # -------------------------------------------------
 # Extract the given archive
 #
@@ -122,4 +123,18 @@ extract() {
     else
         echo "'$1' is not a valid file!"
     fi
+}
+
+# -------------------------------------------------
+# Start a repo branch with week nbr and day, like:
+#   w48.1.Important.Feature
+#
+# $1 - branch name
+#
+# Example: repo-start Important.Feature
+# -------------------------------------------------
+repo-start() {
+    week_nbr=$(date +%V)
+    day_nbr=$(date +%u)
+    repo start "w${week_nbr}.${day_nbr}.$1" .
 }
