@@ -49,6 +49,7 @@ nmap <Space> <Leader>
 
 " Clear the search highlights
 nnoremap <leader>c :noh<CR>
+
 " Make a search for trailing whitespaces
 nnoremap <leader>w /\s\+$<CR>
 
@@ -60,21 +61,9 @@ nnoremap <Right> <Nop>
 
 " Go to SOC instead of SOL
 noremap 0 ^
-noremap <C-h> ^
-noremap <C-l> $
 
 " Make Redo easier
 nnoremap U <C-r>
 
 " Make Y behave like other capital commands
 nnoremap Y y$
-
-" Make the Swedish letters useful
-noremap ö [
-noremap ä ]
-noremap å `
-
-noremap Ö {
-noremap Ä }
-noremap Å '
-

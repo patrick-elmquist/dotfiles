@@ -125,6 +125,7 @@ extract() {
     fi
 }
 
+
 # -------------------------------------------------
 # Start a repo branch with week nbr and day, like:
 #   w48.1.Important.Feature
@@ -137,4 +138,22 @@ repo-start() {
     week_nbr=$(date +%V)
     day_nbr=$(date +%u)
     repo start "w${week_nbr}.${day_nbr}.$1" .
+}
+
+
+# -------------------------------------------------
+# Create a .gif of the given .mp4 file
+#
+# $1 - the .mp4 file
+#
+# Example: gifit recording.mp4
+# -------------------------------------------------
+gifit() {
+    palette="/tmp/palette.png"
+    filters="fps=30,scale=480:-1:flags=lanczos"
+
+    ffmpeg -v warning -i $1 -vf "$filters,palettegen=stats_mode=diff" -y $palette
+    ffmpeg -v warning -i $1 -i $palette -lavfi "$filters[x];[x] [1:v] paletteuse" -y $2
+
+    rm "$palette"
 }

@@ -22,6 +22,7 @@ case "$OSTYPE" in
     # Let Homebrew installs take priority
     export PATH="/usr/local/sbin:$PATH"
     # Make sure Gradle use the same Java version as Android Studio
+    # Note: Don't remember why this was needed...?
     export JAVA_HOME='/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home'
     ;;
   linux*)
