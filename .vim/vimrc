@@ -27,6 +27,7 @@ syntax enable                   " enable syntax highlighting (previously syntax 
 set hlsearch                    " highlight all matches after searching
 set incsearch                   " highlight while searching
 set ignorecase                  " make searches case-insensitive...
+set smartcase                   " ...if the search is lower case only
 
 " ------------------
 " Tabs/Spaces
@@ -67,3 +68,10 @@ nnoremap U <C-r>
 
 " Make Y behave like other capital commands
 nnoremap Y y$
+
+" Try sourcing any local overrides
+try
+  source ~/.vim/vimrc.local
+catch
+  " No such file? No problem; just ignore it.
+endtry
