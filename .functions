@@ -98,6 +98,20 @@ fetch-db() {
 
 
 # -------------------------------------------------
+# Enable or disable layout bounds of the connected
+# device or emulator
+#
+# $1 - true or false (default:true)
+#
+# Example: enable-layout-bounds true
+# -------------------------------------------------
+enable-layout-bounds() {
+    adb shell setprop debug.layout "${1:-true}"
+    adb shell service call activity 1599295570 &>/dev/null
+}
+
+
+# -------------------------------------------------
 # Extract the given archive
 #
 # $1 - the archive
