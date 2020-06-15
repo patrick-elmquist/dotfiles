@@ -15,27 +15,9 @@ set surround                    " Commands: ys, cs, ds, S
 set ReplaceWithRegister         " Commands: gr, gr
 set argtextobj                  " Commands: aa, ia
 
-let g:EasyMotion_smartcase = 1
-set easymotion
-
 " Timeout for plugin related commands
 " NOTE: Should probably revisit this value
 set timeoutlen=1000
-
-" ------------------
-" Plugin Mappings
-" ------------------
-
-" move to character
-nmap ; <Plug>(easymotion-s2)gd
-nmap , <Plug>(easymotion-s2)
-xmap , <Plug>(easymotion-s2)
-omap , <Plug>(easymotion-s2)
-
-" move to line
-nmap gl <Plug>(easymotion-bd-jk)
-xmap gl <Plug>(easymotion-bd-jk)
-omap gl <Plug>(easymotion-bd-jk)
 
 " ------------------
 " General Mappings
