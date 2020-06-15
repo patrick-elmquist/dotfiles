@@ -107,7 +107,10 @@ fetch-db() {
 # -------------------------------------------------
 enable-layout-bounds() {
     adb shell setprop debug.layout "${1:-true}"
-    adb shell service call activity 1599295570 &>/dev/null
+
+    # Poke SystemProperties for the change to have effect
+    SYSPROPS_TRANSACTION=1599295570
+    adb shell service call activity "$SYSPROPS_TRANSACTION" &>/dev/null
 }
 
 
