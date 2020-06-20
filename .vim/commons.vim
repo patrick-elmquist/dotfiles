@@ -69,3 +69,10 @@ nnoremap U <C-r>
 " Make Y behave like other capital commands
 nnoremap Y y$
 
+" Same as doing *Ncgn, works with dot
+nnoremap c* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
+nnoremap c# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
+
+" Same as doing *Ndgn, works with dot
+nnoremap d* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``dgn
+nnoremap d# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``dgN
