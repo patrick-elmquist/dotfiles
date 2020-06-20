@@ -70,9 +70,9 @@ nnoremap U <C-r>
 nnoremap Y y$
 
 " Same as doing *Ncgn, works with dot
-nnoremap c* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
-nnoremap c# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
+nnoremap c* *``cgn
+nnoremap c# #``cgN
 
 " Same as doing *Ndgn, works with dot
-nnoremap d* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``dgn
-nnoremap d# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``dgN
+nnoremap d* *``dgn
+nnoremap d# #``dgN
