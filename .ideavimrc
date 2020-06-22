@@ -19,8 +19,8 @@ let g:EasyMotion_smartcase = 1
 set easymotion
 
 " Timeout for plugin related commands
-" NOTE: Should probably revisit this value
-set timeoutlen=1000
+" NOTE: Do I really notice any difference with this gone?
+" set timeoutlen=1000
 
 nmap <leader><leader> <Plug>(easymotion-s2)gd
 

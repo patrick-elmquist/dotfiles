@@ -76,3 +76,29 @@ nnoremap c# #``cgN
 " Same as doing *Ndgn, works with dot
 nnoremap d* *``dgn
 nnoremap d# #``dgN
+
+" --------------------------------------------------
+" Probation line, mappings below are being evaluated
+" --------------------------------------------------
+
+" Add empty line below/above
+noremap go o<Esc>k
+noremap gO O<Esc>j
+
+" Select all the content on the line
+nnoremap vv ^vg_
+
+" Quick Esc
+imap jj <ESC>
+imap kk <ESC>
+
+" Drop a return mark before jumping.
+" Return with `j or 'j
+nnoremap gg mjgg
+nnoremap G mjG
+
+" Reformat whole file
+nnoremap g= gg=G``
+
+" highlight last inserted text
+nnoremap gV `[v`]
