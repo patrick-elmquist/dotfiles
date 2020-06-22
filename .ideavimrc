@@ -35,6 +35,7 @@ noremap <leader>l :action ReformatCode<CR>
 noremap <leader>r :action RenameElement<CR>
 noremap <leader>t :action Refactorings.QuickListPopupAction<CR>
 noremap <leader>o :action GotoFile<CR>
+noremap <leader>s :action FileStructurePopup<CR>
 
 noremap <leader>e :action GotoNextError<CR>
 noremap <leader>E :action GotoPreviousError<CR>
