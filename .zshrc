@@ -33,7 +33,7 @@ esac
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=12000
 SAVEHIST=10000
-setopt append_history extended_history hist_no_store hist_ignore_all_dups hist_ignore_space
+setopt append_history extended_history hist_no_store hist_ignore_all_dups hist_ignore_space inc_append_history
 
 # Pure Prompt
 fpath+=$HOME/.zsh/pure
