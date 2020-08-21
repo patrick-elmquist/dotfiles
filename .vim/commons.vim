@@ -102,3 +102,12 @@ nnoremap g= gg=G``
 
 " highlight last inserted text
 nnoremap gV `[v`]
+
+" send delete to black hole
+noremap x "_x
+
+" easy system clipboard copy/paste
+noremap <space>y "+y
+noremap <space>Y "+Y
+noremap <space>p "+p
+noremap <space>P "+P

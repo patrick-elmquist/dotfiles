@@ -18,6 +18,8 @@ set argtextobj                  " Commands: aa, ia
 let g:EasyMotion_smartcase = 1
 set easymotion
 
+set highlightedyank
+
 " Timeout for plugin related commands
 " NOTE: Do I really notice any difference with this gone?
 " set timeoutlen=1000
