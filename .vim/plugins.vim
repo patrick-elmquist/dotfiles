@@ -5,6 +5,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
+    Plug 'machakann/vim-highlightedyank'
     Plug 'unblevable/quick-scope'
 call plug#end()
 
