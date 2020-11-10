@@ -1,4 +1,15 @@
 # -------------------------------------------------
+# Echo the absolute path to the given file
+#
+# $1 - filename
+#
+# Example: abs image.png
+# -------------------------------------------------
+abs-path() {
+    echo "$(pwd)/$1"
+}
+
+# -------------------------------------------------
 # Take a screenshot of the connected device
 #
 # $1 - filename (optional, default=screenshot.png)
