@@ -31,7 +31,7 @@ Please move or remove them before you can switch branches.
 Aborting
 ```
 
-...it means thare are already old versions of some of the files.
+...it means there are already old versions of some of the files.
 
 Use the following to move the offending files to another folder:
 ```shell
@@ -39,3 +39,8 @@ mkdir -p .config-backup && \
 config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
 xargs -I{} mv {} .config-backup/{}
 ```
+
+## Apps used
+| Name | URL                            |
+|------|--------------------------------|
+| Bat  | https://github.com/sharkdp/bat |

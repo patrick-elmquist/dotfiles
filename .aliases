@@ -36,6 +36,7 @@ alias §='cd ~'
 # Utility
 alias h='history'
 alias hgrep='fc -El 0 | grep'
+alias batp='bat --paging=always'
 
 # Gradle
 alias gr='./gradlew'
