@@ -194,7 +194,7 @@ gifit() {
 #
 # Example: repeat 5 echo "Something"
 # -------------------------------------------------
-repeat() {
+loop() {
     for i in $(seq 1 $1); do
         eval "${@:2}"
         sleep 0.15
