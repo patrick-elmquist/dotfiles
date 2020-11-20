@@ -41,6 +41,16 @@ alias batp='bat --paging=always'
 # Gradle
 alias gr='./gradlew'
 
+# ADB
+alias akey='adbkey'
+alias ak='adbkey'
+alias atext='adbtext'
+alias at='adbtext'
+
+# Repo
+alias rstart='repo-start'
+alias rupload='repo upload . --cbr'
+
 # Git
 alias g='git'
 alias ac='git ac'
