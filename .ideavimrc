@@ -19,6 +19,7 @@ let g:EasyMotion_smartcase = 1
 set easymotion
 
 set highlightedyank
+set sneak
 
 " Timeout for plugin related commands
 " NOTE: Do I really notice any difference with this gone?
