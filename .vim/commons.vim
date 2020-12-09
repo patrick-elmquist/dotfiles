@@ -13,7 +13,8 @@ set scrolloff=5                 " always try to keep 5 lines of context when scr
 set nowrap                      " don't wrap text
 set ruler                       " show row/column in the status bar
 set laststatus=2                " always show the statusline
-set showcmd                     " show the enterned command in the statusline
+set showmatch                   " briefly show the matching bracket
+set matchtime=4                 " set the matching bracket time
 set showmode                    " show which mode you are currently in
 set t_Co=256                    " enable 256-color mode.
 set lazyredraw                  " boost performance in some cases
