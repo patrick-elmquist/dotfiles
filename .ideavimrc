@@ -34,6 +34,7 @@ noremap <leader>n :action Inline<CR>
 noremap <leader>m :action ExtractFunction<CR>
 noremap <leader>v :action IntroduceVariable<CR>
 noremap <leader>f :action IntroduceField<CR>
+noremap <leader>F :action FindUsages<CR>
 noremap <leader>l :action ReformatCode<CR>
 noremap <leader>r :action RenameElement<CR>
 noremap <leader>t :action Refactorings.QuickListPopupAction<CR>

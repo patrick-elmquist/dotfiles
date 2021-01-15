@@ -50,6 +50,7 @@ alias at='adbtext'
 # Repo
 alias rstart='repo-start'
 alias rupload='repo upload . --cbr'
+alias rupload-reviewers='repo upload . --cbr --reviewers=$(cat ~/.reviewers)'
 
 # Git
 alias g='git'
