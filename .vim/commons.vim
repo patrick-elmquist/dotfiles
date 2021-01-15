@@ -3,6 +3,7 @@
 " ------------------
 set nocompatible                " get rid of Vi compatibility mode. SET FIRST!
 set backspace=indent,eol,start  " make the backspace button work between lines
+set clipboard=unnamedplus       " yank to the clipboard (might not work on windows)
 
 " ------------------
 " UI
