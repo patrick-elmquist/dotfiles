@@ -6,7 +6,7 @@
 
 [alias]
     ac = commit -a --amend --no-edit
-    acm = commit -a --amend
+    acm = commit -a --amend --verbose
     cam = commit -am
     com = checkout origin/master
     dom = diff origin/master
