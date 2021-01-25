@@ -126,6 +126,30 @@ enable-layout-bounds() {
 
 
 # -------------------------------------------------
+# Dump the view hierarchy of the connected device
+# or emulator using UiAutomator. Formats xml using
+# xmllint.
+#
+# $1 - filename (default:view-hierarchy)
+#
+# Example: dump-view-hierarchy dump
+# -------------------------------------------------
+dump-view-hierarchy() {
+    filename=${1:-"view-hierarchy.xml"}
+    filename="$filename.xml"
+
+    adb shell uiautomator dump --verbose
+    adb pull /sdcard/window_dump.xml
+    adb shell rm /sdcard/window_dump.xml
+
+    xmllint --format window_dump.xml > "$filename"
+    rm window_dump.xml
+
+    $EDITOR "$filename"
+ }
+
+
+# -------------------------------------------------
 # Extract the given archive
 #
 # $1 - the archive
