@@ -8,6 +8,8 @@ call plug#begin()
     Plug 'machakann/vim-highlightedyank'
     Plug 'unblevable/quick-scope'
     Plug 'franbach/miramare'
+    Plug 'udalov/kotlin-vim'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
