@@ -102,10 +102,6 @@ noremap <space>P "+P
 " Probation line, mappings below are being evaluated
 " --------------------------------------------------
 
-" Quick Esc
-imap jj <ESC>
-imap kk <ESC>
-
 " Are these actually needed? Why not use C-O/I
 " Drop a return mark before jumping.
 " Return with `j or 'j
