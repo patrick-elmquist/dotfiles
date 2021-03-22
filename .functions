@@ -241,6 +241,18 @@ adbtext() {
 }
 
 # -------------------------------------------------
+# Send text input to a connected device or emulator
+# and finish it of by sending Enter.
+#
+# $1 - the text
+#
+# Example: adbtext-text This is my "input"
+# -------------------------------------------------
+adbtext-enter() {
+    adbtext $@ && adbkey 66
+}
+
+# -------------------------------------------------
 # Send key input to a connected device or emulator
 #
 # $1 - the keyevent, check KeyEvent for valid codes
