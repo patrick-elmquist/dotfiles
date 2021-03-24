@@ -1,6 +1,11 @@
 source ~/.vim/commons.vim
 source ~/.vim/plugins.vim
 
+" Use arrows and enter in completion popup
+inoremap <expr> <CR>   pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>   pumvisible() ? "\<C-p>" : "\<Up>"
+
 try
   source ~/.vim/vimrc.local
 catch
