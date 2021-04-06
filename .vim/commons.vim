@@ -55,6 +55,7 @@ nmap <Space> <Leader>
 
 " Clear the search highlights
 nnoremap <leader>c :noh<CR>
+nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 " Make a search for trailing whitespaces
 nnoremap <leader>w /\s\+$<CR>
