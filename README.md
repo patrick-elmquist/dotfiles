@@ -39,8 +39,22 @@ mkdir -p .config-backup && \
 config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
 xargs -I{} mv {} .config-backup/{}
 ```
+## Setup VIM
+Install VIM plugins:
+```shell
+vim +PlugInstall +qall > /dev/null
+```
 
-## Apps used
-| Name | URL                            |
-|------|--------------------------------|
-| Bat  | https://github.com/sharkdp/bat |
+## Dependencies
+| Name                    | URL                                                                                                     |
+|-------------------------|---------------------------------------------------------------------------------------------------------|
+| (macOS) Homebrew        | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"         |
+| Zsh-autosuggestions     | git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"             |
+| Zsh-syntax-highlighting | git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting" |
+| Zsh Pure prompt         | git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"                                    |
+| Imagemagick             | `brew install imagemagick` or `sudo apt install imagemagick`                                            |
+
+## Apps
+| Name                    | URL                                                                                                     |
+|-------------------------|---------------------------------------------------------------------------------------------------------|
+| Bat                     | https://github.com/sharkdp/bat                                                                          |
