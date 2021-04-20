@@ -1,18 +1,5 @@
 #!/bin/zsh
 
-#-------------------------------------------------
-# DEPENDENCIES
-#
-# Install Pure Prompt
-# git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
-#
-# Install zsh-autosuggestions
-# git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"
-#
-# Install zsh-syntax-highlighting
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"
-#-------------------------------------------------
-
 unsetopt PROMPT_SP
 
 export EDITOR='vim'
@@ -21,12 +8,8 @@ case "$OSTYPE" in
   darwin*)
     # Let Homebrew installs take priority
     export PATH="/usr/local/sbin:$PATH"
-    # Make sure Gradle use the same Java version as Android Studio
-    # Note: Don't remember why this was needed...?
-    export JAVA_HOME='/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home'
     ;;
   linux*)
-    # TODO export JAVA_HOME=''
     ;;
 esac
 
@@ -38,12 +21,13 @@ setopt append_history extended_history hist_no_store hist_ignore_all_dups hist_i
 # Pure Prompt
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
-PURE_PROMPT_SYMBOL='»'
-PURE_GIT_DOWN_ARROW='↓'
-PURE_GIT_UP_ARROW='↑'
 zstyle :prompt:pure:path color yellow
+zstyle :prompt:pure:prompt:success color white
 prompt pure
 
+# Enable VI bindings and fix backspace issue
+set -o vi
+bindkey "^?" backward-delete-char
 
 # Auto completion
 autoload -Uz compinit

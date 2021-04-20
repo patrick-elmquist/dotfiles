@@ -3,23 +3,18 @@
 " ------------------
 set nocompatible                " get rid of Vi compatibility mode. SET FIRST!
 set backspace=indent,eol,start  " make the backspace button work between lines
-set clipboard=unnamedplus       " yank to the clipboard (might not work on windows)
-if system('uname -s') == "Darwin\n"
-  set clipboard=unnamed "OSX
-endif
 
 " ------------------
 " UI
 " ------------------
 set number relativenumber       " show realtive numbers, except for the current line
-set cursorline                  " highlight the current line
 set scrolloff=5                 " always try to keep 5 lines of context when scrolling
 set nowrap                      " don't wrap text
 set ruler                       " show row/column in the status bar
 set laststatus=2                " always show the statusline
 set showmatch                   " briefly show the matching bracket
 set matchtime=4                 " set the matching bracket time
-set showmode                    " show which mode you are currently in
+set noshowmode                  " show which mode you are currently in
 set t_Co=256                    " enable 256-color mode.
 set lazyredraw                  " boost performance in some cases
 set splitright                  " open vsp to the right
