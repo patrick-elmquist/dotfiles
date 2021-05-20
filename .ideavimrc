@@ -14,18 +14,13 @@ set commentary                  " Commands: gcc, gc + motion, v_gc
 set surround                    " Commands: ys, cs, ds, S
 set ReplaceWithRegister         " Commands: gr, gr
 set argtextobj                  " Commands: aa, ia
+set vim-paragraph-motion        " {} will treat lines with only whitespace as empty
 
 let g:EasyMotion_smartcase = 1
 set easymotion
 
 set highlightedyank
 set sneak
-
-" Timeout for plugin related commands
-" NOTE: Do I really notice any difference with this gone?
-" set timeoutlen=1000
-
-nmap <leader><leader> <Plug>(easymotion-s2)gd
 
 " ------------------
 " General Mappings

@@ -35,10 +35,31 @@ set smartcase                   " ...if the search is lower case only
 filetype plugin indent on       " filetype detection[ON] plugin[ON] indent[ON]
 set tabstop=4                   " tab spacing
 set softtabstop=4               " unify
-set shiftwidth=4                " indent/outdent by 4 columns
 set shiftround                  " always indent/outdent to the nearest tabstop
+set shiftwidth=4                " indent/outdent by 4 columns
 set expandtab                   " use spaces instead of tabs
 set smarttab                    " use tabs at the start of a line, spaces elsewhere
+
+" Probation line, experimental stuff for evaulation
+" Based on https://github.com/sdothum/dotfiles/blob/master/vim/.vim/config/startup.vim
+set virtualedit=block
+set noshowmode
+
+set autoindent
+set copyindent
+set nosmartindent
+
+"  ................................................................ Undo history
+" keep persistent undo history across sessions, by storing in file
+silent !mkdir ~/.vim/undo 2>/dev/null
+set history=1000
+set undodir=~/.vim/undo
+set undofile
+set undolevels=1000
+set undoreload=10000
+set nowritebackup
+
+" End of probation line
 
 autocmd FileType zsh setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
@@ -93,16 +114,24 @@ noremap x "_x
 
 " easy system clipboard copy/paste
 noremap <space>y "+y
-noremap <space>Y "+Y
 noremap <space>p "+p
-noremap <space>P "+P
 
 " --------------------------------------------------
 " Probation line, mappings below are being evaluated
 " --------------------------------------------------
+
+" Could be used to quickly paste from the yank register
+inoremap ;0 <c-r>0
+noremap <space>0 "0p
 
 " Are these actually needed? Why not use C-O/I
 " Drop a return mark before jumping.
 " Return with `j or 'j
 " nnoremap gg mjgg
 " nnoremap G mjG
+
+" The same as above but numbers from 1 to n
+vnoremap <F12> :s/^/\=line(".")+1-line("'<").". "<CR>
+
+" Shift-F12 to remove any numbers from the beginning of selected lines
+vnoremap <S-F12> :s/^\d\+\. /<CR>

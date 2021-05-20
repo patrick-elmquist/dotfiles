@@ -24,6 +24,8 @@ autoload -U promptinit; promptinit
 zstyle :prompt:pure:path color yellow
 zstyle :prompt:pure:prompt:success color white
 prompt pure
+prompt_newline='%666v'
+PROMPT=" $PROMPT"
 
 # Enable VI bindings and fix backspace issue
 set -o vi

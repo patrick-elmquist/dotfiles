@@ -7,9 +7,12 @@ endif
 call plug#begin()
     Plug 'machakann/vim-highlightedyank'    " Show quickly flash the yanked content
     Plug 'unblevable/quick-scope'           " Show navigation hints for f/F/t/T
-    Plug 'franbach/miramare'                " Color scheme
+
+    Plug 'franbach/miramare'                " Dark theme
+
     Plug 'itchyny/lightline.vim'            " Show an improved status bar
     Plug 'udalov/kotlin-vim'                " Add Kotlin syntax highlighting
+    Plug 'andymass/vim-matchup'
 call plug#end()
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
