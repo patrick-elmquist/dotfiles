@@ -33,9 +33,10 @@ bindkey "^?" backward-delete-char
 
 # Auto completion
 autoload -Uz compinit
+
+# Improve startup time
 case "$OSTYPE" in
   darwin*)
-    # TODO this solution only works for Mac, need an OS specific part
     if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
       compinit
     else
