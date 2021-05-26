@@ -24,7 +24,7 @@ autoload -U promptinit; promptinit
 zstyle :prompt:pure:path color yellow
 zstyle :prompt:pure:prompt:success color white
 prompt pure
-prompt_newline='%666v'
+prompt_newline='%666v' # hack to make it single line
 PROMPT=" $PROMPT"
 
 # Enable VI bindings and fix backspace issue
@@ -51,15 +51,12 @@ case "$OSTYPE" in
     ;;
 esac
 
-
 # Add case insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
-
 
 # Plugins
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 
 # Source dot and local files
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
