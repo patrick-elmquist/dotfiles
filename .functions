@@ -195,19 +195,17 @@ repo-start() {
 
 # -------------------------------------------------
 # Create a .gif of the given .mp4 file
+# Based on this Giphy article:
+# https://engineering.giphy.com/how-to-make-gifs-with-ffmpeg/
 #
 # $1 - the .mp4 file
+# $2 - (Optional) name of output
 #
-# Example: gifit recording.mp4
+# Example: gifit recording.mp4 my.gif
 # -------------------------------------------------
 gifit() {
-    palette="/tmp/palette.png"
-    filters="fps=30,scale=480:-1:flags=lanczos"
-
-    ffmpeg -v warning -i $1 -vf "$filters,palettegen=stats_mode=diff" -y $palette
-    ffmpeg -v warning -i $1 -i $palette -lavfi "$filters[x];[x] [1:v] paletteuse" -y $2
-
-    rm "$palette"
+    output=${2:-"output.gif"}
+    ffmpeg -i $1 -filter_complex "[0:v] fps=12,scale=480:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" $output
 }
 
 # -------------------------------------------------
