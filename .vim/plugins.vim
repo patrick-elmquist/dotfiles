@@ -5,7 +5,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-    Plug 'machakann/vim-highlightedyank'    " Show quickly flash the yanked content
+    " Below plugins also exist in IDEAVim rc file
+    Plug 'machakann/vim-highlightedyank'    " Quickly flash the yanked content
+    Plug 'tpope/vim-commentary'             " Adds gcc to comment a line
+
     Plug 'unblevable/quick-scope'           " Show navigation hints for f/F/t/T
 
     Plug 'franbach/miramare'                " Dark theme

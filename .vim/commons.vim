@@ -59,6 +59,8 @@ set undolevels=1000
 set undoreload=10000
 set nowritebackup
 
+set wildmenu                    " used to toggle a menu for command line tab
+set wildmode=list:longest,full  " tells the command line tab to complete to longest common
 " End of probation line
 
 autocmd FileType zsh setlocal shiftwidth=2 tabstop=2 softtabstop=2

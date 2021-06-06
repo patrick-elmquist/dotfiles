@@ -16,9 +16,6 @@ set ReplaceWithRegister         " Commands: gr, gr
 set argtextobj                  " Commands: aa, ia
 set vim-paragraph-motion        " {} will treat lines with only whitespace as empty
 
-let g:EasyMotion_smartcase = 1
-set easymotion
-
 set highlightedyank
 set sneak
 
