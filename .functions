@@ -135,7 +135,7 @@ enable-layout-bounds() {
 # Example: dump-view-hierarchy dump
 # -------------------------------------------------
 dump-view-hierarchy() {
-    filename=${1:-"view-hierarchy.xml"}
+    filename=${1:-"view-hierarchy"}
     filename="$filename.xml"
 
     adb shell uiautomator dump --verbose

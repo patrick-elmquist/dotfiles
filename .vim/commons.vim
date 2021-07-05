@@ -1,7 +1,9 @@
 " ------------------
 " Options
 " ------------------
-set nocompatible                " get rid of Vi compatibility mode. SET FIRST!
+" set nocompatible                " get rid of Vi compatibility mode. SET FIRST!
+                                " According to https://www.reddit.com/r/vim/wiki/vimrctips,
+                                " it's not needed
 set backspace=indent,eol,start  " make the backspace button work between lines
 
 " ------------------
@@ -32,8 +34,12 @@ set smartcase                   " ...if the search is lower case only
 " ------------------
 " Tabs/Spaces
 " ------------------
+set autoindent
+set copyindent
+set nosmartindent
+
 filetype plugin indent on       " filetype detection[ON] plugin[ON] indent[ON]
-set tabstop=4                   " tab spacing
+set tabstop=8                   " tab spacing
 set softtabstop=4               " unify
 set shiftround                  " always indent/outdent to the nearest tabstop
 set shiftwidth=4                " indent/outdent by 4 columns
@@ -43,11 +49,6 @@ set smarttab                    " use tabs at the start of a line, spaces elsewh
 " Probation line, experimental stuff for evaulation
 " Based on https://github.com/sdothum/dotfiles/blob/master/vim/.vim/config/startup.vim
 set virtualedit=block
-set noshowmode
-
-set autoindent
-set copyindent
-set nosmartindent
 
 "  ................................................................ Undo history
 " keep persistent undo history across sessions, by storing in file
@@ -63,7 +64,8 @@ set wildmenu                    " used to toggle a menu for command line tab
 set wildmode=list:longest,full  " tells the command line tab to complete to longest common
 " End of probation line
 
-autocmd FileType zsh setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType zsh setlocal shiftwidth=2 tabstop=8 softtabstop=2
+autocmd BufRead,BufNewFile   *.c,*.h set shiftwidth=2 tabstop=8 softtabstop=2
 
 " ------------------
 " Bindings
@@ -77,6 +79,7 @@ nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 " Make a search for trailing whitespaces
 nnoremap <leader>w /\s\+$<CR>
+nnoremap <leader><leader> :
 
 " Disable arrow keys in normal mode
 nnoremap <Up> <Nop>
@@ -106,7 +109,8 @@ noremap go o<Esc>k
 noremap gO O<Esc>j
 
 " Select all the content on the line
-nnoremap vv ^vg_
+nnoremap vv V
+nnoremap V v$
 
 " highlight last inserted text
 nnoremap gV `[v`]

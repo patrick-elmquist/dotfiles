@@ -11,7 +11,8 @@ call plug#begin()
 
     Plug 'unblevable/quick-scope'           " Show navigation hints for f/F/t/T
 
-    Plug 'franbach/miramare'                " Dark theme
+    " Plug 'rakr/vim-two-firewatch'
+    Plug 'embark-theme/vim', { 'as': 'embark' }
 
     Plug 'itchyny/lightline.vim'            " Show an improved status bar
     Plug 'udalov/kotlin-vim'                " Add Kotlin syntax highlighting
@@ -21,12 +22,15 @@ call plug#end()
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 set termguicolors
-let g:miramare_disable_italic_comment = 0
-let g:miramare_transparent_background = 1
 
-set background=dark
-colorscheme miramare
+" set background=dark
+" let g:two_firewatch_italics=1
+" colo two-firewatch
 
-" Used to hide the background when applying themes
-highlight Normal ctermbg=NONE
-highlight nonText ctermbg=NONE
+colorscheme embark
+let g:lightline = {
+      \ 'colorscheme': 'embark',
+      \ }
+" let g:lightline = {
+"       \ 'colorscheme': 'twofirewatch',
+"       \ }

@@ -42,6 +42,5 @@
 
 [diff]
 	tool = vimdiff
-	colorMoved = default
 [push]
 	default = current

@@ -41,15 +41,3 @@ noremap <leader>b :action GotoDeclaration<CR>
 noremap <leader>B :action GotoImplementation<CR>
 noremap <leader>I :action ImplementMethods<CR>
 
-" Moving lines up/down, and elements left/right
-nnoremap <A-j> :action MoveStatementDown<CR>
-nnoremap <A-k> :action MoveStatementUp<CR>
-nnoremap <A-h> :action MoveElementLeft<CR>
-nnoremap <A-l> :action MoveElementRight<CR>
-inoremap <A-j> <Esc>:action MoveStatementDown<CR>gi
-inoremap <A-k> <Esc>:action MoveStatementUp<CR>gi
-inoremap <A-h> <Esc>:action MoveElementLeft<CR>gi
-inoremap <A-l> <Esc>:action MoveElementRight<CR>gi
-vnoremap <A-j> :action MoveStatementDown<CR>
-vnoremap <A-k> :action MoveStatementUp<CR>
-
