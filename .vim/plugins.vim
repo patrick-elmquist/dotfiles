@@ -14,6 +14,9 @@ call plug#begin()
     " Plug 'rakr/vim-two-firewatch'
     Plug 'embark-theme/vim', { 'as': 'embark' }
 
+    Plug 'sheerun/vim-polyglot'             " Improved syntax highlighting
+
+    Plug 'romainl/vim-cool'                 " Disable hlsearch when done
     Plug 'itchyny/lightline.vim'            " Show an improved status bar
     Plug 'udalov/kotlin-vim'                " Add Kotlin syntax highlighting
     Plug 'andymass/vim-matchup'

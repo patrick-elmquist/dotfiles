@@ -130,14 +130,6 @@ noremap <space>p "+p
 inoremap ;0 <c-r>0
 noremap <space>0 "0p
 
-" Are these actually needed? Why not use C-O/I
-" Drop a return mark before jumping.
-" Return with `j or 'j
-" nnoremap gg mjgg
-" nnoremap G mjG
-
-" The same as above but numbers from 1 to n
-vnoremap <F12> :s/^/\=line(".")+1-line("'<").". "<CR>
-
-" Shift-F12 to remove any numbers from the beginning of selected lines
-vnoremap <S-F12> :s/^\d\+\. /<CR>
+" In Docuement, used like vid or yid
+xnoremap <silent> id :<c-u>normal! G$Vgg0<cr>
+onoremap <silent> id :<c-u>normal! GVgg<cr>
