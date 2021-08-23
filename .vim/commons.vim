@@ -65,7 +65,7 @@ set wildmode=list:longest,full  " tells the command line tab to complete to long
 " End of probation line
 
 autocmd FileType zsh setlocal shiftwidth=2 tabstop=8 softtabstop=2
-autocmd BufRead,BufNewFile   *.c,*.h set shiftwidth=2 tabstop=8 softtabstop=2
+autocmd BufRead,BufNewFile   *.c,*.h set shiftwidth=4 tabstop=8 softtabstop=4
 
 " ------------------
 " Bindings
@@ -88,7 +88,9 @@ nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 
 " Go to SOC instead of SOL
-noremap 0 ^
+" Note: let's try to remove this binding and use the proper keys instead
+" noremap 0 ^
+" noremap ^ 0
 
 " Make Redo easier
 nnoremap U <C-r>

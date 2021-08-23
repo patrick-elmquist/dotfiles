@@ -10,6 +10,20 @@ abs-path() {
 }
 
 # -------------------------------------------------
+# Check if the current shell is started via VIM
+#
+# Example: is-vim
+# -------------------------------------------------
+is-vim(){
+    is_vim="$(env | grep VIMRUNTIME)"
+    if [ -z "$is_vim" ]; then
+        echo "No"
+    else
+        echo "Yes"
+    fi
+}
+
+# -------------------------------------------------
 # Take a screenshot of the connected device
 #
 # $1 - filename (optional, default=screenshot.png)
