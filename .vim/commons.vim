@@ -65,6 +65,7 @@ set wildmode=list:longest,full  " tells the command line tab to complete to long
 " End of probation line
 
 autocmd FileType zsh setlocal shiftwidth=2 tabstop=8 softtabstop=2
+autocmd FileType c,cpp,java,kotlin autocmd BufWritePre <buffer> %s/\s\+$//e
 autocmd BufRead,BufNewFile   *.c,*.h set shiftwidth=4 tabstop=8 softtabstop=4
 
 " ------------------

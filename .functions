@@ -44,7 +44,6 @@ cap() {
     open $filename
 }
 
-
 # -------------------------------------------------
 # Tile two or more images into one.
 #
@@ -73,7 +72,6 @@ tile() {
 
     open $filename;
 }
-
 
 # -------------------------------------------------
 # Echo the contents of a table in Sqlite on a
@@ -105,7 +103,6 @@ watch-table() {
     while true; do clear; echo-table "$@"; sleep 5; done
 }
 
-
 # -------------------------------------------------
 # Fetch the database from a connected device.
 #
@@ -120,24 +117,6 @@ fetch-db() {
     adb exec-out run-as "$1" cat databases/"$2"-shm > ~/Temp/app.db-shm;
     sqlite3 ~/Temp/app.db
 }
-
-
-# -------------------------------------------------
-# Enable or disable layout bounds of the connected
-# device or emulator
-#
-# $1 - true or false (default:true)
-#
-# Example: enable-layout-bounds true
-# -------------------------------------------------
-enable-layout-bounds() {
-    adb shell setprop debug.layout "${1:-true}"
-
-    # Poke SystemProperties for the change to have effect
-    SYSPROPS_TRANSACTION=1599295570
-    adb shell service call activity "$SYSPROPS_TRANSACTION" &>/dev/null
-}
-
 
 # -------------------------------------------------
 # Dump the view hierarchy of the connected device
@@ -161,7 +140,6 @@ dump-view-hierarchy() {
 
     $EDITOR "$filename"
  }
-
 
 # -------------------------------------------------
 # Extract the given archive
@@ -191,7 +169,6 @@ extract() {
     fi
 }
 
-
 # -------------------------------------------------
 # Start a repo branch with week nbr and day, like:
 #   w48.1.Important.Feature
@@ -205,7 +182,6 @@ repo-start() {
     day_nbr=$(date +%u)
     repo start "w${week_nbr}.${day_nbr}.$1" .
 }
-
 
 # -------------------------------------------------
 # Create a .gif of the given .mp4 file
@@ -237,14 +213,39 @@ loop() {
     done;
 }
 
+# Android KeyEvent codes
+DPAD_LEFT=21
+DPAD_DOWN=20
+DPAD_UP=19
+DPAD_RIGHT=22
+DPAD_CENTER=23
+ENTER=66
+BACK=4
+
+# -------------------------------------------------
+# Enable or disable layout bounds of the connected
+# device or emulator
+#
+# $1 - true or false (default:true)
+#
+# Example: adb-layout-bounds true
+# -------------------------------------------------
+adb-layout-bounds() {
+    adb shell setprop debug.layout "${1:-true}"
+
+    # Poke SystemProperties for the change to have effect
+    SYSPROPS_TRANSACTION=1599295570
+    adb shell service call activity "$SYSPROPS_TRANSACTION" &>/dev/null
+}
+
 # -------------------------------------------------
 # Send text input to a connected device or emulator
 #
 # $1 - the text
 #
-# Example: adbtext This is my "input"
+# Example: adb-text This is my "input"
 # -------------------------------------------------
-adbtext() {
+adb-text() {
     text=$(printf '%s%%s' ${@})  # concatenate and replace spaces with %s
     text=${text%%%s}  # remove the trailing %s
     text=${text//\'/\\\'}  # escape single quotes
@@ -258,10 +259,10 @@ adbtext() {
 #
 # $1 - the text
 #
-# Example: adbtext-text This is my "input"
+# Example: adb-text-enter This is my "input"
 # -------------------------------------------------
-adbtext-enter() {
-    adbtext $@ && adbkey 66
+adb-text-enter() {
+    adb-text $@ && adb-key ENTER
 }
 
 # -------------------------------------------------
@@ -269,8 +270,42 @@ adbtext-enter() {
 #
 # $1 - the keyevent, check KeyEvent for valid codes
 #
-# Example: adbkey 67
+# Example: adb-key 67
 # -------------------------------------------------
-adbkey() {
+adb-key() {
     adb shell input keyevent "$1"
+}
+
+# -------------------------------------------------
+# Emulating a dpad, translating keys to DPAD events
+# and sending them to a connected ADB device.
+#
+# - HJKL     = DPAD left,down,up,right
+# - Enter    = DPAD center
+# - SPC,BSPC = Back
+# - ESC,Q    = Quit
+#
+# Example: adbkey-dpad
+# -------------------------------------------------
+adb-dpad() {
+    echo "Starting a DPAD session, press Q or ESC to stop..."
+    echo "Navigation:"
+    echo "<HJKL> to move left,down,up,right"
+    echo "<Enter> to select"
+    echo "<Spc,Bspc> to go back"
+    stty -echo
+    while :
+    do
+        read -sk key
+        case $key in
+            h|H)             adb-key DPAD_LEFT   ;;
+            j|J)             adb-key DPAD_DOWN   ;;
+            k|K)             adb-key DPAD_UP     ;;
+            l|L)             adb-key DPAD_RIGHT  ;;
+            q|Q|$'\e')       break               ;; # q,esc
+            $'\x0a')         adb-key DPAD_CENTER ;; # enter
+            $'\x20'|$'\177') adb-key BACK        ;; # spc,bspc
+        esac
+    done
+    stty echo
 }
