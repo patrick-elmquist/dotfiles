@@ -123,6 +123,9 @@ fetch-db() {
 # or emulator using UiAutomator. Formats xml using
 # xmllint.
 #
+# Note: doesn't seem to work on regular, non
+#       debuggable devices...
+#
 # $1 - filename (default:view-hierarchy)
 #
 # Example: dump-view-hierarchy dump
