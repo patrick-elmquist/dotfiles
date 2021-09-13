@@ -59,6 +59,11 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Don't really remember why this should be here, moved from local
+__git_files () {
+    _wanted files expl 'local files' _files
+}
+
 # Source dot and local files
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 

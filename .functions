@@ -312,3 +312,29 @@ adb-dpad() {
     done
     stty echo
 }
+
+# -------------------------------------------------
+# Screen record the connected device or emulator
+#
+# Example: adb-rec name
+# -------------------------------------------------
+fun adb-rec() {
+    filename="${1:-screenrecord.mp4}"
+
+    case $filename in
+        *.mp4|.MP4) ;;
+        *) filename="$1.mp4" ;;
+    esac
+
+    echo "Starting screen record, press Ctrl + C to stop..."
+    trap '{ echo "Stopped, wrapping up..." ; }' INT
+    adb shell screenrecord /sdcard/Download/recording.mp4
+    sleep 3
+
+    echo "Pulling file from device..."
+    adb pull /sdcard/Download/recording.mp4 ./
+    echo "Removing file on device..."
+    adb shell rm /sdcard/Download/recording.mp4
+
+    mv recording.mp4 "$filename"
+}
