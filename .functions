@@ -327,8 +327,9 @@ fun adb-rec() {
     esac
 
     echo "Starting screen record, press Ctrl + C to stop..."
-    trap '{ echo "Stopped, wrapping up..." ; }' INT
+    trap '{ echo "Stopped, wrapping up..." ; }' SIGINT
     adb shell screenrecord /sdcard/Download/recording.mp4
+    trap - SIGINT
     sleep 3
 
     echo "Pulling file from device..."
