@@ -339,3 +339,78 @@ fun adb-rec() {
 
     mv recording.mp4 "$filename"
 }
+
+
+# -------------------------------------------------
+# Create a new branch in the following format:
+#   ABCD-XXXX-Feature_description
+#
+# $1 - JIRA issue number ABCD-XXXX
+# $2 - Issue description
+#
+# Example:
+# new-feature-branch ABCD-1337 A good description
+# Branch: ABCD-1337_A_good_description
+#
+# Prepopulates the branch with an empty commit
+# with the following message:
+# ABCD-XXXX A good description
+#
+# Jira: ABCD-XXXX
+# -------------------------------------------------
+fun generic-new-feature() {
+    jira="${1?"Need a Jira number"}"
+
+    git fetch --all --prune
+
+    args=$(printf '%s_' ${@:2} | sed 's/.$//')
+    branch_name="$jira-$args"
+
+    git checkout origin/main -b "$branch_name"
+
+    title="$jira ${@:2}"
+    content="Jira: $jira"
+    git commit --allow-empty -m "$title" -m "$content"
+}
+
+# -------------------------------------------------
+# Convert the current branch to a feature branch
+#   ABCD-XXXX-Feature_description
+#
+# $1 - JIRA issue number ABCD-XXXX
+# $2 - Issue description
+#
+# Example:
+# new-feature-branch ABCD-1337 A good description
+# Branch: ABCD-1337_A_good_description
+#
+# Squash all commits.
+#
+# Amends the commit with the following title and message:
+# ABCD-XXXX A good description
+#
+# Jira: ABCD-XXXX
+# -------------------------------------------------
+fun generic-to-feature() {
+    if [[ `git status --porcelain` ]]; then
+        echo "Commit changes before running..."
+    else
+        jira="${1?"Need a Jira number"}"
+
+        git fetch --all --prune
+
+        // Create the new branch
+        args=$(printf '%s_' ${@:2} | sed 's/.$//')
+        branch_name="$jira-$args"
+        git checkout -b "$branch_name"
+
+        // Squash it
+        git rebase -i origin/main
+
+        // Amend the first commit with Jira info
+        title="$jira ${@:2}"
+        content="Jira: $jira"
+        git commit --amend -m "$title" -m "$content"
+    fi
+}
+
