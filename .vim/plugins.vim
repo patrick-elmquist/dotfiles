@@ -26,14 +26,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 set termguicolors
 
-" set background=dark
-" let g:two_firewatch_italics=1
-" colo two-firewatch
-
 colorscheme embark
 let g:lightline = {
       \ 'colorscheme': 'embark',
       \ }
-" let g:lightline = {
-"       \ 'colorscheme': 'twofirewatch',
-"       \ }

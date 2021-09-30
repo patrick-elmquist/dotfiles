@@ -6,7 +6,7 @@
 
 [alias]
     ac = commit -a --amend --no-edit
-    acm = commit -a --amend --verbose
+    acm = commit -a --amend --verbose --allow-empty
     cam = commit -am
     com = checkout origin/master
     dom = diff origin/master
@@ -42,5 +42,6 @@
 
 [diff]
 	tool = vimdiff
+
 [push]
 	default = current
