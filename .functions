@@ -198,7 +198,10 @@ repo-start() {
 # -------------------------------------------------
 gifit() {
     output=${2:-"output.gif"}
-    ffmpeg -i $1 -filter_complex "[0:v] fps=12,scale=480:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" $output
+    ffmpeg -ss 10 -i $1 -filter:v "crop=in_w:in_h/3:0:215" -c:a copy video1.mp4
+    ffmpeg -ss 10 -i $1 -filter:v "crop=in_w:in_h/3:0:1305" -c:a copy video2.mp4
+    ffmpeg -i video1.mp4 -filter_complex "[0:v] fps=30,scale=480:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" output1.gif
+    ffmpeg -i video2.mp4 -filter_complex "[0:v] fps=30,scale=480:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" output2.gif
 }
 
 # -------------------------------------------------
@@ -226,7 +229,19 @@ ENTER=66
 BACK=4
 
 # -------------------------------------------------
-# Enable or disable layout bounds of the connected
+# Poke the system properties to have changes take
+# effect on the connected device or emulator
+#
+# Example: adb_poke_system_properties
+# -------------------------------------------------
+adb_poke_system_properties() {
+    # Poke SystemProperties for the change to have effect
+    SYSPROPS_TRANSACTION=1599295570
+    adb shell service call activity "$SYSPROPS_TRANSACTION" &>/dev/null
+}
+
+# -------------------------------------------------
+# Enable or disable layout bounds for the connected
 # device or emulator
 #
 # $1 - true or false (default:true)
@@ -235,10 +250,33 @@ BACK=4
 # -------------------------------------------------
 adb-layout-bounds() {
     adb shell setprop debug.layout "${1:-true}"
+    adb_poke_system_properties
+}
 
-    # Poke SystemProperties for the change to have effect
-    SYSPROPS_TRANSACTION=1599295570
-    adb shell service call activity "$SYSPROPS_TRANSACTION" &>/dev/null
+# -------------------------------------------------
+# Enable or disable overdraw for the connected
+# device or emulator
+#
+# $1 - show or false (default:show)
+#
+# Example: adb-overdraw show
+# -------------------------------------------------
+adb-overdraw() {
+    adb shell setprop debug.hwui.overdraw "${1:-show}"
+    adb_poke_system_properties
+}
+
+# -------------------------------------------------
+# Enable or disable hwui bars for the connected
+# device or emulator
+#
+# $1 - visual_bars or false (default:visual_bars)
+#
+# Example: adb-hwui visual_bars
+# -------------------------------------------------
+adb-hwui() {
+    adb shell setprop debug.hwui.profile "${1:-visual_bars}"
+    adb_poke_system_properties
 }
 
 # -------------------------------------------------

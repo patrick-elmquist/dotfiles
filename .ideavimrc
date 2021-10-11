@@ -19,6 +19,9 @@ set vim-paragraph-motion        " {} will treat lines with only whitespace as em
 set highlightedyank
 set sneak
 
+" Supposed to make ideaVim work better with dialogs.
+set ideavimsupport+=singleline
+
 " ------------------
 " General Mappings
 " ------------------
