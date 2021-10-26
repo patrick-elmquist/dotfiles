@@ -27,11 +27,15 @@ is-vim(){
 # Take a screenshot of the connected device
 #
 # $1 - filename (optional, default=screenshot.png)
+# $2 - device (optionl, default=d)
+#      d = device
+#      e = emulator
 #
 # Example: cap before.png
 # -------------------------------------------------
 cap() {
     filename="${1:-screenshot.png}"
+    device="${2:-d}"
 
     case $filename in
         *.png|.PNG) ;;
@@ -39,7 +43,7 @@ cap() {
     esac
 
     # TODO: Make it possible to prefer emulator or real device
-    adb exec-out screencap -p > $filename;
+    adb -$device exec-out screencap -p > $filename;
 
     open $filename
 }

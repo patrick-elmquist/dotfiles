@@ -16,6 +16,8 @@
     ls = log --stat
     st = status
     recent = branch -av --sort=-committerdate
+	fc = "!f() { git branch -a | grep -m1 -e ${1}.*${2} | sed \"s/remotes\\/origin\\///\" | xargs git checkout; }; f"
+	sco = !sh -c \"git branch -a | grep -v remotes | grep $1 | xargs git checkout\"
 
 [core]
     pager = less -+$LESS -R

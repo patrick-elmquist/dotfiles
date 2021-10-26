@@ -88,8 +88,8 @@ nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 
-nnoremap jj <Nop>
-nnoremap kk <Nop>
+" nnoremap jj <Nop>
+" nnoremap kk <Nop>
 
 " Go to SOC instead of SOL
 " Note: let's try to remove this binding and use the proper keys instead

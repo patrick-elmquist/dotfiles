@@ -20,6 +20,7 @@ call plug#begin()
     Plug 'itchyny/lightline.vim'            " Show an improved status bar
     Plug 'udalov/kotlin-vim'                " Add Kotlin syntax highlighting
     Plug 'andymass/vim-matchup'
+
 call plug#end()
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -27,6 +28,5 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 set termguicolors
 
 colorscheme embark
-let g:lightline = {
-      \ 'colorscheme': 'embark',
-      \ }
+
+let g:lightline = { 'colorscheme': 'embark' }

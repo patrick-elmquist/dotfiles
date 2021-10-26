@@ -28,7 +28,7 @@ set ideavimsupport+=singleline
 noremap <leader>n :action Inline<CR>
 noremap <leader>m :action ExtractFunction<CR>
 noremap <leader>v :action IntroduceVariable<CR>
-noremap <leader>f :action FindModal<CR>
+noremap <leader>f :action FindInPath<CR>
 noremap <leader>F :action FindUsages<CR>
 noremap <leader>l :action ReformatCode<CR>
 noremap <leader>r :action RenameElement<CR>
