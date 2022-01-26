@@ -81,4 +81,3 @@ source ~/.aliases
 
 source ~/.functions
 [[ -f ~/.functions.local ]] && source ~/.functions.local
-

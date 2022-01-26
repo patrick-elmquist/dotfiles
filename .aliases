@@ -43,9 +43,9 @@ alias batp='bat --paging=always'
 alias gr='./gradlew'
 
 # ADB
-alias akey='adbkey'
-alias atext='adbtext'
-alias atexte='adbtext-enter'
+alias akey='adb-key'
+alias atext='adb-text'
+alias atexte='adb-text-enter'
 
 # Repo
 alias rstart='repo-start'

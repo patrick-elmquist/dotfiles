@@ -8,6 +8,7 @@ call plug#begin()
     " Below plugins also exist in IDEAVim rc file
     Plug 'machakann/vim-highlightedyank'    " Quickly flash the yanked content
     Plug 'tpope/vim-commentary'             " Adds gcc to comment a line
+    Plug 'tpope/vim-surround'             " Adds gcc to comment a line
 
     Plug 'unblevable/quick-scope'           " Show navigation hints for f/F/t/T
 

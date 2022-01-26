@@ -15,9 +15,8 @@ set surround                    " Commands: ys, cs, ds, S
 set ReplaceWithRegister         " Commands: gr, gr
 set argtextobj                  " Commands: aa, ia
 set vim-paragraph-motion        " {} will treat lines with only whitespace as empty
-
-set highlightedyank
-set sneak
+set highlightedyank             " Highlight the yanked text for a short duration
+set NERDTree                    " Navigate the Project tree
 
 " Supposed to make ideaVim work better with dialogs.
 set ideavimsupport+=singleline
@@ -45,5 +44,40 @@ noremap <leader>d :action ShowErrorDescription<CR>
 noremap <leader>u :action GotoSuperMethod<CR>
 noremap <leader>b :action GotoDeclaration<CR>
 noremap <leader>B :action GotoImplementation<CR>
+noremap <leader>i :action OptimizeImports<CR>
 noremap <leader>I :action ImplementMethods<CR>
 
+" ------------------
+" Probation line
+" Based on: https://towardsdatascience.com/the-essential-ideavim-remaps-291d4cd3971b
+" ------------------
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+nnoremap <c-\> :action SplitVertically<CR>
+nnoremap <c--> :action SplitHorizontally<CR>
+nnoremap <c-=> :action Unsplit<CR>
+nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
+
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+
+nnoremap <TAB> :action PreviousTab<CR>
+nnoremap <s-TAB> :action NextTab<CR>
+
+" nnoremap <leader>en :action EditSourceInNewWindow<CR>
+nnoremap <leader>n :action NextWindow<CR>
+nnoremap <leader>q :action CloseContent<CR>
+nnoremap <leader>qa :action CloseAllEditors<CR>
+
+vnoremap < <gv
+vnoremap > >gv
+
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+
+nnoremap <leader>h  :action LocalHistory.ShowHistory<CR>

@@ -46,11 +46,8 @@ set shiftwidth=4                " indent/outdent by 4 columns
 set expandtab                   " use spaces instead of tabs
 set smarttab                    " use tabs at the start of a line, spaces elsewhere
 
-" Probation line, experimental stuff for evaulation
-" Based on https://github.com/sdothum/dotfiles/blob/master/vim/.vim/config/startup.vim
 set virtualedit=block
 
-"  ................................................................ Undo history
 " keep persistent undo history across sessions, by storing in file
 silent !mkdir ~/.vim/undo 2>/dev/null
 set history=1000
@@ -62,7 +59,6 @@ set nowritebackup
 
 set wildmenu                    " used to toggle a menu for command line tab
 set wildmode=list:longest,full  " tells the command line tab to complete to longest common
-" End of probation line
 
 autocmd FileType zsh setlocal shiftwidth=2 tabstop=8 softtabstop=2
 autocmd FileType c,cpp,java,kotlin autocmd BufWritePre <buffer> %s/\s\+$//e
@@ -87,14 +83,6 @@ nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
-
-" nnoremap jj <Nop>
-" nnoremap kk <Nop>
-
-" Go to SOC instead of SOL
-" Note: let's try to remove this binding and use the proper keys instead
-" noremap 0 ^
-" noremap ^ 0
 
 " Make Redo easier
 nnoremap U <C-r>
