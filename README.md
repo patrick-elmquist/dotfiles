@@ -55,7 +55,14 @@ plug-install
 | Zsh-autosuggestions     | git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"             |
 | Zsh-syntax-highlighting | git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting" |
 | Zsh Pure prompt         | git clone git@github.com:patrick-elmquist/pure.git "$HOME/.zsh/pure"                                    |
-| Imagemagick             | `brew install imagemagick` or `sudo apt install imagemagick`                                            |
+
+## Homebrew
+| Name                    | brew install...                                                                                         |
+|-------------------------|---------------------------------------------------------------------------------------------------------|
+| Imagemagick             | brew install imagemagick                                                                                |
+| QMK CLI                 | brew install qmk/qmk/qmk                                                                                |
+| Git                     | brew install git                                                                                        |
+| VIM                     | brew install vim                                                                                        |
 
 ## Apps
 | Name                    | URL                                                                                                     |
