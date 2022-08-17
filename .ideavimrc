@@ -17,6 +17,7 @@ set argtextobj                  " Commands: aa, ia
 set vim-paragraph-motion        " {} will treat lines with only whitespace as empty
 set highlightedyank             " Highlight the yanked text for a short duration
 set NERDTree                    " Navigate the Project tree
+set exchange                    " Exchange blocks of code with cx
 
 " Supposed to make ideaVim work better with dialogs.
 set ideavimsupport+=singleline

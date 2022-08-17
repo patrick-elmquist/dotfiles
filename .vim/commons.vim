@@ -78,12 +78,6 @@ nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
 nnoremap <leader>w /\s\+$<CR>
 nnoremap <leader><leader> :
 
-" Disable arrow keys in normal mode
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-
 " Make Redo easier
 nnoremap U <C-r>
 

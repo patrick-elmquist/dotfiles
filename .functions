@@ -5,7 +5,7 @@
 #
 # Example: abs image.png
 # -------------------------------------------------
-abs-path() {
+fun abs-path() {
     echo "$(pwd)/$1"
 }
 
@@ -14,7 +14,7 @@ abs-path() {
 #
 # Example: is-vim
 # -------------------------------------------------
-is-vim(){
+fun is-vim(){
     is_vim="$(env | grep VIMRUNTIME)"
     if [ -z "$is_vim" ]; then
         echo "No"
@@ -33,7 +33,7 @@ is-vim(){
 #
 # Example: cap before.png
 # -------------------------------------------------
-cap() {
+fun cap() {
     filename="${1:-screenshot.png}"
     device="${2:-d}"
 
@@ -55,7 +55,7 @@ cap() {
 #
 # Example: tile before.png after.png
 # -------------------------------------------------
-tile() {
+fun tile() {
     filename="tile.png"
     case $# in
         2) pattern="2x1" ;;
@@ -87,7 +87,7 @@ tile() {
 #
 # Example: echo-table com.demo.app db users
 # -------------------------------------------------
-echo-table() {
+fun echo-table() {
     db="databases/$2"
     query="SELECT * FROM $3;"
     adb exec-out run-as "$1" sqlite3 -echo -header -column "$db" "$query"
@@ -103,7 +103,7 @@ echo-table() {
 #
 # Example: watch-table com.demo.app db users
 # -------------------------------------------------
-watch-table() {
+fun watch-table() {
     while true; do clear; echo-table "$@"; sleep 5; done
 }
 
@@ -115,7 +115,7 @@ watch-table() {
 #
 # Example: fetch-db com.demo.app db
 # -------------------------------------------------
-fetch-db() {
+fun fetch-db() {
     adb exec-out run-as "$1" cat databases/"$2" > ~/Temp/app.db;
     adb exec-out run-as "$1" cat databases/"$2"-wal > ~/Temp/app.db-wal;
     adb exec-out run-as "$1" cat databases/"$2"-shm > ~/Temp/app.db-shm;
@@ -134,7 +134,7 @@ fetch-db() {
 #
 # Example: dump-view-hierarchy dump
 # -------------------------------------------------
-dump-view-hierarchy() {
+fun dump-view-hierarchy() {
     filename=${1:-"view-hierarchy"}
     filename="$filename.xml"
 
@@ -155,7 +155,7 @@ dump-view-hierarchy() {
 #
 # Example: extract archive.zip
 # -------------------------------------------------
-extract() {
+fun extract() {
     if [ -f $1 ] ; then
         case $1 in
             *.tar.bz2)  tar xvjf $1   ;;
@@ -184,7 +184,7 @@ extract() {
 #
 # Example: repo-start Important.Feature
 # -------------------------------------------------
-repo-start() {
+fun repo-start() {
     week_nbr=$(date +%V)
     day_nbr=$(date +%u)
     repo start "w${week_nbr}.${day_nbr}.$1" .
@@ -200,12 +200,17 @@ repo-start() {
 #
 # Example: gifit recording.mp4 my.gif
 # -------------------------------------------------
-gifit() {
-    output=${2:-"output.gif"}
-    ffmpeg -ss 10 -i $1 -filter:v "crop=in_w:in_h/3:0:215" -c:a copy video1.mp4
-    ffmpeg -ss 10 -i $1 -filter:v "crop=in_w:in_h/3:0:1305" -c:a copy video2.mp4
-    ffmpeg -i video1.mp4 -filter_complex "[0:v] fps=30,scale=480:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" output1.gif
-    ffmpeg -i video2.mp4 -filter_complex "[0:v] fps=30,scale=480:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" output2.gif
+fun gifit() {
+
+    filename=${2:-"output"}
+    video="$filename.mp4"
+    gif="$filename.gif"
+
+    // Cleanup
+    rm "$video" "$gif"
+
+    ffmpeg -ss 1 -i $1 -filter:v "crop=in_w:650:0:95" -c:a copy "$video"
+    ffmpeg -i "$video" -vf "fps=30,scale=480:-1:flags=lanczos,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$gif"
 }
 
 # -------------------------------------------------
@@ -216,7 +221,7 @@ gifit() {
 #
 # Example: loop 5 echo "Something"
 # -------------------------------------------------
-loop() {
+fun loop() {
     for i in $(seq 1 $1); do
         eval "${@:2}"
         sleep 0.15
@@ -238,7 +243,7 @@ BACK=4
 #
 # Example: adb_poke_system_properties
 # -------------------------------------------------
-adb_poke_system_properties() {
+fun adb_poke_system_properties() {
     # Poke SystemProperties for the change to have effect
     SYSPROPS_TRANSACTION=1599295570
     adb shell service call activity "$SYSPROPS_TRANSACTION" &>/dev/null
@@ -252,7 +257,7 @@ adb_poke_system_properties() {
 #
 # Example: adb-layout-bounds true
 # -------------------------------------------------
-adb-layout-bounds() {
+fun adb-layout-bounds() {
     adb shell setprop debug.layout "${1:-true}"
     adb_poke_system_properties
 }
@@ -265,7 +270,7 @@ adb-layout-bounds() {
 #
 # Example: adb-overdraw show
 # -------------------------------------------------
-adb-overdraw() {
+fun adb-overdraw() {
     adb shell setprop debug.hwui.overdraw "${1:-show}"
     adb_poke_system_properties
 }
@@ -278,7 +283,7 @@ adb-overdraw() {
 #
 # Example: adb-hwui visual_bars
 # -------------------------------------------------
-adb-hwui() {
+fun adb-hwui() {
     adb shell setprop debug.hwui.profile "${1:-visual_bars}"
     adb_poke_system_properties
 }
@@ -290,7 +295,7 @@ adb-hwui() {
 #
 # Example: adb-text This is my "input"
 # -------------------------------------------------
-adb-text() {
+fun adb-text() {
     text=$(printf '%s%%s' ${@})  # concatenate and replace spaces with %s
     text=${text%%%s}  # remove the trailing %s
     text=${text//\'/\\\'}  # escape single quotes
@@ -306,7 +311,7 @@ adb-text() {
 #
 # Example: adb-text-enter This is my "input"
 # -------------------------------------------------
-adb-text-enter() {
+fun adb-text-enter() {
     adb-text $@ && adb-key ENTER
 }
 
@@ -317,7 +322,7 @@ adb-text-enter() {
 #
 # Example: adb-key 67
 # -------------------------------------------------
-adb-key() {
+fun adb-key() {
     adb shell input keyevent "$1"
 }
 
@@ -332,7 +337,7 @@ adb-key() {
 #
 # Example: adbkey-dpad
 # -------------------------------------------------
-adb-dpad() {
+fun adb-dpad() {
     echo "Starting a DPAD session, press Q or ESC to stop..."
     echo "Navigation:"
     echo "<HJKL> to move left,down,up,right"
@@ -456,3 +461,7 @@ fun generic-to-feature() {
     fi
 }
 
+fun retrigger-ci() {
+    git commit -m "Retrigger CI" --allow-empty
+    git push
+}

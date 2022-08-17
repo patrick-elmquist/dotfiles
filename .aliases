@@ -46,6 +46,7 @@ alias gr='./gradlew'
 alias akey='adb-key'
 alias atext='adb-text'
 alias atexte='adb-text-enter'
+alias arec='adb-rec'
 
 # Repo
 alias rstart='repo-start'
