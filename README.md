@@ -54,7 +54,7 @@ plug-install
 | (macOS) Homebrew        | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"         |
 | Zsh-autosuggestions     | git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"             |
 | Zsh-syntax-highlighting | git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting" |
-| Zsh Pure prompt         | git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"                                    |
+| Zsh Pure prompt         | git clone git@github.com:patrick-elmquist/pure.git "$HOME/.zsh/pure"                                    |
 | Imagemagick             | `brew install imagemagick` or `sudo apt install imagemagick`                                            |
 
 ## Apps
