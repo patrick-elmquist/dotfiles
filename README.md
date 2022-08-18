@@ -60,9 +60,11 @@ plug-install
 | Name                    | brew install...                                                                                         |
 |-------------------------|---------------------------------------------------------------------------------------------------------|
 | Imagemagick             | brew install imagemagick                                                                                |
+| FFMPEG                  | brew install ffmpeg                                                                                      |
 | QMK CLI                 | brew install qmk/qmk/qmk                                                                                |
 | Git                     | brew install git                                                                                        |
 | VIM                     | brew install vim                                                                                        |
+| iTerm2                  | brew install --cask iterm2                                                                              |
 
 ## Apps
 | Name                    | URL                                                                                                     |
