@@ -66,7 +66,11 @@ plug-install
 | VIM                     | brew install vim                                                                                        |
 | iTerm2                  | brew install --cask iterm2                                                                              |
 | rar                     | brew install --cask rar                                                                                 |
-| adb                     | brew install android-platform-tools                                                                     |
+| adb                     | brew install android-platform-tools                                                                     |brew
+```
+brew install vim git android-platform-tools ffmpeg imagemagick qmk/qmk/qmk
+brew install cask iterm2 rar
+```
 
 ## Apps
 | Name                    | URL                                                                                                     |
