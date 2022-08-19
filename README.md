@@ -66,24 +66,16 @@ plug-install
 | VIM                     | brew install vim                                                                                        |
 | iTerm2                  | brew install --cask iterm2                                                                              |
 | rar                     | brew install --cask rar                                                                                 |
-| adb                     | brew install --cask android-platform-tools                                                                     |brew
+| adb                     | brew install --cask android-platform-tools                                                              |
 ```
-brew install vim git ffmpeg imagemagick qmk/qmk/qmk
-brew install --cask iterm2 rar android-platform-tools
+brew install vim git ffmpeg imagemagick qmk/qmk/qmk svn
+brew tap homebrew/cask-fonts
+brew install --cask iterm2 rar android-platform-tools font-roboto-mono
+//  note: svn is needed for downloading roboto mono
 ```
-
-## Apps
-| Name                    | URL                                                                                                     |
-|-------------------------|---------------------------------------------------------------------------------------------------------|
-| Bat                     | https://github.com/sharkdp/bat                                                                          |
 
 ## Themes
 | App     | Theme         | URL                                                                                                     |
 |---------|---------------|---------------------------------------------------------------------------------------------------------|
 | iTerm   | Embark        | https://github.com/embark-theme/iterm                                                                   |
-
-## Fonts
-| Name          | URL                                                                                                               |
-|---------------|-------------------------------------------------------------------------------------------------------------------|
-| Roboto Mono   | https://fonts.google.com/download?family=Roboto%20Mono                                                            |
 
