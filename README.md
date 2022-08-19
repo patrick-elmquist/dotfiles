@@ -68,6 +68,7 @@ plug-install
 | rar                     | brew install --cask rar                                                                                 |
 | adb                     | brew install --cask android-platform-tools                                                              |
 ```
+TODO break these up as package files for easier reading
 brew install vim git ffmpeg imagemagick qmk/qmk/qmk svn
 brew tap homebrew/cask-fonts
 brew install --cask iterm2 rar android-platform-tools font-roboto-mono
