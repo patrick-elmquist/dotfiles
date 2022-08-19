@@ -197,19 +197,27 @@ fun repo-start() {
 #
 # $1 - the .mp4 file
 # $2 - (Optional) name of output
+# $3 - (Optional) height of output
+# $4 - (Optional) top of the input
 #
-# Example: gifit recording.mp4 my.gif
+# Example: gifit recording.mp4 output 650 95
 # -------------------------------------------------
 fun gifit() {
 
+    in="${1?"Need an input file"}"
     filename=${2:-"output"}
     video="$filename.mp4"
     gif="$filename.gif"
 
+    # default to full height
+    height=${3:-"in_h"}
+    # default to no crop
+    top=${4:-"0"}
+
     // Cleanup
     rm "$video" "$gif"
 
-    ffmpeg -ss 1 -i $1 -filter:v "crop=in_w:650:0:95" -c:a copy "$video"
+    ffmpeg -ss 1 -i $in -filter:v "crop=in_w:$height:0:$top" -c:a copy "$video"
     ffmpeg -i "$video" -vf "fps=30,scale=480:-1:flags=lanczos,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$gif"
 }
 
