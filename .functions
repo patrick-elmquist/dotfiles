@@ -177,20 +177,6 @@ fun extract() {
 }
 
 # -------------------------------------------------
-# Start a repo branch with week nbr and day, like:
-#   w48.1.Important.Feature
-#
-# $1 - branch name
-#
-# Example: repo-start Important.Feature
-# -------------------------------------------------
-fun repo-start() {
-    week_nbr=$(date +%V)
-    day_nbr=$(date +%u)
-    repo start "w${week_nbr}.${day_nbr}.$1" .
-}
-
-# -------------------------------------------------
 # Create a .gif of the given .mp4 file
 # Based on this Giphy article:
 # https://engineering.giphy.com/how-to-make-gifs-with-ffmpeg/
