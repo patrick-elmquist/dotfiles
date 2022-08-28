@@ -217,8 +217,8 @@ fun gifit() {
     // Cleanup
     rm "$video" "$gif"
 
-    ffmpeg -ss 1 -i $in -filter:v "crop=in_w:$height:0:$top" -c:a copy "$video"
-    ffmpeg -i "$video" -vf "fps=30,scale=480:-1:flags=lanczos,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$gif"
+    ffmpeg -ss 0 -i $in -filter:v "crop=in_w:$height:0:$top" -c:a copy "$video"
+    ffmpeg -i "$video" -vf "fps=30,scale=320:-1:flags=lanczos,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$gif"
 }
 
 # -------------------------------------------------
