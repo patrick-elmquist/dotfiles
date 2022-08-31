@@ -6,7 +6,7 @@ alias zshrc='$EDITOR ~/.zshrc'
 alias e-aliases='$EDITOR ~/.aliases'
 alias e-functions='$EDITOR ~/.functions'
 alias e-vimrc='$EDITOR ~/.vim/vimrc'
-alias reload='source ~/.zshrc || true'
+alias reload='exec zsh || true'
 
 case "$OSTYPE" in
   darwin*)
@@ -66,6 +66,7 @@ alias next='git rebase --continue'
 alias fetch='git fetch --all --prune'
 alias squash='git rebase -i'
 alias checkpoint='git commit -am "Checkpoint"'
+alias commit='git commit -am'
 
 # VIM Plugins
 alias plug-clean='vim +PlugClean +qall'

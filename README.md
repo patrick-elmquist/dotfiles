@@ -69,7 +69,7 @@ plug-install
 | adb                     | brew install --cask android-platform-tools                                                              |
 ```
 TODO break these up as package files for easier reading
-brew install vim git ffmpeg imagemagick qmk/qmk/qmk svn
+brew install vim git ffmpeg imagemagick qmk/qmk/qmk holgerbrandl/tap/kscript svn
 brew tap homebrew/cask-fonts
 brew install --cask iterm2 rar android-platform-tools font-roboto-mono
 

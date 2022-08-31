@@ -24,31 +24,6 @@ fun is-vim(){
 }
 
 # -------------------------------------------------
-# Take a screenshot of the connected device
-#
-# $1 - filename (optional, default=screenshot.png)
-# $2 - device (optionl, default=d)
-#      d = device
-#      e = emulator
-#
-# Example: cap before.png
-# -------------------------------------------------
-fun cap() {
-    filename="${1:-screenshot.png}"
-    device="${2:-d}"
-
-    case $filename in
-        *.png|.PNG) ;;
-        *) filename="$1.png" ;;
-    esac
-
-    # TODO: Make it possible to prefer emulator or real device
-    adb -$device exec-out screencap -p > $filename;
-
-    open $filename
-}
-
-# -------------------------------------------------
 # Tile two or more images into one.
 #
 # $2-6 - images to tile
@@ -75,6 +50,203 @@ fun tile() {
         "$filename"
 
     open $filename;
+}
+
+# -------------------------------------------------
+# Extract the given archive
+#
+# $1 - the archive
+#
+# Example: extract archive.zip
+# -------------------------------------------------
+fun extract() {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)  tar xvjf $1   ;;
+            *.tar.gz)   tar xvzf $1   ;;
+            *.bz2)      bunzip2 $1    ;;
+            *.rar)      unrar x $1    ;;
+            *.gz)       gunzip $1     ;;
+            *.tar)      tar xvf $1    ;;
+            *.tbz2)     tar xvjf $1   ;;
+            *.tgz)      tar xvzf $1   ;;
+            *.zip)      unzip $1      ;;
+            *.Z)        uncompress $1 ;;
+            *.7z)       7z x $1       ;;
+            *)          echo "don't know how to extract '$1'..." ;;
+        esac
+    else
+        echo "'$1' is not a valid file!"
+    fi
+}
+
+# -------------------------------------------------
+# Create a .gif of the given .mp4 file
+# Based on this Giphy article:
+# https://engineering.giphy.com/how-to-make-gifs-with-ffmpeg/
+#
+# $1 - the .mp4 file
+# $2 - (Optional) name of output
+# $3 - (Optional) height of output
+# $4 - (Optional) top of the input
+#
+# Example: gifit recording.mp4 output 650 95
+# -------------------------------------------------
+fun gifit() {
+
+    in="${1?"Need an input file"}"
+    filename=${2:-"output"}
+    video="$filename-temp.mkv"
+    gif="$filename.gif"
+
+    # default to full height
+    height=${3:-"in_h"}
+    # default to no crop
+    top=${4:-"0"}
+
+    # pre cleanup
+    rm "$video" "$gif"
+
+    ffmpeg -ss 0 -i $in -filter:v "crop=in_w:$height:0:$top" -c:a copy "$video"
+    ffmpeg -i "$video" -vf "fps=30,scale=320:-1:flags=lanczos,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$gif"
+
+    # post cleanup
+    rm "$video"
+
+    qlmanage -p "$gif"
+}
+
+fun adb-gif() {
+    input="${1?"Need an input file"}"
+    adb-rec "$input"
+    gifit "$input.mp4" "$input-out" 2110 80
+}
+
+fun screen-gif() {
+    input="${1?"Need an input file"}"
+    gifit "$input.mp4" "$input-out" 2110 80
+}
+
+# -------------------------------------------------
+# Loop a command N number of times.
+#
+# $1   - the count
+# $@:2 - the command to loop
+#
+# Example: loop 5 echo "Something"
+# -------------------------------------------------
+fun loop() {
+    for i in $(seq 1 $1); do
+        eval "${@:2}"
+        sleep 0.15
+    done;
+}
+
+# -------------------------------------------------
+# Create a new branch in the following format:
+#   ABCD-XXXX-Feature_description
+#
+# $1 - JIRA issue number ABCD-XXXX
+# $2 - Issue description
+#
+# Example:
+# new-feature-branch ABCD-1337 A good description
+# Branch: ABCD-1337_A_good_description
+#
+# Prepopulates the branch with an empty commit
+# with the following message:
+# ABCD-XXXX A good description
+#
+# Jira: ABCD-XXXX
+# -------------------------------------------------
+fun generic-new-feature() {
+    jira="${1?"Need a Jira number"}"
+
+    git fetch --all --prune
+
+    args=$(printf '%s_' ${@:2} | sed 's/.$//')
+    branch_name="$jira-$args"
+
+    git checkout origin/main -b "$branch_name"
+
+    title="$jira ${@:2}"
+    content="Jira: $jira"
+    git commit --allow-empty -m "$title" -m "$content"
+}
+
+# -------------------------------------------------
+# Convert the current branch to a feature branch
+#   ABCD-XXXX-Feature_description
+#
+# $1 - JIRA issue number ABCD-XXXX
+# $2 - Issue description
+#
+# Example:
+# new-feature-branch ABCD-1337 A good description
+# Branch: ABCD-1337_A_good_description
+#
+# Squash all commits.
+#
+# Amends the commit with the following title and message:
+# ABCD-XXXX A good description
+#
+# Jira: ABCD-XXXX
+# -------------------------------------------------
+fun generic-to-feature() {
+    if [[ `git status --porcelain` ]]; then
+        echo "Commit changes before running..."
+    else
+        jira="${1?"Need a Jira number"}"
+
+        git fetch --all --prune
+
+        // Create the new branch
+        args=$(printf '%s_' ${@:2} | sed 's/.$//')
+        branch_name="$jira-$args"
+        git checkout -b "$branch_name"
+
+        // Squash it
+        git rebase -i origin/main
+
+        // Amend the first commit with Jira info
+        title="$jira ${@:2}"
+        content="Jira: $jira"
+        git commit --amend -m "$title" -m "$content"
+    fi
+}
+
+fun retrigger-ci() {
+    git commit -m "Retrigger CI" --allow-empty
+    git push
+}
+
+#
+# ANDROID FUNCTIONS
+#
+
+# -------------------------------------------------
+# Take a screenshot of the connected device
+#
+# $1 - filename (optional, default=screenshot.png)
+# $2 - device (optionl, default=d)
+#      d = device
+#      e = emulator
+#
+# Example: cap before.png
+# -------------------------------------------------
+fun cap() {
+    filename="${1:-screenshot.png}"
+    device="${2:-d}"
+
+    case $filename in
+        *.png|.PNG) ;;
+        *) filename="$1.png" ;;
+    esac
+
+    # TODO: Make it possible to prefer emulator or real device
+    adb -$device exec-out screencap -p > $filename;
+
+    open $filename
 }
 
 # -------------------------------------------------
@@ -147,80 +319,6 @@ fun dump-view-hierarchy() {
 
     $EDITOR "$filename"
  }
-
-# -------------------------------------------------
-# Extract the given archive
-#
-# $1 - the archive
-#
-# Example: extract archive.zip
-# -------------------------------------------------
-fun extract() {
-    if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2)  tar xvjf $1   ;;
-            *.tar.gz)   tar xvzf $1   ;;
-            *.bz2)      bunzip2 $1    ;;
-            *.rar)      unrar x $1    ;;
-            *.gz)       gunzip $1     ;;
-            *.tar)      tar xvf $1    ;;
-            *.tbz2)     tar xvjf $1   ;;
-            *.tgz)      tar xvzf $1   ;;
-            *.zip)      unzip $1      ;;
-            *.Z)        uncompress $1 ;;
-            *.7z)       7z x $1       ;;
-            *)          echo "don't know how to extract '$1'..." ;;
-        esac
-    else
-        echo "'$1' is not a valid file!"
-    fi
-}
-
-# -------------------------------------------------
-# Create a .gif of the given .mp4 file
-# Based on this Giphy article:
-# https://engineering.giphy.com/how-to-make-gifs-with-ffmpeg/
-#
-# $1 - the .mp4 file
-# $2 - (Optional) name of output
-# $3 - (Optional) height of output
-# $4 - (Optional) top of the input
-#
-# Example: gifit recording.mp4 output 650 95
-# -------------------------------------------------
-fun gifit() {
-
-    in="${1?"Need an input file"}"
-    filename=${2:-"output"}
-    video="$filename.mp4"
-    gif="$filename.gif"
-
-    # default to full height
-    height=${3:-"in_h"}
-    # default to no crop
-    top=${4:-"0"}
-
-    // Cleanup
-    rm "$video" "$gif"
-
-    ffmpeg -ss 0 -i $in -filter:v "crop=in_w:$height:0:$top" -c:a copy "$video"
-    ffmpeg -i "$video" -vf "fps=30,scale=320:-1:flags=lanczos,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$gif"
-}
-
-# -------------------------------------------------
-# Loop a command N number of times.
-#
-# $1   - the count
-# $@:2 - the command to loop
-#
-# Example: loop 5 echo "Something"
-# -------------------------------------------------
-fun loop() {
-    for i in $(seq 1 $1); do
-        eval "${@:2}"
-        sleep 0.15
-    done;
-}
 
 # Android KeyEvent codes
 DPAD_LEFT=21
@@ -381,81 +479,3 @@ fun adb-rec() {
     mv recording.mp4 "$filename"
 }
 
-
-# -------------------------------------------------
-# Create a new branch in the following format:
-#   ABCD-XXXX-Feature_description
-#
-# $1 - JIRA issue number ABCD-XXXX
-# $2 - Issue description
-#
-# Example:
-# new-feature-branch ABCD-1337 A good description
-# Branch: ABCD-1337_A_good_description
-#
-# Prepopulates the branch with an empty commit
-# with the following message:
-# ABCD-XXXX A good description
-#
-# Jira: ABCD-XXXX
-# -------------------------------------------------
-fun generic-new-feature() {
-    jira="${1?"Need a Jira number"}"
-
-    git fetch --all --prune
-
-    args=$(printf '%s_' ${@:2} | sed 's/.$//')
-    branch_name="$jira-$args"
-
-    git checkout origin/main -b "$branch_name"
-
-    title="$jira ${@:2}"
-    content="Jira: $jira"
-    git commit --allow-empty -m "$title" -m "$content"
-}
-
-# -------------------------------------------------
-# Convert the current branch to a feature branch
-#   ABCD-XXXX-Feature_description
-#
-# $1 - JIRA issue number ABCD-XXXX
-# $2 - Issue description
-#
-# Example:
-# new-feature-branch ABCD-1337 A good description
-# Branch: ABCD-1337_A_good_description
-#
-# Squash all commits.
-#
-# Amends the commit with the following title and message:
-# ABCD-XXXX A good description
-#
-# Jira: ABCD-XXXX
-# -------------------------------------------------
-fun generic-to-feature() {
-    if [[ `git status --porcelain` ]]; then
-        echo "Commit changes before running..."
-    else
-        jira="${1?"Need a Jira number"}"
-
-        git fetch --all --prune
-
-        // Create the new branch
-        args=$(printf '%s_' ${@:2} | sed 's/.$//')
-        branch_name="$jira-$args"
-        git checkout -b "$branch_name"
-
-        // Squash it
-        git rebase -i origin/main
-
-        // Amend the first commit with Jira info
-        title="$jira ${@:2}"
-        content="Jira: $jira"
-        git commit --amend -m "$title" -m "$content"
-    fi
-}
-
-fun retrigger-ci() {
-    git commit -m "Retrigger CI" --allow-empty
-    git push
-}
