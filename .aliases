@@ -42,6 +42,9 @@ alias batp='bat --paging=always'
 
 # Gradle
 alias gr='./gradlew'
+alias quality='./gradlew ktlint detekt'
+alias ktlint='./gradlew ktlint'
+alias detekt='./gradlew detekt'
 
 # ADB
 alias akey='adb-key'

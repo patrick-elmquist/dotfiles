@@ -77,6 +77,15 @@ qmk setup // to install dependencies
 //  note: svn is needed for downloading roboto mono
 ```
 
+## Intellij plugins
+- IDEAVim
+- IdeaVim Quick Scope
+  https://plugins.jetbrains.com/plugin/19417-ideavim-quickscope
+
+| App     | Theme         | URL                                                                                                     |
+|---------|---------------|---------------------------------------------------------------------------------------------------------|
+| iTerm   | Embark        | https://github.com/embark-theme/iterm                                                                   |
+
 ## Themes
 | App     | Theme         | URL                                                                                                     |
 |---------|---------------|---------------------------------------------------------------------------------------------------------|
