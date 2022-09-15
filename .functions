@@ -9,6 +9,16 @@ fun abs-path() {
     echo "$(pwd)/$1"
 }
 
+fun commit() {
+    git add .
+    git commit -m "$*"
+}
+
+fun diffall() {
+    git add .
+    git diff --cached
+}
+
 # -------------------------------------------------
 # Check if the current shell is started via VIM
 #
@@ -244,9 +254,7 @@ fun cap() {
     esac
 
     # TODO: Make it possible to prefer emulator or real device
-    adb -$device exec-out screencap -p > $filename;
-
-    open $filename
+    adb -$device exec-out screencap -p > $filename && open $filename
 }
 
 # -------------------------------------------------
