@@ -61,6 +61,7 @@ set wildmenu                    " used to toggle a menu for command line tab
 set wildmode=list:longest,full  " tells the command line tab to complete to longest common
 
 autocmd FileType zsh setlocal shiftwidth=2 tabstop=8 softtabstop=2
+autocmd BufEnter *.txt setlocal wrap linebreak
 autocmd FileType c,cpp,java,kotlin autocmd BufWritePre <buffer> %s/\s\+$//e
 autocmd BufRead,BufNewFile   *.c,*.h set shiftwidth=4 tabstop=8 softtabstop=4
 
