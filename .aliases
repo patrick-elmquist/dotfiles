@@ -35,7 +35,7 @@ alias la='ls -A'
 alias grep='grep --color=auto'
 
 # Folders
-alias §='cd ~'
+alias temp='mkdir -p ~/Temp/ && cd ~/Temp/'
 
 # Utility
 alias h='history'

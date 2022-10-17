@@ -42,6 +42,7 @@ noremap <leader>e :action RecentFiles<CR>
 noremap <leader>E :action RecentLocations<CR>
 noremap <leader>g :action GotoNextError<CR>
 noremap <leader>G :action GotoPreviousError<CR>
+noremap <leader>q :action QuickJavaDoc<CR>
 noremap <leader>d :action ShowErrorDescription<CR>
 noremap <leader>u :action GotoSuperMethod<CR>
 noremap <leader>b :action GotoDeclaration<CR>
@@ -72,9 +73,9 @@ nnoremap <TAB> :action PreviousTab<CR>
 nnoremap <s-TAB> :action NextTab<CR>
 
 " nnoremap <leader>en :action EditSourceInNewWindow<CR>
-nnoremap <leader>n :action NextWindow<CR>
-nnoremap <leader>q :action CloseContent<CR>
-nnoremap <leader>qa :action CloseAllEditors<CR>
+" nnoremap <leader>n :action NextWindow<CR>
+" nnoremap <leader>q :action CloseContent<CR>
+" nnoremap <leader>qa :action CloseAllEditors<CR>
 
 vnoremap < <gv
 vnoremap > >gv

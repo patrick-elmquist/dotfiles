@@ -10,8 +10,13 @@ fun abs-path() {
 }
 
 fun commit() {
-    git add .
-    git commit -m "$*"
+    if [ $# -eq 0 ]; then
+        // assumed to be in the middle of a merge
+        git commit
+    else
+        git add .
+        git commit -m "$*"
+    fi
 }
 
 fun diffall() {
