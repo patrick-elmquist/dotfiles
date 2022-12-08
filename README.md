@@ -73,6 +73,10 @@ brew install vim git ffmpeg imagemagick qmk/qmk/qmk holgerbrandl/tap/kscript svn
 brew tap homebrew/cask-fonts
 brew install --cask iterm2 rar android-platform-tools font-roboto-mono
 
+// enable the gw command for gradle
+brew tap gdubw/gng
+brew install gng
+
 qmk setup // to install dependencies
 //  note: svn is needed for downloading roboto mono
 ```
