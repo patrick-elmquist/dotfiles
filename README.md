@@ -80,15 +80,14 @@ brew install gng
 qmk setup // to install dependencies
 //  note: svn is needed for downloading roboto mono
 ```
+# TODO Move below things to some other document
 
 ## Intellij plugins
 - IDEAVim
-- IdeaVim Quick Scope
+- IDEAVim Quick Scope
   https://plugins.jetbrains.com/plugin/19417-ideavim-quickscope
-
-| App     | Theme         | URL                                                                                                     |
-|---------|---------------|---------------------------------------------------------------------------------------------------------|
-| iTerm   | Embark        | https://github.com/embark-theme/iterm                                                                   |
+- Material Theme Lite
+- Monokai Theme Pro
 
 ## Themes
 | App     | Theme         | URL                                                                                                     |
