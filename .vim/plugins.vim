@@ -26,8 +26,6 @@ call plug#end()
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
-set termguicolors
-
-colorscheme embark
+colorscheme rose-pine-dark
 
 let g:lightline = { 'colorscheme': 'embark' }

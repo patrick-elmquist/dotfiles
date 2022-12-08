@@ -18,7 +18,10 @@ set vim-paragraph-motion        " {} will treat lines with only whitespace as em
 set highlightedyank             " Highlight the yanked text for a short duration
 set NERDTree                    " Navigate the Project tree
 set exchange                    " Exchange blocks of code with cx
-set quickscope                  " Show hints when using fFtT, requires IdeaVim-Quickscope 
+set quickscope                  " Show hints when using fFtT, requires IdeaVim-Quickscope
+
+// uncomment this to only enable quick scope on f/t press
+// let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Supposed to make ideaVim work better with dialogs.
 set ideavimsupport+=singleline
@@ -49,6 +52,7 @@ noremap <leader>b :action GotoDeclaration<CR>
 noremap <leader>B :action GotoImplementation<CR>
 noremap <leader>i :action OptimizeImports<CR>
 noremap <leader>I :action ImplementMethods<CR>
+noremap <leader>j :NERDTree<CR>
 
 " ------------------
 " Probation line

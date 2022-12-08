@@ -9,6 +9,7 @@ set backspace=indent,eol,start  " make the backspace button work between lines
 " ------------------
 " UI
 " ------------------
+set termguicolors
 set number relativenumber       " show realtive numbers, except for the current line
 set scrolloff=5                 " always try to keep 5 lines of context when scrolling
 set nowrap                      " don't wrap text
