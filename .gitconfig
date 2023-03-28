@@ -12,6 +12,7 @@
     dom = diff origin/master
     rom = rebase origin/master
     l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \t\\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
     ll = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ls = log --stat
     st = status
@@ -31,12 +32,6 @@
     local = yellow
     remote = green
 
-[color "diff"]
-    meta = yellow bold
-    frag = magenta bold     # line info
-    old = red               # deletions
-    new = green             # additions
-
 [color "status"]
     added = yellow
     changed = green
@@ -49,3 +44,8 @@
 	default = current
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

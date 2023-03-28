@@ -36,6 +36,7 @@ noremap <leader>f :action FindInPath<CR>
 noremap <leader>F :action FindUsages<CR>
 noremap <leader>l :action ReformatCode<CR>
 noremap <leader>r :action RenameElement<CR>
+noremap <leader>R :action Run<CR>
 noremap <leader>t :action Refactorings.QuickListPopupAction<CR>
 noremap <leader>o :action GotoFile<CR>
 noremap <leader>s :action FileStructurePopup<CR>
@@ -46,6 +47,7 @@ noremap <leader>E :action RecentLocations<CR>
 noremap <leader>g :action GotoNextError<CR>
 noremap <leader>G :action GotoPreviousError<CR>
 noremap <leader>q :action QuickJavaDoc<CR>
+noremap <leader>Q :action QuickImplementations<CR>
 noremap <leader>d :action ShowErrorDescription<CR>
 noremap <leader>u :action GotoSuperMethod<CR>
 noremap <leader>b :action GotoDeclaration<CR>
@@ -64,7 +66,6 @@ nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 nnoremap <c-\> :action SplitVertically<CR>
 nnoremap <c--> :action SplitHorizontally<CR>
 nnoremap <c-=> :action Unsplit<CR>
-nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
 
 sethandler <c-j> a:vim
 sethandler <c-k> a:vim
@@ -88,3 +89,17 @@ nnoremap [[ :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>
 
 nnoremap <leader>h  :action LocalHistory.ShowHistory<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap <leader>uu :action Git.CompareWithBranch<CR>
+noremap <c-/> :action FindInPath<CR>
+
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
+
+nnoremap <leader><CR> :action IntentionActionAsAction_org.jetbrains.kotlin.idea.intentions.ChopArgumentListIntention<CR>
+nnoremap <leader><BS> :action IntentionActionAsAction_org.jetbrains.kotlin.idea.intentions.JoinArgumentListIntention<CR>
+nnoremap <leader>; :action IntentionActionAsAction_org.jetbrains.kotlin.idea.intentions.AddNamesToCallArgumentsIntention<CR>:action IntentionActionAsAction_org.jetbrains.kotlin.idea.intentions.ChopArgumentListIntention<CR>
+
+" Workaround for P overwriting yank register in Visual mode
+" https://youtrack.jetbrains.com/issue/VIM-2868/Pasting-in-visual-mode-with-P-should-not-replace-yank-register-like-when-pasting-with-p
+xnoremap P "0p

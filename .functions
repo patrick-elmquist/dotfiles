@@ -259,7 +259,11 @@ fun cap() {
     esac
 
     # TODO: Make it possible to prefer emulator or real device
-    adb -$device exec-out screencap -p > $filename && open $filename
+    adb -$device exec-out screencap -p > $filename
+    dir="$HOME/Temp/Caps"
+    mkdir -p "$dir"
+    mv "$filename" "$dir"
+    open "$dir/$filename"
 }
 
 # -------------------------------------------------
@@ -367,6 +371,20 @@ fun adb-layout-bounds() {
     adb_poke_system_properties
 }
 
+# -------------------------------------------------
+# Set the animation speed of window, transition
+# and animator animations
+#
+# $1 - a value between 0.0-1.0 (default:1.0)
+#
+# Example: adb-layout-bounds true
+# -------------------------------------------------
+fun adb-animations() {
+    value="${1:-1.0}"
+    adb shell settings put global window_animation_scale "$value"
+    adb shell settings put global transition_animation_scale "$value"
+    adb shell settings put global animator_duration_scale "$value"
+}
 # -------------------------------------------------
 # Enable or disable overdraw for the connected
 # device or emulator
@@ -489,6 +507,10 @@ fun adb-rec() {
     echo "Removing file on device..."
     adb shell rm /sdcard/Download/recording.mp4
 
-    mv recording.mp4 "$filename"
+    dir="$HOME/Temp/Caps"
+    file="$dir/$filename"
+    mkdir -p "$dir"
+    mv recording.mp4 "$file"
+    open "$file"
 }
 
