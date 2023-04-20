@@ -64,6 +64,7 @@ plug-install
 | QMK CLI                 | brew install qmk/qmk/qmk                                                                                |
 | Git                     | brew install git                                                                                        |
 | VIM                     | brew install vim                                                                                        |
+| scrcpy                  | brew install scrcpy                                                              |
 | iTerm2                  | brew install --cask iterm2                                                                              |
 | rar                     | brew install --cask rar                                                                                 |
 | adb                     | brew install --cask android-platform-tools                                                              |

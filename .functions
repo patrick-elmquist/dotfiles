@@ -489,6 +489,9 @@ fun adb-dpad() {
 # Example: adb-rec name
 # -------------------------------------------------
 fun adb-rec() {
+    # TODO as this no longer works on the OnePlus device
+    #      should perhaps consider rewriting with scrcpy
+    #        scrcpy --record outfile.mp4
     filename="${1:-screenrecord.mp4}"
 
     case $filename in
