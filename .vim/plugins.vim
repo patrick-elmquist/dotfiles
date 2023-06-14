@@ -8,7 +8,8 @@ call plug#begin()
     " Below plugins also exist in IDEAVim rc file
     Plug 'machakann/vim-highlightedyank'    " Quickly flash the yanked content
     Plug 'tpope/vim-commentary'             " Adds gcc to comment a line
-    Plug 'tpope/vim-surround'             " Adds gcc to comment a line
+    Plug 'tpope/vim-surround'             
+    Plug 'tpope/vim-fugitive'             
 
     Plug 'unblevable/quick-scope'           " Show navigation hints for f/F/t/T
 
@@ -21,7 +22,7 @@ call plug#begin()
     Plug 'itchyny/lightline.vim'            " Show an improved status bar
     Plug 'udalov/kotlin-vim'                " Add Kotlin syntax highlighting
     Plug 'andymass/vim-matchup'
-
+    Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -29,3 +30,6 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 colorscheme rose-pine-dark
 
 let g:lightline = { 'colorscheme': 'embark' }
+
+set wildignore+=*.so,*.swp,*.o,*.d
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']

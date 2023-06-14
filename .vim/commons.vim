@@ -65,6 +65,7 @@ autocmd FileType zsh setlocal shiftwidth=2 tabstop=8 softtabstop=2
 autocmd BufEnter *.txt setlocal wrap linebreak
 autocmd FileType c,cpp,java,kotlin autocmd BufWritePre <buffer> %s/\s\+$//e
 autocmd BufRead,BufNewFile   *.c,*.h set shiftwidth=4 tabstop=8 softtabstop=4
+autocmd InsertEnter,InsertLeave * set cul!
 
 " ------------------
 " Bindings
@@ -123,3 +124,9 @@ noremap <space>0 "0p
 " In Docuement, used like vid or yid
 xnoremap <silent> id :<c-u>normal! G$Vgg0<cr>
 onoremap <silent> id :<c-u>normal! GVgg<cr>
+
+nnoremap <c-\> :vsp<CR>
+nnoremap <c--> :sp<CR>
+
+nnoremap <tab> <c-w>w
+nnoremap <s-tab> <c-w><c-p>

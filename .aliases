@@ -45,8 +45,11 @@ alias batp='bat --paging=always'
 # Gradle
 alias gr='./gradlew'
 alias quality='./gradlew ktlint detekt'
+alias quality-full='./gradlew ktlint detekt assertMaxHeight sortDependencies --mode check'
 alias ktlint='./gradlew ktlint'
 alias detekt='./gradlew detekt'
+alias assertMaxHeight='./gradlew assertMaxHeight'
+alias sortDepentencies='./gradlew sortDependencies --mode check'
 
 # ADB
 alias akey='adb-key'
