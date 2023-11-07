@@ -21,6 +21,18 @@ set highlightedyank             " Highlight the yanked text for a short duration
 set NERDTree                    " Navigate the Project tree
 set exchange                    " Exchange blocks of code with cx
 set quickscope                  " Show hints when using fFtT, requires IdeaVim-Quickscope
+set multiple-cursors
+
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+nmap <S-C-n> <Plug>AllWholeOccurrences
+xmap <S-C-n> <Plug>AllWholeOccurrences
+nmap g<S-C-n> <Plug>AllOccurrences
+xmap g<S-C-n> <Plug>AllOccurrences
 
 // uncomment this to only enable quick scope on f/t press
 // let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -76,6 +88,11 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
+
+nnoremap <c-s-left> <c-w>h
+nnoremap <c-s-right> <c-w>l
+nnoremap <c-s-down> <c-w>j
+nnoremap <c-s-up> <c-w>k
 
 " nnoremap <TAB> :action PreviousTab<CR>
 " nnoremap <s-TAB> :action NextTab<CR>

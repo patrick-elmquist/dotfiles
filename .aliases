@@ -6,7 +6,8 @@ alias zshrc='$EDITOR ~/.zshrc'
 alias e-aliases='$EDITOR ~/.aliases'
 alias e-functions='$EDITOR ~/.functions'
 alias e-vimrc='$EDITOR ~/.vim/vimrc'
-alias reload='exec zsh || true'
+# alias reload='exec zsh || true'
+alias reload='source ~/.zshrc'
 
 case "$OSTYPE" in
   darwin*)
@@ -44,8 +45,8 @@ alias batp='bat --paging=always'
 
 # Gradle
 alias gr='./gradlew'
-alias quality='./gradlew ktlint detekt'
-alias quality-full='./gradlew ktlint detekt assertMaxHeight sortDependencies --mode check'
+alias quality='./gradlew ktlint detekt; tput bel;'
+alias quality-full='./gradlew ktlint detekt assertMaxHeight sortDependencies --mode check; tput bel;'
 alias ktlint='./gradlew ktlint'
 alias detekt='./gradlew detekt'
 alias assertMaxHeight='./gradlew assertMaxHeight'

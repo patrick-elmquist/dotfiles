@@ -65,8 +65,15 @@ autocmd FileType zsh setlocal shiftwidth=2 tabstop=8 softtabstop=2
 autocmd BufEnter *.txt setlocal wrap linebreak
 autocmd FileType c,cpp,java,kotlin autocmd BufWritePre <buffer> %s/\s\+$//e
 autocmd BufRead,BufNewFile   *.c,*.h set shiftwidth=4 tabstop=8 softtabstop=4
-autocmd InsertEnter,InsertLeave * set cul!
 
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" reset the cursor on start (for older versions of vim, usually not required)
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
 " ------------------
 " Bindings
 " ------------------

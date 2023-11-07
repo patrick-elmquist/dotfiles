@@ -23,6 +23,7 @@ call plug#begin()
     Plug 'udalov/kotlin-vim'                " Add Kotlin syntax highlighting
     Plug 'andymass/vim-matchup'
     Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
