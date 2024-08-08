@@ -14,13 +14,13 @@ fun commit() {
         // assumed to be in the middle of a merge
         git commit
     else
-        git add .
+        git add -A
         git commit -m "$*"
     fi
 }
 
 fun diffall() {
-    git add -A
+    git add -u
     git diff --cached
 }
 
@@ -201,18 +201,22 @@ fun loop() {
 # Jira: ABCD-XXXX
 # -------------------------------------------------
 fun generic-new-feature() {
-    jira="${1?"Need a Jira number"}"
+    if [[ `git status --porcelain` ]]; then
+        echo "Commit changes before running..."
+    else
+        jira="${1?"Need a Jira number"}"
 
-    git fetch --all --prune
+        git fetch --all --prune
 
-    args=$(printf '%s_' ${@:2} | sed 's/.$//')
-    branch_name="$jira-$args"
+        args=$(printf '%s_' ${@:2} | sed 's/.$//')
+        branch_name="$jira-$args"
 
-    git checkout origin/main -b "$branch_name"
+        git checkout origin/main -b "$branch_name"
 
-    title="$jira ${@:2}"
-    content="Jira: $jira"
-    git commit --allow-empty -m "$title" -m "$content"
+        title="$jira ${@:2}"
+        content="Jira: $jira"
+        git commit --allow-empty -m "$title" -m "$content"
+    fi
 }
 
 # -------------------------------------------------
@@ -285,7 +289,9 @@ fun cap() {
     esac
 
     # TODO: Make it possible to prefer emulator or real device
-    adb -$device exec-out screencap -p > $filename
+    # Below fails when using wireless adb
+    # adb -$device exec-out screencap -p > $filename
+    adb exec-out screencap -p > $filename
     dir="$HOME/Temp/Caps"
     mkdir -p "$dir"
     mv "$filename" "$dir"

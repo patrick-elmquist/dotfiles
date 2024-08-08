@@ -17,7 +17,7 @@ set ruler                       " show row/column in the status bar
 set laststatus=2                " always show the statusline
 set showmatch                   " briefly show the matching bracket
 set matchtime=4                 " set the matching bracket time
-set noshowmode                  " show which mode you are currently in
+set showmode                    " show which mode you are currently in
 set t_Co=256                    " enable 256-color mode.
 set lazyredraw                  " boost performance in some cases
 set splitright                  " open vsp to the right
@@ -137,3 +137,7 @@ nnoremap <c--> :sp<CR>
 
 nnoremap <tab> <c-w>w
 nnoremap <s-tab> <c-w><c-p>
+
+" Surround like delete/change surrounding function call
+" nmap <silent> dsf ds)db
+" nnoremap <silent> csf [(cb

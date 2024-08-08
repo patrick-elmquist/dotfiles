@@ -18,7 +18,6 @@ set ReplaceWithRegister         " Commands: gr, gr
 set argtextobj                  " Commands: aa, ia
 set vim-paragraph-motion        " {} will treat lines with only whitespace as empty
 set highlightedyank             " Highlight the yanked text for a short duration
-set NERDTree                    " Navigate the Project tree
 set exchange                    " Exchange blocks of code with cx
 set quickscope                  " Show hints when using fFtT, requires IdeaVim-Quickscope
 set multiple-cursors
@@ -43,6 +42,8 @@ set ideavimsupport+=singleline
 " ------------------
 " General Mappings
 " ------------------
+nnoremap <leader><leader> :action GotoNextError<CR>
+
 noremap <leader>n :action Inline<CR>
 noremap <leader>m :action ExtractFunction<CR>
 noremap <leader>v :action IntroduceVariable<CR>
@@ -62,6 +63,7 @@ noremap <leader>g :action GotoNextError<CR>
 noremap <leader>G :action GotoPreviousError<CR>
 noremap <leader>q :action QuickJavaDoc<CR>
 noremap <leader>Q :action QuickImplementations<CR>
+noremap <leader>w :action QuickImplementations<CR>
 noremap <leader>d :action ShowErrorDescription<CR>
 noremap <leader>U :action Git.CompareWithBranch<CR>
 noremap <leader>u :action GotoSuperMethod<CR>
@@ -69,7 +71,7 @@ noremap <leader>b :action GotoDeclaration<CR>
 noremap <leader>B :action GotoImplementation<CR>
 noremap <leader>i :action OptimizeImports<CR>
 noremap <leader>I :action ImplementMethods<CR>
-noremap <leader>j :NERDTree<CR>
+noremap <leader><CR> :action QuickFixAction<CR>
 
 " ------------------
 " Probation line
@@ -100,7 +102,7 @@ nnoremap <TAB> :action NextSplitter<CR>
 nnoremap <s-TAB> :action OpenEditorInOppositeTabGroup<CR>
 nnoremap <c-TAB> :action EditSourceInNewWindow<CR>
 
-" nnoremap <leader>en :action EditSourceInNewWindow<CR>
+nnoremap <leader>wn :action EditSourceInNewWindow<CR>
 " nnoremap <leader>n :action NextWindow<CR>
 " nnoremap <leader>q :action CloseContent<CR>
 " nnoremap <leader>qa :action CloseAllEditors<CR>
@@ -117,3 +119,7 @@ noremap <c-/> :action FindInPath<CR>
 
 nnoremap <c-o> :action Back<cr>
 nnoremap <c-i> :action Forward<cr>
+
+" Surround like delete/change surrounding function call
+nmap <silent> dsf $dibS<c-r>0<Esc>
+nnoremap <silent> csf [(cb
