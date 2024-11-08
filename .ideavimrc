@@ -44,34 +44,58 @@ set ideavimsupport+=singleline
 " ------------------
 nnoremap <leader><leader> :action GotoNextError<CR>
 
-noremap <leader>n :action Inline<CR>
-noremap <leader>m :action ExtractFunction<CR>
-noremap <leader>v :action IntroduceVariable<CR>
-noremap <leader>f :action FindInPath<CR>
-noremap <leader>F :action FindUsages<CR>
-noremap <leader>l :action ReformatCode<CR>
-noremap <leader>r :action RenameElement<CR>
-noremap <leader>R :action Run<CR>
-noremap <leader>t :action Refactorings.QuickListPopupAction<CR>
-noremap <leader>o :action GotoFile<CR>
-noremap <leader>s :action FileStructurePopup<CR>
-
 noremap <leader>a :action GotoAction<CR>
+noremap <leader>A :action Annotate<CR>
+
+noremap <leader>b :action GotoTypeDeclaration<CR>
+noremap <leader>B :action GotoImplementation<CR>
+
+noremap <leader>d :action ShowErrorDescription<CR>
+
 noremap <leader>e :action RecentFiles<CR>
 noremap <leader>E :action RecentLocations<CR>
+
+noremap <leader>f :action FindUsages<CR>
+noremap <leader>F :action ChangeSplitOrientation<CR>
+
 noremap <leader>g :action GotoNextError<CR>
 noremap <leader>G :action GotoPreviousError<CR>
-noremap <leader>q :action QuickJavaDoc<CR>
-noremap <leader>Q :action QuickImplementations<CR>
-noremap <leader>w :action QuickImplementations<CR>
-noremap <leader>d :action ShowErrorDescription<CR>
-noremap <leader>U :action Git.CompareWithBranch<CR>
-noremap <leader>u :action GotoSuperMethod<CR>
-noremap <leader>b :action GotoDeclaration<CR>
-noremap <leader>B :action GotoImplementation<CR>
+
+nnoremap <leader>h  :action LocalHistory.ShowHistory<CR>
+nnoremap <leader>H  :action Vcs.ShowTabbedFileHistory<CR>
+
 noremap <leader>i :action OptimizeImports<CR>
 noremap <leader>I :action ImplementMethods<CR>
-noremap <leader><CR> :action QuickFixAction<CR>
+
+noremap <leader>j :action TextEditorWithPreview.Layout.EditorOnly<CR>
+noremap <leader>J :action TextEditorWithPreview.Layout.EditorAndPreview<CR>
+
+noremap <leader>l :action ReformatCode<CR>
+
+noremap <leader>m :action ExtractFunction<CR>
+
+noremap <leader>n :action Inline<CR>
+
+noremap <leader>o :action GotoFile<CR>
+
+noremap <leader>q :action QuickJavaDoc<CR>
+noremap <leader>Q :action HideAllWindows<CR>
+
+noremap <leader>r :action RenameElement<CR>
+noremap <leader>R :action Run<CR>
+
+noremap <leader>s :action FileStructurePopup<CR>
+
+noremap <leader>t :action Refactorings.QuickListPopupAction<CR>
+noremap <leader>T :action GotoTest<CR>
+
+noremap <leader>u :action GotoSuperMethod<CR>
+noremap <leader>U :action Git.CompareWithBranch<CR>
+
+noremap <leader>v :action IntroduceVariable<CR>
+
+noremap <leader>w :action QuickImplementations<CR>
+noremap <leader><CR> :action SelectInProjectView<CR>
 
 " ------------------
 " Probation line
@@ -96,6 +120,11 @@ nnoremap <c-s-right> <c-w>l
 nnoremap <c-s-down> <c-w>j
 nnoremap <c-s-up> <c-w>k
 
+nnoremap <c-left> <c-w>h
+nnoremap <c-right> <c-w>l
+nnoremap <c-down> <c-w>j
+nnoremap <c-up> <c-w>k
+
 " nnoremap <TAB> :action PreviousTab<CR>
 " nnoremap <s-TAB> :action NextTab<CR>
 nnoremap <TAB> :action NextSplitter<CR>
@@ -113,13 +142,12 @@ vnoremap > >gv
 nnoremap [[ :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>
 
-nnoremap <leader>h  :action LocalHistory.ShowHistory<CR>
 nnoremap gd :action GotoDeclaration<CR>
+nnoremap gf :action GotoTypeDeclaration<CR>
+nnoremap gx :action GoToLinkTarget<CR>
+nnoremap gr :action Vcs.RollbackChangedLines<CR>
+
 noremap <c-/> :action FindInPath<CR>
 
 nnoremap <c-o> :action Back<cr>
 nnoremap <c-i> :action Forward<cr>
-
-" Surround like delete/change surrounding function call
-nmap <silent> dsf $dibS<c-r>0<Esc>
-nnoremap <silent> csf [(cb

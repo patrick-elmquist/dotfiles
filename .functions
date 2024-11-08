@@ -429,6 +429,7 @@ fun adb-animations() {
     adb shell settings put global transition_animation_scale "$value"
     adb shell settings put global animator_duration_scale "$value"
 }
+
 # -------------------------------------------------
 # Enable or disable overdraw for the connected
 # device or emulator
@@ -440,6 +441,42 @@ fun adb-animations() {
 fun adb-overdraw() {
     adb shell setprop debug.hwui.overdraw "${1:-show}"
     adb_poke_system_properties
+}
+
+# -------------------------------------------------
+# Enable or disable dark mode for the connected
+# device or emulator
+#
+# $1 - yes or no (default:yes)
+#
+# Example: adb-darkmode yes
+# -------------------------------------------------
+fun adb-darkmode() {
+    adb shell cmd uimode night "${1:-yes}"
+}
+
+# -------------------------------------------------
+# Enable or disable gesture navigation mode for the 
+# connected device or emulator
+#
+# $1 - enable or disable (default:enable)
+#
+# Example: adb-navigation-gesture enable
+# -------------------------------------------------
+fun adb-navigation-gesture() { 
+    adb shell cmd overlay "${1:-enable}" com.android.internal.systemui.navbar.gestural
+}
+
+# -------------------------------------------------
+# Enable or disable threebutton navigation mode for 
+# the connected device or emulator
+#
+# $1 - enable or disable (default:enable)
+#
+# Example: adb-navigation-threebutton enable
+# -------------------------------------------------
+fun adb-navigation-threebutton() { 
+    adb shell cmd overlay "${1:-enable}" com.android.internal.systemui.navbar.threebutton
 }
 
 # -------------------------------------------------
