@@ -1,14 +1,16 @@
 # General 
 shell-integration = zsh
+background-blur-radius = 10
+background-opacity = 0.95
 #theme = Banana Blueberry
-theme = Dracula
+theme = synthwave-everything
 
 # Window
-window-padding-x = 14
+window-padding-x = 12
 window-padding-y = 0
 
 # MacOS
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 macos-titlebar-proxy-icon = hidden
 macos-window-shadow = true
 
