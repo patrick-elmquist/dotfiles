@@ -1,0 +1,19 @@
+# General 
+shell-integration = zsh
+#theme = Banana Blueberry
+theme = Dracula
+
+# Window
+window-padding-x = 14
+window-padding-y = 0
+
+# MacOS
+macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+macos-window-shadow = true
+
+# Quick Terminal
+keybind = global:cmd+alt+shift+b=toggle_quick_terminal
+quick-terminal-screen = macos-menu-bar
+quick-terminal-position = top
+quick-terminal-animation-duration = 0
