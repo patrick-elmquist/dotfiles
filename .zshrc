@@ -20,13 +20,14 @@ SAVEHIST=10000
 setopt append_history extended_history hist_no_store hist_ignore_all_dups hist_ignore_space inc_append_history
 
 # # Pure Prompt
-fpath+=$HOME/.zsh/pure
+# fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
-zstyle :prompt:pure:path color yellow
-zstyle :prompt:pure:prompt:success color white
-prompt pure
-prompt_newline='%666v' # hack to make it single line
-PROMPT=" $PROMPT"
+# zstyle :prompt:pure:path color yellow
+# zstyle :prompt:pure:prompt:success color white
+# prompt pure
+# PROMPT="$PROMPT"
+# prompt_newline='%666v' # hack to make it single line
+# PROMPT=" $PROMPT"
 
 # Enable VI bindings and fix backspace issue
 set -o vi
@@ -83,6 +84,6 @@ source ~/.aliases
 source ~/.functions
 [[ -f ~/.functions.local ]] && source ~/.functions.local
 
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

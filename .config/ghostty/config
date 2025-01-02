@@ -2,12 +2,19 @@
 shell-integration = zsh
 background-blur-radius = 10
 background-opacity = 0.95
-#theme = Banana Blueberry
-theme = synthwave-everything
+theme = ChallengerDeep
+# theme = Banana Blueberry
+# theme = synthwave-everything
+window-inherit-working-directory = false
+window-save-state = always
+minimum-contrast = 2
+
+keybind = global:cmd+shift+e=open_config
+keybind = global:cmd+shift+r=reload_config
 
 # Window
 window-padding-x = 12
-window-padding-y = 0
+window-padding-y = 6
 
 # MacOS
 macos-titlebar-style = hidden
@@ -15,7 +22,7 @@ macos-titlebar-proxy-icon = hidden
 macos-window-shadow = true
 
 # Quick Terminal
-keybind = global:cmd+alt+shift+b=toggle_quick_terminal
+keybind = global:cmd+escape=toggle_quick_terminal
 quick-terminal-screen = macos-menu-bar
 quick-terminal-position = top
 quick-terminal-animation-duration = 0
