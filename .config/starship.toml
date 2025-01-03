@@ -16,26 +16,6 @@ style_root = "red"
 format = '[]($style)[$user](bold bg:$style fg:black)[](bg:bright-black fg:$style)'
 disabled = false
 
-[os]
-style = "yellow"
-format = '[$symbol]($style)'
-disabled = false # Disabled by default
-
-# This is the default symbols table.
-[os.symbols]
-Arch = " "
-Debian = " "
-EndeavourOS = " "
-Linux = " "
-Macos = " "
-NixOS = "󱄅 "
-openSUSE = " "
-Pop = " "
-SUSE = " "
-Ubuntu = "󰕈 "
-Unknown = ""
-Windows = " "
-
 [directory]
 style = "bg:bright-black fg:black"
 format = "[ $path]($style)"
@@ -43,28 +23,12 @@ repo_root_style = "bold bg:bright-black fg:black"
 repo_root_format = "[ $before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)"
 truncation_length = 3
 truncate_to_repo = true
-# home_symbol = " "
 # truncation_symbol = "…/"
 
-# Here is how you can shorten some long paths by text replacement
-# similar to mapped_locations in Oh My Posh:
-[directory.substitutions]
-# "Documents" = "󰈙 "
-# "Downloads" = " "
-# "Music" = " "
-# "Pictures" = " "
-# "Projects" = "󰵮 "
-
-# Keep in mind that the order matters. For example:
-# "Important Documents" = " 󰈙 "
-# will not be replaced, because "Documents" was already substituted before.
-# So either put "Important Documents" before "Documents" or use the substituted version:
-# "Important 󰈙 " = " 󰈙 "
 [time]
 disabled = false
 time_format = "%R"
 style = "white"
-# format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
 format = '[]($style)[$time](bold bg:$style fg:black)[](bg:bright-black fg:$style)'
 
 [git_branch]
