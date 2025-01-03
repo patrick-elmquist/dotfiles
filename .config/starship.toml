@@ -1,10 +1,9 @@
 format = '''
-$username$directory$git_branch$git_status[](fg:bright-black) 
+$time$directory$git_branch$git_status[](fg:bright-black) 
  [󱞩 ](bold)
 '''
 
 right_format = """
-$time\
 """
 
 # Disable the blank line at the start of the prompt
@@ -64,8 +63,9 @@ truncate_to_repo = true
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:color_bg1"
-format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
+style = "white"
+# format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
+format = '[]($style)[$time](bold bg:$style fg:black)[](bg:bright-black fg:$style)'
 
 [git_branch]
 symbol = ""

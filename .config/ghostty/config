@@ -2,7 +2,8 @@
 shell-integration = zsh
 background-blur-radius = 10
 background-opacity = 0.95
-theme = ChallengerDeep
+theme = rose-pine
+# theme = ChallengerDeep
 # theme = Banana Blueberry
 # theme = synthwave-everything
 window-inherit-working-directory = false
@@ -23,6 +24,7 @@ macos-window-shadow = true
 
 # Quick Terminal
 keybind = global:cmd+escape=toggle_quick_terminal
+keybind = global:cmd+shift+b=toggle_quick_terminal
 quick-terminal-screen = macos-menu-bar
 quick-terminal-position = top
 quick-terminal-animation-duration = 0
