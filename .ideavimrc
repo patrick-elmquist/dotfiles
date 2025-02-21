@@ -33,8 +33,8 @@ xmap <S-C-n> <Plug>AllWholeOccurrences
 nmap g<S-C-n> <Plug>AllOccurrences
 xmap g<S-C-n> <Plug>AllOccurrences
 
-// uncomment this to only enable quick scope on f/t press
-// let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+" uncomment this to only enable quick scope on f/t press
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Supposed to make ideaVim work better with dialogs.
 set ideavimsupport+=singleline
@@ -110,15 +110,6 @@ nnoremap <c-=> :action Unsplit<CR>
 
 sethandler <c-j> a:vim
 sethandler <c-k> a:vim
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-
-nnoremap <c-s-left> <c-w>h
-nnoremap <c-s-right> <c-w>l
-nnoremap <c-s-down> <c-w>j
-nnoremap <c-s-up> <c-w>k
 
 nnoremap <c-left> <c-w>h
 nnoremap <c-right> <c-w>l
@@ -128,7 +119,8 @@ nnoremap <c-up> <c-w>k
 " nnoremap <TAB> :action PreviousTab<CR>
 " nnoremap <s-TAB> :action NextTab<CR>
 nnoremap <TAB> :action NextSplitter<CR>
-nnoremap <s-TAB> :action OpenEditorInOppositeTabGroup<CR>
+nnoremap <s-TAB> :action PrevSplitter<CR>
+nnoremap <a-TAB> :action OpenEditorInOppositeTabGroup<CR>
 nnoremap <c-TAB> :action EditSourceInNewWindow<CR>
 
 nnoremap <leader>wn :action EditSourceInNewWindow<CR>
@@ -145,9 +137,10 @@ nnoremap ]] :action MethodDown<CR>
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gf :action GotoTypeDeclaration<CR>
 nnoremap gx :action GoToLinkTarget<CR>
-nnoremap gr :action Vcs.RollbackChangedLines<CR>
+nnoremap gh :action Vcs.RollbackChangedLines<CR>
 
 noremap <c-/> :action FindInPath<CR>
 
 nnoremap <c-o> :action Back<cr>
 nnoremap <c-i> :action Forward<cr>
+nnoremap g; `.

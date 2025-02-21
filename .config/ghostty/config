@@ -1,26 +1,27 @@
 # General 
+copy-on-select = true
+desktop-notifications = true
 shell-integration = zsh
-background-blur-radius = 10
-background-opacity = 0.95
+
+# Keybinds
+keybind = cmd+shift+e=open_config
+keybind = cmd+shift+r=reload_config
+keybind = cmd+shift+n=new_split:auto
+keybind = alt+i=goto_split:right
+keybind = alt+m=goto_split:left
+keybind = alt+tab=goto_split:next
+keybind = ctrl+tab=goto_split:next
+
+# MacOS
+macos-titlebar-style = native
+macos-titlebar-proxy-icon = hidden
+macos-window-shadow = true
+
+# Themes
 theme = rose-pine
 # theme = ChallengerDeep
 # theme = Banana Blueberry
 # theme = synthwave-everything
-window-inherit-working-directory = false
-window-save-state = always
-minimum-contrast = 2
-
-keybind = global:cmd+shift+e=open_config
-keybind = global:cmd+shift+r=reload_config
-
-# Window
-window-padding-x = 12
-window-padding-y = 6
-
-# MacOS
-macos-titlebar-style = hidden
-macos-titlebar-proxy-icon = hidden
-macos-window-shadow = true
 
 # Quick Terminal
 keybind = global:cmd+escape=toggle_quick_terminal
@@ -28,3 +29,14 @@ keybind = global:cmd+shift+b=toggle_quick_terminal
 quick-terminal-screen = macos-menu-bar
 quick-terminal-position = top
 quick-terminal-animation-duration = 0
+
+# Window
+background-blur-radius = 10
+background-opacity = 0.95
+minimum-contrast = 2
+window-inherit-working-directory = false
+window-padding-x = 12
+window-padding-y = 6
+window-save-state = always
+
+# vim: set ft=config

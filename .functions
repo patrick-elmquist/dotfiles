@@ -48,7 +48,7 @@ fun is-vim(){
 fun tile() {
     filename="tile.png"
     case $# in
-        2) pattern="2x1" ;;
+        2) pattern="1x2" ;;
         3) pattern="3x1" ;;
         4) pattern="4x1" ;;
         5) pattern="3x2" ;;

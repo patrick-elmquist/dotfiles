@@ -87,3 +87,6 @@ source ~/.functions
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Created by `pipx` on 2025-02-05 13:37:46
+export PATH="$PATH:/Users/patrick.elmquist1/.local/bin"
