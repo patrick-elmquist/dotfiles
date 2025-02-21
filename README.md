@@ -66,20 +66,19 @@ plug-install
 | VIM                     | brew install vim                                                                                        |
 | scrcpy                  | brew install scrcpy                                                                                     |
 | Ghostty                 | brew install --cask ghostty                                                                             |
-| ~iTerm2~                | ~brew install --cask iterm2~                                                                            |
+| Starship                | brew install starship                                                                                   |
 | rar                     | brew install --cask rar                                                                                 |
 | adb                     | brew install --cask android-platform-tools                                                              |
 ```
 TODO break these up as package files for easier reading
 brew install vim git ffmpeg imagemagick qmk/qmk/qmk holgerbrandl/tap/kscript svn
-brew tap homebrew/cask-fonts
-brew install --cask iterm2 rar android-platform-tools font-roboto-mono
+brew install --cask ghostty rar android-platform-tools font-roboto-mono
 
 // enable the gw command for gradle
 brew tap gdubw/gng
 brew install gng
 
-qmk setup // to install dependencies
+qmk setup <github user>/qmk_firmware
 //  note: svn is needed for downloading roboto mono
 ```
 # TODO Move below things to some other document
