@@ -66,6 +66,7 @@ plug-install
 | VIM                     | brew install vim                                                                                        |
 | scrcpy                  | brew install scrcpy                                                                                     |
 | Ghostty                 | brew install --cask ghostty                                                                             |
+| Hidden                  | brew install --cask hiddenbar                                                                           |
 | Starship                | brew install starship                                                                                   |
 | rar                     | brew install --cask rar                                                                                 |
 | adb                     | brew install --cask android-platform-tools                                                              |
