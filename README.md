@@ -72,8 +72,8 @@ plug-install
 | adb                     | brew install --cask android-platform-tools                                                              |
 ```
 TODO break these up as package files for easier reading
-brew install vim git ffmpeg imagemagick qmk/qmk/qmk holgerbrandl/tap/kscript svn
-brew install --cask ghostty rar android-platform-tools font-roboto-mono
+brew install vim git ffmpeg imagemagick qmk/qmk/qmk holgerbrandl/tap/kscript svn bluesnooze starship
+brew install --cask ghostty rar android-platform-tools font-roboto-mono hiddenbar
 
 // enable the gw command for gradle
 brew tap gdubw/gng
