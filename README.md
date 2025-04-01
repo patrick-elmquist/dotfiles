@@ -56,7 +56,30 @@ plug-install
 | Zsh-syntax-highlighting | git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting" |
 | Zsh Pure prompt         | git clone git@github.com:patrick-elmquist/pure.git "$HOME/.zsh/pure"                                    |
 
-## Homebrew
+```
+// To backup all brew recipes
+brew bundle dump
+
+// To restore Homebrew from Brewfile
+brew bundle install
+
+// DEPRECATED: should no longer be needed with the Brewfile, just do `brew bundle install`
+//  note: svn is needed for downloading roboto mono
+// brew install vim git ffmpeg imagemagick qmk/qmk/qmk holgerbrandl/tap/kscript svn bluesnooze starship
+// brew install --cask ghostty rar android-platform-tools font-roboto-mono hiddenbar
+
+// enable the gw command for gradle
+// brew tap gdubw/gng
+// brew install gng
+
+// setup custom QMK repo
+qmk setup <github user>/qmk_firmware
+
+//...then follow the steps in the userspace repo README
+```
+
+
+## [Deprecated] Homebrew
 | Name                    | brew install...                                                                                         |
 |-------------------------|---------------------------------------------------------------------------------------------------------|
 | Imagemagick             | brew install imagemagick                                                                                |
@@ -70,29 +93,3 @@ plug-install
 | Starship                | brew install starship                                                                                   |
 | rar                     | brew install --cask rar                                                                                 |
 | adb                     | brew install --cask android-platform-tools                                                              |
-```
-TODO break these up as package files for easier reading
-brew install vim git ffmpeg imagemagick qmk/qmk/qmk holgerbrandl/tap/kscript svn bluesnooze starship
-brew install --cask ghostty rar android-platform-tools font-roboto-mono hiddenbar
-
-// enable the gw command for gradle
-brew tap gdubw/gng
-brew install gng
-
-qmk setup <github user>/qmk_firmware
-//  note: svn is needed for downloading roboto mono
-```
-# TODO Move below things to some other document
-
-## Intellij plugins
-- IDEAVim
-- IDEAVim Quick Scope
-  https://plugins.jetbrains.com/plugin/19417-ideavim-quickscope
-- Material Theme Lite
-- Monokai Theme Pro
-
-## Themes
-| App     | Theme         | URL                                                                                                     |
-|---------|---------------|---------------------------------------------------------------------------------------------------------|
-| iTerm   | Embark        | https://github.com/embark-theme/iterm                                                                   |
-
