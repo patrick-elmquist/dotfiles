@@ -286,14 +286,15 @@ fun retrigger-ci() {
 fun generic-login() {
     adb-text "$1"
     adb-key TAB
-    sleep 0.1
 
-    adb-text "$2"
+    sleep 0.1
     adb-key TAB
-    sleep 0.1
 
-    adb-key ENTER
     sleep 0.1
+    adb-text "$2"
+
+    sleep 0.1
+    adb-key ENTER
 }
 
 # -------------------------------------------------
