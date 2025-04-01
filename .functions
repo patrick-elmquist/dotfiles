@@ -285,14 +285,14 @@ fun retrigger-ci() {
 # -------------------------------------------------
 fun generic-login() {
     adb-text "$1"
-    adb-key 61
+    adb-key TAB
     sleep 0.1
 
     adb-text "$2"
-    adb-key 61
+    adb-key TAB
     sleep 0.1
 
-    adb-key 66
+    adb-key ENTER
     sleep 0.1
 }
 
@@ -415,6 +415,7 @@ DPAD_UP=19
 DPAD_RIGHT=22
 DPAD_CENTER=23
 ENTER=66
+TAB=61
 BACK=4
 
 # -------------------------------------------------
@@ -625,3 +626,20 @@ fun adb-rec() {
     open "$file"
 }
 
+# -------------------------------------------------
+# Tile images from the LOCAL_CAPTURES_HOME folder
+#
+# Example: capstile 1.png 2.png
+# -------------------------------------------------
+fun capstile() {
+    pushd "$LOCAL_CAPTURES_HOME" > /dev/null
+    tile "$@"
+    popd > /dev/null
+}
+
+_capstile() {
+    captures_folder="${LOCAL_CAPTURES_HOME:-$(pwd)}"
+    _files -W $captures_folder
+}
+
+compdef _capstile capstile
