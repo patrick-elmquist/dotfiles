@@ -63,6 +63,13 @@ brew bundle dump
 // To restore Homebrew from Brewfile
 brew bundle install
 
+// setup custom QMK repo
+qmk setup <github user>/qmk_firmware
+
+//...then follow the steps in the userspace repo README
+
+
+
 // DEPRECATED: should no longer be needed with the Brewfile, just do `brew bundle install`
 //  note: svn is needed for downloading roboto mono
 // brew install vim git ffmpeg imagemagick qmk/qmk/qmk holgerbrandl/tap/kscript svn bluesnooze starship
@@ -72,12 +79,7 @@ brew bundle install
 // brew tap gdubw/gng
 // brew install gng
 
-// setup custom QMK repo
-qmk setup <github user>/qmk_firmware
-
-//...then follow the steps in the userspace repo README
 ```
-
 
 ## [Deprecated] Homebrew
 | Name                    | brew install...                                                                                         |
