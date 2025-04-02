@@ -4,7 +4,7 @@ Based on this blog post: https://www.atlassian.com/git/tutorials/dotfiles
 
 Which in turn is based on this post: https://news.ycombinator.com/item?id=11071754
 
-## Install dotfiles onto a new system
+## Dotfiles
 ```shell
 # 1. Add an entry to .gitignore to avoid recurision problems
 echo ".cfg" >> .gitignore
@@ -40,7 +40,44 @@ config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
 xargs -I{} mv {} .config-backup/{}
 ```
 
-## Setup VIM
+## Homebrew
+### Install
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### Backup
+```
+// To backup all brew recipes
+brew bundle dump --force
+```
+
+#### Restore
+```
+// To restore Homebrew from Brewfile
+brew bundle install
+```
+
+## ZSH
+```
+# Zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"
+
+# Zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"
+
+# Zsh Pure prompt
+git clone git@github.com:patrick-elmquist/pure.git "$HOME/.zsh/pure"
+```
+
+## MacOS
+```
+defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder;
+```
+## Alfred
+Enable Backups by restoring an old backup, configure the Backup Workflow and run `start backups`
+
+## VIM
 Install VIM plugins:
 ```shell
 vim +PlugInstall +qall > /dev/null
@@ -48,50 +85,10 @@ vim +PlugInstall +qall > /dev/null
 plug-install
 ```
 
-## Dependencies
-| Name                    | URL                                                                                                     |
-|-------------------------|---------------------------------------------------------------------------------------------------------|
-| (macOS) Homebrew        | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"         |
-| Zsh-autosuggestions     | git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"             |
-| Zsh-syntax-highlighting | git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting" |
-| Zsh Pure prompt         | git clone git@github.com:patrick-elmquist/pure.git "$HOME/.zsh/pure"                                    |
-
+## QMK
 ```
-// To backup all brew recipes
-brew bundle dump
-
-// To restore Homebrew from Brewfile
-brew bundle install
-
 // setup custom QMK repo
-qmk setup <github user>/qmk_firmware
+qmk setup patrick-elmquist/qmk_firmware
 
 //...then follow the steps in the userspace repo README
-
-
-
-// DEPRECATED: should no longer be needed with the Brewfile, just do `brew bundle install`
-//  note: svn is needed for downloading roboto mono
-// brew install vim git ffmpeg imagemagick qmk/qmk/qmk holgerbrandl/tap/kscript svn bluesnooze starship
-// brew install --cask ghostty rar android-platform-tools font-roboto-mono hiddenbar
-
-// enable the gw command for gradle
-// brew tap gdubw/gng
-// brew install gng
-
 ```
-
-## [Deprecated] Homebrew
-| Name                    | brew install...                                                                                         |
-|-------------------------|---------------------------------------------------------------------------------------------------------|
-| Imagemagick             | brew install imagemagick                                                                                |
-| FFMPEG                  | brew install ffmpeg                                                                                     |
-| QMK CLI                 | brew install qmk/qmk/qmk                                                                                |
-| Git                     | brew install git                                                                                        |
-| VIM                     | brew install vim                                                                                        |
-| scrcpy                  | brew install scrcpy                                                                                     |
-| Ghostty                 | brew install --cask ghostty                                                                             |
-| Hidden                  | brew install --cask hiddenbar                                                                           |
-| Starship                | brew install starship                                                                                   |
-| rar                     | brew install --cask rar                                                                                 |
-| adb                     | brew install --cask android-platform-tools                                                              |
