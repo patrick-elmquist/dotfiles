@@ -8,7 +8,7 @@ Which in turn is based on this post: https://news.ycombinator.com/item?id=110717
 ```shell
 # 1. Add an entry to .gitignore to avoid recurision problems
 echo ".cfg" >> .gitignore
-> Not sure this is needed anymore...
+# TODO: Not sure this is needed anymore...
 
 # 2. Clone this repository
 git clone --bare git@github.com:patrick-elmquist/dotfiles.git $HOME/.cfg
@@ -71,7 +71,7 @@ qmk setup patrick-elmquist/qmk_firmware
 # ...then follow the steps in the userspace repo README
 ```
 
-## Dotfiles error handling
+## Error handling
 If the checkout failed with...
 ```shell
 error: The following untracked working tree files would be overwritten by checkout:
