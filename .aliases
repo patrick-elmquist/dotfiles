@@ -15,7 +15,6 @@ case "$OSTYPE" in
     alias -g ....='../../..'
     alias ls='ls -G' # colorise the output
     alias brew-update='brew update -v; brew upgrade -v; brew cleanup; brew doctor; brew missing;'
-    alias cal='echo "Note: using gcal" && gcal -s 1'
     alias pb-pretty='pbpaste | python -m json.tool | pbcopy'
     # workaround for calendar stop syncing with Exchange server
     alias fix-calendar='launchctl stop com.apple.CalendarAgent; launchctl start com.apple.CalendarAgent;'
@@ -41,10 +40,10 @@ alias temp='mkdir -p ~/Temp/ && cd ~/Temp/'
 # Utility
 alias h='history'
 alias hgrep='fc -El 0 | grep'
+alias bat='bat --paging=never'
 alias batp='bat --paging=always'
 
 # Gradle
-alias gr='./gradlew'
 alias quality='./gradlew ktlintFormat detekt; tput bel;'
 alias quality-full='./gradlew ktlintFormat detekt assertMaxHeight checkSortDependencies; tput bel;'
 alias ktlint='./gradlew ktlint'

@@ -190,8 +190,8 @@ fun loop() {
 # $1 - JIRA issue number ABCD-XXXX
 # $2 - Issue description
 #
-# Example:
-# new-feature-branch ABCD-1337 A good description
+# Example #1:
+# generic-new-feature ABCD-1337 A good description
 # Branch: ABCD-1337_A_good_description
 #
 # Prepopulates the branch with an empty commit
@@ -199,6 +199,10 @@ fun loop() {
 # ABCD-XXXX A good description
 #
 # Jira: ABCD-XXXX
+#
+# Example #2:
+# To override with specific tags:
+#   generic-new-feature "ABCD-$@"
 # -------------------------------------------------
 fun generic-new-feature() {
     if [[ `git status --porcelain` ]]; then
@@ -226,8 +230,8 @@ fun generic-new-feature() {
 # $1 - JIRA issue number ABCD-XXXX
 # $2 - Issue description
 #
-# Example:
-# new-feature-branch ABCD-1337 A good description
+# Example #1:
+# generic-to-feature ABCD-1337 A good description
 # Branch: ABCD-1337_A_good_description
 #
 # Squash all commits.
@@ -236,6 +240,10 @@ fun generic-new-feature() {
 # ABCD-XXXX A good description
 #
 # Jira: ABCD-XXXX
+#
+# Example #2:
+# To override with specific tags:
+#   generic-to-feature "ABCD-$@"
 # -------------------------------------------------
 fun generic-to-feature() {
     if [[ `git status --porcelain` ]]; then
@@ -276,110 +284,22 @@ fun retrigger-ci() {
 #
 
 # -------------------------------------------------
-# Input email and password with ADB
-#
-# $1 - email
-# $2 - password
-#
-# Example: generic-login user@email.com Pa$$word
-# -------------------------------------------------
-fun generic-login() {
-    adb-text "$1"
-    sleep 0.1
-
-    adb-key ENTER
-    sleep 0.1
-
-    adb-text "$2"
-    sleep 0.1
-
-    adb-key ENTER
-}
-
-# -------------------------------------------------
 # Take a screenshot of the connected device
 #
 # $1 - filename (optional, default=screenshot.png)
-# $2 - device (optionl, default=d)
-#      d = device
-#      e = emulator
 #
 # Example: cap before.png
 # -------------------------------------------------
 fun cap() {
     filename="${1:-screenshot.png}"
-    device="${2:-d}"
 
     case $filename in
         *.png|.PNG) ;;
         *) filename="$1.png" ;;
     esac
 
-    # TODO: Make it possible to prefer emulator or real device
-    # Below fails when using wireless adb
-    # adb -$device exec-out screencap -p > $filename
     adb exec-out screencap -p > $filename
-    dir="${LOCAL_CAPTURES_HOME:-$(pwd)}"
-    mkdir -p "$dir"
-    mv "$filename" "$dir"
-    open "$dir/$filename"
-}
-
-# -------------------------------------------------
-# Echo the contents of a table in Sqlite on a
-# connected device.
-#
-# $1 - app package name
-# $2 - name of the database
-# $3 - name of the table
-#
-# Example: echo-table com.demo.app db users
-# -------------------------------------------------
-fun echo-table() {
-    db="databases/$2"
-    query="SELECT * FROM $3;"
-    adb exec-out run-as "$1" sqlite3 -echo -header -column "$db" "$query"
-}
-
-fun echo-table2() {
-    db="databases/$2"
-    adb exec-out run-as "$1" cat "$db" > "$2.db"
-    fetch-db "$1" "$2"
-    sqlite3 ~/Temp/app.db -header -line "SELECT * FROM $3;"
-    # query="SELECT * FROM $3;"
-    # adb exec-out run-as "$1" sqlite3 -echo -header -column "$db" "$query"
-}
-# -------------------------------------------------
-# Watch the contents of a table in Sqlite on a
-# connected device. Updates every 5s.
-#
-# $1 - app package name
-# $2 - name of the database
-# $3 - name of the table
-#
-# Example: watch-table com.demo.app db users
-# -------------------------------------------------
-fun watch-table() {
-    while true; do clear; echo-table "$@"; sleep 5; done
-}
-
-fun watch-table2() {
-    while true; do clear; echo-table2 "$@"; sleep 5; done
-}
-
-# -------------------------------------------------
-# Fetch the database from a connected device.
-#
-# $1 - app package name
-# $2 - name of the database
-#
-# Example: fetch-db com.demo.app db
-# -------------------------------------------------
-fun fetch-db() {
-    adb exec-out run-as "$1" cat databases/"$2" > ~/Temp/app.db;
-    adb exec-out run-as "$1" cat databases/"$2"-wal > ~/Temp/app.db-wal;
-    adb exec-out run-as "$1" cat databases/"$2"-shm > ~/Temp/app.db-shm;
-    # sqlite3 ~/Temp/app.db
+    open "$filename"
 }
 
 # -------------------------------------------------
@@ -417,6 +337,27 @@ DPAD_CENTER=23
 ENTER=66
 TAB=61
 BACK=4
+
+# -------------------------------------------------
+# Input email and password with ADB
+#
+# $1 - email
+# $2 - password
+#
+# Example: adb-generic-login user@email.com Pa$$word
+# -------------------------------------------------
+fun adb-generic-login() {
+    adb-text "$1"
+    sleep 0.1
+
+    adb-key ENTER
+    sleep 0.1
+
+    adb-text "$2"
+    sleep 0.1
+
+    adb-key ENTER
+}
 
 # -------------------------------------------------
 # Poke the system properties to have changes take
@@ -484,26 +425,26 @@ fun adb-darkmode() {
 }
 
 # -------------------------------------------------
-# Enable or disable gesture navigation mode for the 
+# Enable or disable gesture navigation mode for the
 # connected device or emulator
 #
 # $1 - enable or disable (default:enable)
 #
 # Example: adb-navigation-gesture enable
 # -------------------------------------------------
-fun adb-navigation-gesture() { 
+fun adb-navigation-gesture() {
     adb shell cmd overlay "${1:-enable}" com.android.internal.systemui.navbar.gestural
 }
 
 # -------------------------------------------------
-# Enable or disable threebutton navigation mode for 
+# Enable or disable threebutton navigation mode for
 # the connected device or emulator
 #
 # $1 - enable or disable (default:enable)
 #
 # Example: adb-navigation-threebutton enable
 # -------------------------------------------------
-fun adb-navigation-threebutton() { 
+fun adb-navigation-threebutton() {
     adb shell cmd overlay "${1:-enable}" com.android.internal.systemui.navbar.threebutton
 }
 
