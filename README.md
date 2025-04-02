@@ -23,6 +23,55 @@ config checkout
 config config --local status.showUntrackedFiles no
 ```
 
+## Homebrew
+```shell
+# Install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Backup
+brew bundle dump --force
+
+# Restore
+brew bundle install
+```
+
+## ZSH
+```shell
+# Zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"
+
+# Zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"
+
+# Zsh Pure prompt
+git clone git@github.com:patrick-elmquist/pure.git "$HOME/.zsh/pure"
+```
+
+## MacOS
+```shell
+defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder;
+```
+## Alfred
+Enable Backups by restoring an old backup, configure the Backup Workflow and run `start backups`
+
+## VIM
+```shell
+# Install VIM plugins
+vim +PlugInstall +qall > /dev/null
+
+# or alias
+plug-install
+```
+
+## QMK
+```shell
+# setup custom QMK repo
+qmk setup patrick-elmquist/qmk_firmware
+
+# ...then follow the steps in the userspace repo README
+```
+
+## Dotfiles error handling
 If the checkout failed with...
 ```shell
 error: The following untracked working tree files would be overwritten by checkout:
@@ -38,57 +87,4 @@ Use the following to move the offending files to another folder:
 mkdir -p .config-backup && \
 config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
 xargs -I{} mv {} .config-backup/{}
-```
-
-## Homebrew
-### Install
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-#### Backup
-```
-// To backup all brew recipes
-brew bundle dump --force
-```
-
-#### Restore
-```
-// To restore Homebrew from Brewfile
-brew bundle install
-```
-
-## ZSH
-```
-# Zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"
-
-# Zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"
-
-# Zsh Pure prompt
-git clone git@github.com:patrick-elmquist/pure.git "$HOME/.zsh/pure"
-```
-
-## MacOS
-```
-defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder;
-```
-## Alfred
-Enable Backups by restoring an old backup, configure the Backup Workflow and run `start backups`
-
-## VIM
-Install VIM plugins:
-```shell
-vim +PlugInstall +qall > /dev/null
-# or alias
-plug-install
-```
-
-## QMK
-```
-// setup custom QMK repo
-qmk setup patrick-elmquist/qmk_firmware
-
-//...then follow the steps in the userspace repo README
 ```
