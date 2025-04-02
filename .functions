@@ -285,15 +285,14 @@ fun retrigger-ci() {
 # -------------------------------------------------
 fun generic-login() {
     adb-text "$1"
-    adb-key TAB
-
     sleep 0.1
-    adb-key TAB
 
+    adb-key ENTER
     sleep 0.1
+
     adb-text "$2"
-
     sleep 0.1
+
     adb-key ENTER
 }
 
@@ -320,7 +319,7 @@ fun cap() {
     # Below fails when using wireless adb
     # adb -$device exec-out screencap -p > $filename
     adb exec-out screencap -p > $filename
-    dir="$HOME/Temp/Caps"
+    dir="${LOCAL_CAPTURES_HOME:-$(pwd)}"
     mkdir -p "$dir"
     mv "$filename" "$dir"
     open "$dir/$filename"
@@ -620,11 +619,40 @@ fun adb-rec() {
     echo "Removing file on device..."
     adb shell rm /sdcard/Download/recording.mp4
 
-    dir="$HOME/Temp/Caps"
+    dir="${LOCAL_CAPTURES_HOME:-$(pwd)}"
     file="$dir/$filename"
     mkdir -p "$dir"
     mv recording.mp4 "$file"
     open "$file"
+}
+
+# -------------------------------------------------
+# Open LOCAL_CAPTURES_HOME folder in Finder
+#
+# Example: capso
+# -------------------------------------------------
+fun capso() {
+    open "$LOCAL_CAPTURES_HOME"
+}
+
+# -------------------------------------------------
+# Navigate to LOCAL_CAPTURES_HOME folder
+#
+# Example: capsf
+# -------------------------------------------------
+fun capsf() {
+    cd "$LOCAL_CAPTURES_HOME"
+}
+
+# -------------------------------------------------
+# Save a screenshot in LOCAL_CAPTURES_HOME
+#
+# Example: caps some_filename
+# -------------------------------------------------
+fun caps() {
+    pushd "$LOCAL_CAPTURES_HOME" > /dev/null
+    cap "$@"
+    popd > /dev/null
 }
 
 # -------------------------------------------------
