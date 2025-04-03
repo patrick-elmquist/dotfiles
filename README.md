@@ -50,6 +50,7 @@ git clone git@github.com:patrick-elmquist/pure.git "$HOME/.zsh/pure"
 ## MacOS
 ```shell
 defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder;
+defaults write -g AppleShowScrollBars -string Always
 ```
 ## Alfred
 Enable Backups by restoring an old backup, configure the Backup Workflow and run `start backups`
