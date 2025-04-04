@@ -1,10 +1,12 @@
 format = '''
-$time$directory$git_branch$git_status[](fg:bright-black) 
+$time$directory$git_branch[](fg:bright-black) 
  [󱞩 ](bold)
 '''
 
 right_format = """
 """
+
+command_timeout = 1000
 
 # Disable the blank line at the start of the prompt
 add_newline = true
@@ -35,7 +37,3 @@ format = '[]($style)[$time](bold bg:$style fg:black)[](bg:bright-black fg:
 symbol = ""
 style = "bg:bright-black fg:black"
 format = '[  $symbol $branch]($style)'
-
-[git_status]
-style = "bg:bright-black fg:black"
-format = '[ $all_status$ahead_behind]($style)'
