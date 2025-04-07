@@ -14,13 +14,16 @@ set ideajoin                    " Use IDE join for joining
 " ------------------
 set commentary                  " Commands: gcc, gc + motion, v_gc
 set surround                    " Commands: ys, cs, ds, S
-set ReplaceWithRegister         " Commands: gr, gr
+set ReplaceWithRegister         " Commands: gr, grr
 set argtextobj                  " Commands: aa, ia
 set vim-paragraph-motion        " {} will treat lines with only whitespace as empty
 set highlightedyank             " Highlight the yanked text for a short duration
 set exchange                    " Exchange blocks of code with cx
 set quickscope                  " Show hints when using fFtT, requires IdeaVim-Quickscope
-set multiple-cursors
+set multiple-cursors            " 
+set functiontextobj             " Commands: af, if
+set mini-ai                     " Commands: aq, iq, ab, ib
+set textobj-entire              " Commands: ae, ie
 
 nmap <C-n> <Plug>NextWholeOccurrence
 xmap <C-n> <Plug>NextWholeOccurrence
