@@ -298,7 +298,8 @@ fun cap() {
         *) filename="$1.png" ;;
     esac
 
-    adb exec-out screencap -p > $filename
+    # Need the -a for foldables to work
+    adb exec-out screencap -a -p > $filename
     open "$filename"
 }
 
