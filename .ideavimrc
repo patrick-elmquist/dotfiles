@@ -21,8 +21,8 @@ set highlightedyank             " Highlight the yanked text for a short duration
 set exchange                    " Exchange blocks of code with cx
 set quickscope                  " Show hints when using fFtT, requires IdeaVim-Quickscope
 set multiple-cursors            " 
-set functiontextobj             " Commands: af, if
-set mini-ai                     " Commands: aq, iq, ab, ib
+set functiontextobj             " Commands: af, if (needs IDE plugin)
+" set mini-ai                     " Commands: aq, iq, ab, ib
 set textobj-entire              " Commands: ae, ie
 
 nmap <C-n> <Plug>NextWholeOccurrence
@@ -70,8 +70,8 @@ nnoremap <leader>H  :action Vcs.ShowTabbedFileHistory<CR>
 noremap <leader>i :action OptimizeImports<CR>
 noremap <leader>I :action ImplementMethods<CR>
 
-noremap <leader>j :action TextEditorWithPreview.Layout.EditorOnly<CR>
-noremap <leader>J :action TextEditorWithPreview.Layout.EditorAndPreview<CR>
+noremap <leader>J :action TextEditorWithPreview.Layout.EditorOnly<CR>
+noremap <leader>j :action TextEditorWithPreview.Layout.EditorAndPreview<CR>
 
 noremap <leader>l :action ReformatCode<CR>
 
@@ -98,6 +98,7 @@ noremap <leader>U :action Git.CompareWithBranch<CR>
 noremap <leader>v :action IntroduceVariable<CR>
 
 noremap <leader>w :action QuickImplementations<CR>
+
 noremap <leader><CR> :action SelectInProjectView<CR>
 
 " ------------------
@@ -119,8 +120,6 @@ nnoremap <c-right> <c-w>l
 nnoremap <c-down> <c-w>j
 nnoremap <c-up> <c-w>k
 
-" nnoremap <TAB> :action PreviousTab<CR>
-" nnoremap <s-TAB> :action NextTab<CR>
 nnoremap <TAB> :action NextSplitter<CR>
 nnoremap <s-TAB> :action PrevSplitter<CR>
 nnoremap <a-TAB> :action OpenEditorInOppositeTabGroup<CR>
@@ -139,7 +138,6 @@ nnoremap ]] :action MethodDown<CR>
 
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gf :action GotoTypeDeclaration<CR>
-nnoremap gx :action GoToLinkTarget<CR>
 nnoremap gh :action Vcs.RollbackChangedLines<CR>
 
 noremap <c-/> :action FindInPath<CR>
@@ -147,3 +145,5 @@ noremap <c-/> :action FindInPath<CR>
 nnoremap <c-o> :action Back<cr>
 nnoremap <c-i> :action Forward<cr>
 nnoremap g; `.
+" use gp to select last pasted text
+nnoremap gp `[v`]

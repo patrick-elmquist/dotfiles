@@ -39,20 +39,49 @@ fun is-vim(){
 }
 
 # -------------------------------------------------
-# Tile two or more images into one.
+# Tile two or more images horizontally into one.
 #
 # $2-6 - images to tile
 #
-# Example: tile before.png after.png
+# Example: tileh before.png after.png
 # -------------------------------------------------
-fun tile() {
+fun tileh() {
     filename="tile.png"
     case $# in
         2) pattern="2x1" ;;
         3) pattern="3x1" ;;
         4) pattern="4x1" ;;
-        5) pattern="3x2" ;;
-        6) pattern="3x2" ;;
+        5) pattern="5x1" ;;
+        6) pattern="6x1" ;;
+        *) echo "Unsupported number of images: $#" && return 0 ;;
+    esac
+
+    montage -geometry +100+100 \
+        -border 2 \
+        -bordercolor grey \
+        -background grey90 \
+        -tile "$pattern" \
+        "$@" \
+        "$filename"
+
+    open $filename;
+}
+
+# -------------------------------------------------
+# Tile two or more images vertically into one.
+#
+# $2-6 - images to tile
+#
+# Example: tilev before.png after.png
+# -------------------------------------------------
+fun tilev() {
+    filename="tile.png"
+    case $# in
+        2) pattern="1x2" ;;
+        3) pattern="1x3" ;;
+        4) pattern="1x4" ;;
+        5) pattern="1x5" ;;
+        6) pattern="1x6" ;;
         *) echo "Unsupported number of images: $#" && return 0 ;;
     esac
 
@@ -349,13 +378,13 @@ BACK=4
 # -------------------------------------------------
 fun adb-generic-login() {
     adb-text "$1"
-    sleep 0.1
+    sleep 0.2
 
     adb-key ENTER
-    sleep 0.1
+    sleep 0.2
 
     adb-text "$2"
-    sleep 0.1
+    sleep 0.2
 
     adb-key ENTER
 }
@@ -410,6 +439,19 @@ fun adb-animations() {
 # -------------------------------------------------
 fun adb-overdraw() {
     adb shell setprop debug.hwui.overdraw "${1:-show}"
+    adb_poke_system_properties
+}
+
+# -------------------------------------------------
+# Enable or disable showing touches for the connected
+# device or emulator
+#
+# $1 - 1 or 0 (default:1)
+#
+# Example: adb-show-touches 1
+# -------------------------------------------------
+fun adb-show-touches() {
+    adb shell settings put system show_touches "${1:-1}"
     adb_poke_system_properties
 }
 
@@ -599,14 +641,28 @@ fun caps() {
 
 # -------------------------------------------------
 # Tile images from the LOCAL_CAPTURES_HOME folder
+# horizontally
 #
 # Example: capstile 1.png 2.png
 # -------------------------------------------------
 fun capstile() {
     pushd "$LOCAL_CAPTURES_HOME" > /dev/null
-    tile "$@"
+    tileh "$@"
     popd > /dev/null
 }
+
+# -------------------------------------------------
+# Tile images from the LOCAL_CAPTURES_HOME folder
+# vertically
+#
+# Example: capstilev 1.png 2.png
+# -------------------------------------------------
+fun capstilev() {
+    pushd "$LOCAL_CAPTURES_HOME" > /dev/null
+    tilev "$@"
+    popd > /dev/null
+}
+
 
 _capstile() {
     captures_folder="${LOCAL_CAPTURES_HOME:-$(pwd)}"
@@ -614,3 +670,4 @@ _capstile() {
 }
 
 compdef _capstile capstile
+compdef _capstile capstilev

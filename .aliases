@@ -79,7 +79,6 @@ alias fetch='git fetch --all --prune'
 alias squash='git rebase -i'
 alias checkpoint='git commit -am "Checkpoint"'
 alias dall='diffall'
-# alias commit='git commit -am'
 
 # VIM Plugins
 alias plug-clean='vim +PlugClean +qall'

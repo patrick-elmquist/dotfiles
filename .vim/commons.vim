@@ -141,3 +141,8 @@ nnoremap <s-tab> <c-w><c-p>
 " Surround like delete/change surrounding function call
 " nmap <silent> dsf ds)db
 " nnoremap <silent> csf [(cb
+
+" Short hand for surrounding with function
+nmap <leader>M viwSf
+xmap F Sf
+
