@@ -70,6 +70,13 @@ plug-install
 qmk setup patrick-elmquist/qmk_firmware
 
 # ...then follow the steps in the userspace repo README
+
+# Add these to the git config if not there already
+# [submodule "keyboards/dasbob"]
+# 	url = https://github.com/patrick-elmquist/qmk-config-dasbob.git
+# [submodule "keyboards/totem"]
+# 	url = https://github.com/patrick-elmquist/qmk-config-totem.git
+
 ```
 
 ## Error handling

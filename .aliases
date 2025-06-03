@@ -44,7 +44,8 @@ alias bat='bat --paging=never'
 alias batp='bat --paging=always'
 
 # Gradle
-alias quality='./gradlew ktlintFormat detekt; tput bel;'
+alias quality2='./gradlew ktlintFormat detekt; tput bel;'
+alias quality='./gradlew diffCheck -PwithFormatting'
 alias quality-full='./gradlew ktlintFormat detekt assertMaxHeight checkSortDependencies; tput bel;'
 alias ktlint='./gradlew ktlint'
 alias ktlintFormat='./gradlew ktlintFormat'
@@ -78,6 +79,7 @@ alias back='git checkout -'
 alias fetch='git fetch --all --prune'
 alias squash='git rebase -i'
 alias checkpoint='git commit -am "Checkpoint"'
+alias gco='git checkout $(git branch | fzf)'
 alias dall='diffall'
 
 # VIM Plugins
