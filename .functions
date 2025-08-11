@@ -330,6 +330,21 @@ fun cap() {
     # Need the -a for foldables to work
     adb exec-out screencap -a -p > $filename
     open "$filename"
+    yoink "$filename"
+}
+
+fun cap-legacy() {
+    filename="${1:-screenshot.png}"
+
+    case $filename in
+        *.png|.PNG) ;;
+        *) filename="$1.png" ;;
+    esac
+
+    # Need the -a for foldables to work
+    adb exec-out screencap -p > $filename
+    open "$filename"
+    yoink "$filename"
 }
 
 # -------------------------------------------------
@@ -639,6 +654,12 @@ fun caps() {
     popd > /dev/null
 }
 
+fun caps-legacy() {
+    pushd "$LOCAL_CAPTURES_HOME" > /dev/null
+    cap-legacy "$@"
+    popd > /dev/null
+}
+
 # -------------------------------------------------
 # Tile images from the LOCAL_CAPTURES_HOME folder
 # horizontally
@@ -671,3 +692,7 @@ _capstile() {
 
 compdef _capstile capstile
 compdef _capstile capstilev
+
+yoink() {
+    osascript -e "set the clipboard to (POSIX file \"$PWD/$1\")"
+}
