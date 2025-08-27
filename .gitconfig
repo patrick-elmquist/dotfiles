@@ -14,17 +14,16 @@
     l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
     lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 20 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \t\\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
     lb50 = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 50 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \t\\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     ll = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ls = log --stat
     st = status
     recent = branch -av --sort=-committerdate
-	fc = "!f() { git branch -a | grep -m1 -e ${1}.*${2} | sed \"s/remotes\\/origin\\///\" | xargs git checkout; }; f"
-	sco = !sh -c \"git branch -a | grep -v remotes | grep $1 | xargs git checkout\"
+    fc = "!f() { git branch -a | grep -m1 -e ${1}.*${2} | sed \"s/remotes\\/origin\\///\" | xargs git checkout; }; f"
+    sco = !sh -c \"git branch -a | grep -v remotes | grep $1 | xargs git checkout\"
 
-[core]
-    pager = less -+$LESS -R
-    untrackedCache = true
-	commitgraph = true
+[branch]
+    sort = -committerdate
 
 [color]
     ui = auto
@@ -39,17 +38,42 @@
     changed = green
     untracked = cyan
 
+[commit]
+    verbose = true
+
+[core]
+    commitgraph = true
+    pager = less -+$LESS -R
+    untrackedCache = true
+    whitespace = trailing-space
+
 [diff]
 	tool = vimdiff
 
-[push]
-	default = current
-[init]
-	defaultBranch = main
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[init]
+	defaultBranch = main
+
+[maintenance]
+    auto = true
+    strategy = incremental
+
+[push]
+	default = current
+
+# https://micahkepe.com/blog/gitconfig/#rerere
+[rerere]
+    enabled = true
+    autoUpdate = true
+
 [status]
 	showUntrackedFiles = all
+    branch = true
+
+[tag]
+    sort = -version:refname
