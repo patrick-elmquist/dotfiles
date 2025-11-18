@@ -87,7 +87,8 @@ noremap <leader>Q :action HideAllWindows<CR>
 noremap <leader>r :action RenameElement<CR>
 noremap <leader>R :action Run<CR>
 
-noremap <leader>s :action FileStructurePopup<CR>
+noremap <leader>s :action ShowIntentionActions<CR>
+noremap <leader>S :action FileStructurePopup<CR>
 
 noremap <leader>t :action Refactorings.QuickListPopupAction<CR>
 noremap <leader>T :action GotoTest<CR>

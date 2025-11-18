@@ -45,7 +45,7 @@ alias batp='bat --paging=always'
 
 # Gradle
 alias quality2='./gradlew ktlintFormat detekt; tput bel;'
-alias quality='./gradlew diffCheck -PwithFormatting'
+alias quality='./gradlew diffCheck -PwithFormatting -PwithKtlint -PwithDetekt'
 alias quality-full='./gradlew ktlintFormat detekt assertMaxHeight checkSortDependencies; tput bel;'
 alias ktlint='./gradlew ktlint'
 alias ktlintFormat='./gradlew ktlintFormat'

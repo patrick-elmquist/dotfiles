@@ -13,13 +13,20 @@ keybind = alt+tab=goto_split:next
 keybind = ctrl+tab=goto_split:next
 
 # MacOS
+macos-hidden = always
 macos-titlebar-style = native
 macos-titlebar-proxy-icon = hidden
 macos-window-shadow = true
 
 # Themes
-theme = rose-pine
+# theme = Rose Pine Dawn
 # theme = ChallengerDeep
+# theme = Duotone Dark
+theme = Matrix
+theme = Tokyonight Night
+# theme = Solarized Osaka Night
+# theme = Neon
+# theme = Lovelace
 # theme = Banana Blueberry
 # theme = synthwave-everything
 
@@ -27,12 +34,13 @@ theme = rose-pine
 keybind = global:cmd+escape=toggle_quick_terminal
 keybind = global:cmd+shift+b=toggle_quick_terminal
 quick-terminal-screen = macos-menu-bar
-quick-terminal-position = top
+quick-terminal-position = center
 quick-terminal-animation-duration = 0
+quick-terminal-size = 50%,60%
 
 # Window
-background-blur-radius = 10
-background-opacity = 0.95
+background-blur-radius = 50
+background-opacity = 0.94
 minimum-contrast = 2
 window-inherit-working-directory = false
 window-padding-x = 12

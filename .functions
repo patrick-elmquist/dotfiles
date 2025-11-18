@@ -395,8 +395,11 @@ fun adb-generic-login() {
     adb-text "$1"
     sleep 0.2
 
-    adb-key ENTER
+    adb-key TAB
     sleep 0.2
+
+    # adb-key TAB
+    # sleep 0.2
 
     adb-text "$2"
     sleep 0.2
