@@ -43,6 +43,8 @@
 
 [core]
     commitgraph = true
+    # This breaks the dotfiles repo
+    # fsmonitor = true
     pager = less -+$LESS -R
     untrackedCache = true
     whitespace = trailing-space

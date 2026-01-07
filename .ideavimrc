@@ -22,7 +22,7 @@ set exchange                    " Exchange blocks of code with cx
 set quickscope                  " Show hints when using fFtT, requires IdeaVim-Quickscope
 set multiple-cursors            " 
 set functiontextobj             " Commands: af, if (needs IDE plugin)
-set mini-ai                     " Commands: aq, iq, ab, ib
+"set mini-ai                     " Commands: aq, iq, ab, ib
 set textobj-entire              " Commands: ae, ie
 
 nmap <C-n> <Plug>NextWholeOccurrence

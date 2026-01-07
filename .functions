@@ -408,6 +408,29 @@ fun adb-generic-login() {
 }
 
 # -------------------------------------------------
+# Input email and password with ADB and a double tab
+#
+# $1 - email
+# $2 - password
+#
+# Example: adb-generic-login-double user@email.com Pa$$word
+# -------------------------------------------------
+fun adb-generic-login-double() {
+    adb-text "$1"
+    sleep 0.2
+
+    adb-key TAB
+    sleep 0.2
+
+    adb-key TAB
+    sleep 0.2
+
+    adb-text "$2"
+    sleep 0.2
+
+    adb-key ENTER
+}
+# -------------------------------------------------
 # Poke the system properties to have changes take
 # effect on the connected device or emulator
 #
