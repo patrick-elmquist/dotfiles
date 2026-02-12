@@ -73,6 +73,9 @@ noremap <leader>I :action ImplementMethods<CR>
 noremap <leader>J :action TextEditorWithPreview.Layout.EditorOnly<CR>
 noremap <leader>j :action TextEditorWithPreview.Layout.EditorAndPreview<CR>
 
+noremap <leader>k :action Compare.LastVersion<CR>
+noremap <leader>K :action Compare.SameVersion<CR>
+
 noremap <leader>l :action ReformatCode<CR>
 
 noremap <leader>m :action ExtractFunction<CR>
@@ -97,6 +100,7 @@ noremap <leader>u :action GotoSuperMethod<CR>
 noremap <leader>U :action Git.CompareWithBranch<CR>
 
 noremap <leader>v :action IntroduceVariable<CR>
+noremap <leader>V :action ChangesView.Revert<CR>
 
 noremap <leader>w :action QuickImplementations<CR>
 

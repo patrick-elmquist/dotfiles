@@ -292,7 +292,7 @@ fun generic-to-feature() {
 
         // Amend the first commit with Jira info
         title="$jira ${@:2}"
-        content="Jira: $jira"
+        content="Jira: $jira\n\n## What's Changed?"
         git commit --amend -m "$title" -m "$content"
     fi
 }
@@ -440,6 +440,18 @@ fun adb_poke_system_properties() {
     # Poke SystemProperties for the change to have effect
     SYSPROPS_TRANSACTION=1599295570
     adb shell service call activity "$SYSPROPS_TRANSACTION" &>/dev/null
+}
+
+# -------------------------------------------------
+# Enable or disable stylus support device or emulator
+#
+# $1 - 0 or 1 (default:false)
+#
+# Example: adb-stylus 0
+# -------------------------------------------------
+fun adb-stylus() {
+    adb shell settings put secure stylus_handwriting_enabled "${1:-0}"
+    adb_poke_system_properties
 }
 
 # -------------------------------------------------
