@@ -21,9 +21,10 @@ set highlightedyank             " Highlight the yanked text for a short duration
 set exchange                    " Exchange blocks of code with cx
 set quickscope                  " Show hints when using fFtT, requires IdeaVim-Quickscope
 set multiple-cursors            " 
-set functiontextobj             " Commands: af, if (needs IDE plugin)
-"set mini-ai                     " Commands: aq, iq, ab, ib
+set functextobj                 " Commands: am, aM, im
+set classtextobj                " Commands: ac
 set textobj-entire              " Commands: ae, ie
+Plug 'tpope/vim-abolish'        " crs snake_case, crm/crp MixedCase/PascalCase, crc camelCase, cru/crU UPPER_SNAKE, cr-/crk kebab-case, cr. dot.case, cr<Space> space case, crt Title Case)
 
 nmap <C-n> <Plug>NextWholeOccurrence
 xmap <C-n> <Plug>NextWholeOccurrence
@@ -53,6 +54,8 @@ noremap <leader>A :action Annotate<CR>
 noremap <leader>b :action GotoTypeDeclaration<CR>
 noremap <leader>B :action GotoImplementation<CR>
 
+noremap <leader>C :action IntroduceProperty<CR>
+
 noremap <leader>d :action ShowErrorDescription<CR>
 
 noremap <leader>e :action RecentFiles<CR>
@@ -81,6 +84,7 @@ noremap <leader>l :action ReformatCode<CR>
 noremap <leader>m :action ExtractFunction<CR>
 
 noremap <leader>n :action Inline<CR>
+noremap <leader>N :action QuickList.Stuff<CR>
 
 noremap <leader>o :action GotoFile<CR>
 
@@ -105,11 +109,9 @@ noremap <leader>V :action ChangesView.Revert<CR>
 noremap <leader>w :action QuickImplementations<CR>
 
 noremap <leader><CR> :action SelectInProjectView<CR>
+noremap <leader>; "0p
+noremap <leader>\ :action MaximizeEditorInSplit<CR>
 
-" ------------------
-" Probation line
-" Based on: https://towardsdatascience.com/the-essential-ideavim-remaps-291d4cd3971b
-" ------------------
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
@@ -125,15 +127,17 @@ nnoremap <c-right> <c-w>l
 nnoremap <c-down> <c-w>j
 nnoremap <c-up> <c-w>k
 
+nnoremap M '
+nnoremap <leader>1 '1
+nnoremap <leader>2 '2
+
 nnoremap <TAB> :action NextSplitter<CR>
 nnoremap <s-TAB> :action PrevSplitter<CR>
 nnoremap <a-TAB> :action OpenEditorInOppositeTabGroup<CR>
+nnoremap <leader><TAB> :q<CR><C-w>v<C-w>w
 nnoremap <c-TAB> :action EditSourceInNewWindow<CR>
 
 nnoremap <leader>wn :action EditSourceInNewWindow<CR>
-" nnoremap <leader>n :action NextWindow<CR>
-" nnoremap <leader>q :action CloseContent<CR>
-" nnoremap <leader>qa :action CloseAllEditors<CR>
 
 vnoremap < <gv
 vnoremap > >gv
@@ -143,7 +147,7 @@ nnoremap ]] :action MethodDown<CR>
 
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gf :action GotoTypeDeclaration<CR>
-nnoremap gh :action Vcs.RollbackChangedLines<CR>
+nnoremap gh :action ChangesView.Revert<CR>
 
 noremap <c-/> :action FindInPath<CR>
 
@@ -152,3 +156,9 @@ nnoremap <c-i> :action Forward<cr>
 nnoremap g; `.
 " use gp to select last pasted text
 nnoremap gp `[v`]
+
+" Center search results
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+ab mod, modifier: Modifier = Modifier,

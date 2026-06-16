@@ -3,6 +3,12 @@ copy-on-select = true
 desktop-notifications = true
 shell-integration = zsh
 
+bell-features = no-attention
+
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+notify-on-command-finish-after = 20s
+
 # Keybinds
 keybind = cmd+shift+e=open_config
 keybind = cmd+shift+r=reload_config

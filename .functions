@@ -664,6 +664,25 @@ fun adb-rec() {
 }
 
 # -------------------------------------------------
+# Enable/Disable talkback
+#
+# Example: adb-talk on
+# -------------------------------------------------
+fun adb-talk() {
+    if [[ "$1" == "on" ]]; then
+        adb shell settings put secure enabled_accessibility_services com.google.android.marvin.talkback/com.google.android.marvin.talkback.TalkBackService
+        adb shell settings put secure touch_exploration_enabled 1
+        echo "TalkBack ON"
+    elif [[ "$1" == "off" ]]; then
+        adb shell settings put secure enabled_accessibility_services null
+        adb shell settings put secure touch_exploration_enabled 0
+        echo "TalkBack OFF"
+    else
+        echo "Usage: $0 [1|0]"
+    fi
+}
+
+# -------------------------------------------------
 # Open LOCAL_CAPTURES_HOME folder in Finder
 #
 # Example: capso
@@ -721,7 +740,6 @@ fun capstilev() {
     tilev "$@"
     popd > /dev/null
 }
-
 
 _capstile() {
     captures_folder="${LOCAL_CAPTURES_HOME:-$(pwd)}"
